@@ -4,6 +4,10 @@ namespace Task0_Intro
 {
     class Program
     {
+        /// <summary>
+        /// Task_0.1
+        /// </summary>
+        /// <param name="getNumber"></param>
         static void Sequence(int getNumber) 
         {
             for (int i = 1; i < getNumber + 1; i++) 
@@ -17,8 +21,12 @@ namespace Task0_Intro
                     Console.Write($"{i},");
                 }               
             }
+            Console.WriteLine();
         }
-
+        /// <summary>
+        /// Task_0.2
+        /// </summary>
+        /// <param name="getNumber"></param>
         static void Simple(int getNumber) 
         {
             bool simpleNumber = true;
@@ -41,7 +49,10 @@ namespace Task0_Intro
                 Console.WriteLine($"Число {getNumber} не простое");
             }
         }
-
+        /// <summary>
+        /// Task_0.3
+        /// </summary>
+        /// <param name="getNumber"></param>
         static void Square(int getNumber) 
         {
             for (int i = 0; i < getNumber; i++) 
@@ -65,7 +76,7 @@ namespace Task0_Intro
         {
             return (getNumber % 2) == 0;
         }
-        static int ParityCheck() 
+        static int NumberCheck() 
         {           
             string getNumber = string.Empty;
             int number;
@@ -84,33 +95,106 @@ namespace Task0_Intro
                 }
                 Console.WriteLine();
 
-                Console.Write("Введите положительное число: ");
+                Console.Write("Введите число: ");
                 getNumber = Console.ReadLine();
                 Console.WriteLine();
             }
             return number;
         }
+        /// <summary>
+        /// Task_0.4(0.5)
+        /// </summary>
+        /// <param name="getNumber"></param>
+        static void Array(int getNumber) 
+        {
+            Random random = new Random();
+            int[,] array = new int[getNumber, getNumber];
+            for (int i = 0; i < getNumber; i++) 
+            {
+                for (int j = 0; j < getNumber; j++) 
+                {
+                    array[i, j] = random.Next(0, 100);
+                }
+            }
+            ViewArray(array);
+            SortArray(array);
+            Console.WriteLine();
+            ViewArray(array);
+        }
+        static void SortArray(int[,] array) 
+        {
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    for (int h = i; h < array.GetLength(0); h++)
+                    {
+                        for (int m = (h == i) ? j : 0; m < array.GetLength(1); m++)
+                        {
+                            if (array[i, j] > array[h, m])
+                            {
+                                int t = array[i, j];
+                                array[i, j] = array[h, m];
+                                array[h, m] = t;
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
+        static void ViewArray(int[,] array) 
+        {
+            for(int i = 0; i < array.GetLength(0); i++) 
+            {
+                Console.Write("{ ");
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    if (j + 1 == array.GetLength(1))
+                    {
+                        Console.Write(array[i, j] + " ");
+                    }
+                    else 
+                    {
+                        Console.Write(array[i,j] + ",");     
+                    }             
+                }
+                Console.Write("}");
+                Console.WriteLine();
+            }
+        }
         static void Main(string[] args)
         {
-            Console.Write("Введите число: ");
+            int number;
 
-            int number = ParityCheck();
-            Console.WriteLine();
+            Console.Write("Введите положительное число: ");
+            number = NumberCheck();
             Sequence(number);
             Console.WriteLine();
+
+            Console.Write("Введите число: ");
+            number = NumberCheck();
             Simple(number);
-            while (ParityCheck(number)) 
-            {
-                Console.WriteLine();
-                Console.WriteLine("Вы ввели чётное число ");
-                Console.Write("Введите нечётное число: ");
-                number = ParityCheck();
-            }
-            Console.WriteLine();
-            Square(number);
             Console.WriteLine();
 
+            Console.Write("Введите нечётное число: ");
+            number = NumberCheck();
+            while (ParityCheck(number)) 
+            {
+                Console.WriteLine("Вы ввели чётное число ");
+                Console.WriteLine();
+                Console.Write("Введите нечётное число: ");
+                number = NumberCheck();
+            }
+            Console.WriteLine();
+
+            Square(number);
+            Console.WriteLine();
+            Console.Write("Введите размерность массива: ");
+            number = NumberCheck();
+            Console.WriteLine();
+            Array(number);
+            Console.WriteLine();
             Console.ReadKey();
         }
     }
