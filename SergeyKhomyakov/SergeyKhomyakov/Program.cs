@@ -18,6 +18,29 @@ namespace Task0_Intro
                 }               
             }
         }
+
+        static void Simple(int getNumber) 
+        {
+            bool simpleNumber = true;
+
+            for (int i = 2; i < getNumber / 2; i++) 
+            {
+                if (getNumber % i == 0) 
+                {
+                    simpleNumber = false;
+                    break;
+                }
+            }
+
+            if (simpleNumber)
+            {
+                Console.WriteLine($"Число {getNumber} простое");
+            }
+            else 
+            {
+                Console.WriteLine($"Число {getNumber} не простое");
+            }
+        }
         static void Main(string[] args)
         {
             string getNumber = string.Empty;
@@ -44,6 +67,8 @@ namespace Task0_Intro
             }
 
             Sequence(number);
+            Console.WriteLine();
+            Simple(number);
 
             Console.ReadKey();
         }
