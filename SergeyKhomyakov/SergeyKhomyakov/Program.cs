@@ -4,62 +4,61 @@ namespace Task0_Intro
 {
     class Program
     {
-        /// <summary>
-        /// Task_0.1
-        /// </summary>
-        /// <param name="getNumber"></param>
-        static void Sequence(int getNumber) 
+        static string ReturnSequenceOfNumbers(int number) 
         {
-            for (int i = 1; i < getNumber + 1; i++) 
+            var stringNumbers = string.Empty;
+
+            for (int i = 1; i < number + 1; i++) 
             {
-                if (i == getNumber)
+                if (i == number)
                 {
-                    Console.Write(i);
+                    stringNumbers += i.ToString();
                 }
                 else 
                 {
-                    Console.Write($"{i},");
+                    stringNumbers += i.ToString() + ",";
                 }               
             }
-            Console.WriteLine();
+            return stringNumbers;
         }
-        /// <summary>
-        /// Task_0.2
-        /// </summary>
-        /// <param name="getNumber"></param>
-        static void Simple(int getNumber) 
+
+        static void CheckOfSimpleNumber(int number) 
         {
-            bool simpleNumber = true;
+            bool isFlagSimpleNumber = true;
 
-            for (int i = 2; i < getNumber / 2; i++) 
+            if (number % 2 == 0)
             {
-                if (getNumber % i == 0) 
-                {
-                    simpleNumber = false;
-                    break;
-                }
-            }
-
-            if (simpleNumber)
-            {
-                Console.WriteLine($"Число {getNumber} простое");
+                isFlagSimpleNumber = false;
             }
             else 
             {
-                Console.WriteLine($"Число {getNumber} не простое");
+                for (int i = 2; i < number / 2; i++) 
+                {
+                    if (number % i == 0) 
+                    {
+                        isFlagSimpleNumber = false;
+                        break;
+                    }
+                }
+            }
+
+            if (isFlagSimpleNumber)
+            {
+                Console.WriteLine($"Число {number} простое");
+            }
+            else 
+            {
+                Console.WriteLine($"Число {number} непростое");
             }
         }
-        /// <summary>
-        /// Task_0.3
-        /// </summary>
-        /// <param name="getNumber"></param>
-        static void Square(int getNumber) 
+
+        static void GetSquare(int number) 
         {
-            for (int i = 0; i < getNumber; i++) 
+            for (int i = 0; i < number; i++) 
             {
-                for (int j = 0; j < getNumber; j++) 
+                for (int j = 0; j < number; j++) 
                 {
-                    if (getNumber / 2 == i && getNumber / 2 == j)
+                    if (number / 2 == i && number / 2 == j)
                     {
                         Console.Write(" ");
                     }
@@ -72,18 +71,18 @@ namespace Task0_Intro
             }
         }
 
-        static bool ParityCheck(int getNumber) 
+        static bool ParityCheck(int number) 
         {
-            return (getNumber % 2) == 0;
+            return (number % 2) == 0;
         }
-        static int NumberCheck() 
+        static int NumberInputСheck() 
         {           
-            string getNumber = string.Empty;
+            var stringNumber = string.Empty;
             int number;
-            
-            getNumber = Console.ReadLine();
 
-            while (!int.TryParse(getNumber, out number) || number < 0)
+            stringNumber = Console.ReadLine();
+
+            while (!int.TryParse(stringNumber, out number) || number < 0)
             {
                 if (number < 0)
                 {
@@ -96,40 +95,43 @@ namespace Task0_Intro
                 Console.WriteLine();
 
                 Console.Write("Введите число: ");
-                getNumber = Console.ReadLine();
+                stringNumber = Console.ReadLine();
                 Console.WriteLine();
             }
             return number;
         }
-        /// <summary>
-        /// Task_0.4(0.5)
-        /// </summary>
-        /// <param name="getNumber"></param>
-        static void Array(int getNumber) 
+
+        static void Array(int number) 
         {
-            Random random = new Random();
-            int[,] array = new int[getNumber, getNumber];
-            for (int i = 0; i < getNumber; i++) 
-            {
-                for (int j = 0; j < getNumber; j++) 
-                {
-                    array[i, j] = random.Next(0, 100);
-                }
-            }
+            int[,] array = new int[number, number];
+            FillArray(array);
             ViewArray(array);
             SortArray(array);
             Console.WriteLine();
             ViewArray(array);
         }
+
+        static void FillArray(int[,] array) 
+        {          
+            Random random = new Random();
+            for (int i = 0; i < array.GetLength(0); i++) 
+            {
+                for (int j = 0; j < array.GetLength(1); j++) 
+                {
+                    array[i, j] = random.Next(0, 100);
+                }
+            }
+        }
+
         static void SortArray(int[,] array) 
         {
-            for (int i = 0; i < array.GetLength(0); i++)
+            for (int i = 0; i < array.GetLength(0); i++) // перечисление строк
             {
-                for (int j = 0; j < array.GetLength(1); j++)
+                for (int j = 0; j < array.GetLength(1); j++) // перечисление столбцов 
                 {
-                    for (int h = i; h < array.GetLength(0); h++)
+                    for (int h = i; h < array.GetLength(0); h++) // перечисление строк для проверки 
                     {
-                        for (int m = (h == i) ? j : 0; m < array.GetLength(1); m++)
+                        for (int m = (h == i) ? j : 0; m < array.GetLength(1); m++) // перечисление столбцов для проверки (исключаем проверенные и заменннеые символы)
                         {
                             if (array[i, j] > array[h, m])
                             {
@@ -168,30 +170,29 @@ namespace Task0_Intro
             int number;
 
             Console.Write("Введите положительное число: ");
-            number = NumberCheck();
-            Sequence(number);
-            Console.WriteLine();
+            number = NumberInputСheck();            
+            Console.WriteLine(ReturnSequenceOfNumbers(number));
 
             Console.Write("Введите число: ");
-            number = NumberCheck();
-            Simple(number);
+            number = NumberInputСheck();
+            CheckOfSimpleNumber(number);
             Console.WriteLine();
 
             Console.Write("Введите нечётное число: ");
-            number = NumberCheck();
+            number = NumberInputСheck();
             while (ParityCheck(number)) 
             {
                 Console.WriteLine("Вы ввели чётное число ");
                 Console.WriteLine();
                 Console.Write("Введите нечётное число: ");
-                number = NumberCheck();
+                number = NumberInputСheck();
             }
             Console.WriteLine();
 
-            Square(number);
+            GetSquare(number);
             Console.WriteLine();
             Console.Write("Введите размерность массива: ");
-            number = NumberCheck();
+            number = NumberInputСheck();
             Console.WriteLine();
             Array(number);
             Console.WriteLine();
