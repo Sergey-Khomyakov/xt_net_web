@@ -376,7 +376,57 @@ namespace Task1_Basics
             }
             Console.WriteLine($"Сумму неотрицательных элементов  = {sum}");
         }
+        /// <summary>
+        /// 1.10. Метод выводит сумму элементов массива, стоящих на чётных позициях
+        /// </summary>
+        /// <param name="number">Размер массива</param>
+        private static void TwoDimensionalArray(int number) 
+        {
+            int[,] array = new int[number, number];
+            FillTwoDimensionalArray(array);
+            ViewTwoDimensionalArray(array);
+            Console.WriteLine($"Сумма стоящих на чётных позициях = {SumEvenPositions(array)}");
+        }
 
+        private static void FillTwoDimensionalArray(int[,]array) 
+        {
+            Random random = new Random();
+            for (int k = 0; k < array.GetLength(0); k++)
+            {
+                for (int i = 0; i < array.GetLength(1); i++)
+                {
+                    array[k, i] = random.Next(0, 100);
+                }
+            }
+        }
+
+        private static void ViewTwoDimensionalArray(int[,]array) 
+        {
+            for (int k = 0; k < array.GetLength(0); k++)
+            {
+                for (int i = 0; i < array.GetLength(1); i++)
+                {
+                    Console.Write(array[k, i] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        private static int SumEvenPositions(int[,]array) 
+        {
+            int sum = 0;
+            for (int k = 0; k < array.GetLength(0); k++)
+            {
+                for (int i = 0; i < array.GetLength(1); i++)
+                {
+                    if ((k + i) % 2 == 0)
+                    {
+                        sum += array[k, i];
+                    }
+                }
+            }
+            return sum;
+        }
         private static int NumberInputСheck()
         {
             var stringNumber = string.Empty;
@@ -493,6 +543,14 @@ namespace Task1_Basics
                         Console.Write("Введите число: ");
                         number = NumberInputСheck();
                         SumOfNonNegativeElementsInArray(number);
+                        Console.WriteLine();
+                        break;
+
+                    case 10:
+
+                        Console.Write("Введите число: ");
+                        number = NumberInputСheck();
+                        TwoDimensionalArray(number);
                         Console.WriteLine();
                         break;
                 }
