@@ -38,6 +38,40 @@ namespace Task1_Basics
                 Console.WriteLine();
             }
         }
+
+        private static void GetTriangle() 
+        {
+            int Number;
+            Console.WriteLine("Введите число");
+            Number = NumberInputСheck();
+
+            for (int i = 0; i < Number + 1; i++) // построение строк 
+            {
+                for (int j = Number; j != 0; j--) // построение левой части  
+                {
+                    if (j < i)
+                    {
+                        Console.Write("*");
+                    }
+                    else
+                    {
+                        Console.Write(" ");
+                    }
+                }
+                for (int j = 0; j != Number; j++) // построение правой части 
+                {
+                    if (j < i)
+                    {
+                        Console.Write("*");
+                    }
+                    else
+                    {
+                        Console.Write(" ");
+                    }
+                }
+                Console.WriteLine();
+            }
+        }
         static int NumberInputСheck()
         {
             var stringNumber = string.Empty;
@@ -68,6 +102,9 @@ namespace Task1_Basics
             GetRectangel();
             Console.WriteLine();
             GetSlide();
+            Console.WriteLine();
+            GetTriangle();
+            Console.WriteLine();
             Console.ReadKey();
         }
     }
