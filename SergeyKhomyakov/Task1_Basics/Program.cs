@@ -57,6 +57,7 @@ namespace Task1_Basics
                 Console.WriteLine();
             }
         }
+
         private static void GetChristmasTree(int number) 
         {
             for (int d = 0; d <= number; d++) // построение количество треугольников 
@@ -184,6 +185,89 @@ namespace Task1_Basics
                 
             }
         }
+
+        private static void Array(int number)
+        {
+            int[] array = new int[number];
+            FillArray(array);
+            Console.Write("Изначальный массив: ");
+            ViewArray(array);
+            Console.WriteLine($"Максимальное значение в массиве {MaxValueInArray(array)}");
+            Console.WriteLine($"Минимальное значение в массиве {MinValueInArray(array)}");
+            SortArray(array);
+            Console.Write("Отсортированный массив: ");
+            ViewArray(array);
+        }
+
+        private static void FillArray(int[] array)
+        {
+            Random random = new Random();
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = random.Next(0, 100);
+            }
+        }
+
+        private static int MinValueInArray(int[] array)
+        {
+            int minValue = array[0];
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (minValue > array[i])
+                {
+                    minValue = array[i];
+                }
+            }
+            return minValue;
+        }
+
+        private static int MaxValueInArray(int[] array)
+        {
+            int maxValue = array[0];
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (maxValue < array[i])
+                {
+                    maxValue = array[i];
+                }
+            }
+            return maxValue;
+        }
+        private static void SortArray(int[] array)
+        {
+            int number = 0;
+            for (int i = 0; i < array.Length - 1; i++)
+            {
+                for (int j = array.Length - 1; j > i; j--)
+                {
+                    if (array[j - 1] > array[j])
+                    {
+                        number = array[j - 1];
+                        array[j - 1] = array[j];
+                        array[j] = number;
+                    }
+                }
+            }
+        }
+
+        private static void ViewArray(int[] array)
+        {
+            Console.Write("{ ");
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (i + 1 == array.Length)
+                {
+                    Console.Write(array[i] + " ");
+                }
+                else
+                {
+                    Console.Write(array[i] + ",");
+                }
+            }
+            Console.Write("}");
+            Console.WriteLine();
+        }
+
         private static int NumberInputСheck()
         {
             var stringNumber = string.Empty;
@@ -219,10 +303,10 @@ namespace Task1_Basics
             Console.WriteLine("Введите длину");
             heigth = NumberInputСheck();
 
-            Console.WriteLine(GetAreaOfRectangel(width,heigth));
+            Console.WriteLine(GetAreaOfRectangel(width, heigth));
             Console.WriteLine();
 
-            
+
             Console.WriteLine("Введите число");
             Number = NumberInputСheck();
             GetSlide(Number);
@@ -241,6 +325,14 @@ namespace Task1_Basics
             Console.WriteLine("Введите число");
             Number = NumberInputСheck();
             SumOfNumbers(Number);
+            Console.WriteLine();
+
+            GetFontAdjustment();
+            Console.WriteLine();
+
+            Console.WriteLine("Введите число");
+            Number = NumberInputСheck();
+            Array(Number);
             Console.WriteLine();
 
             Console.ReadKey();
