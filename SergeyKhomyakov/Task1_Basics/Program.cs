@@ -4,7 +4,7 @@ namespace Task1_Basics
 {
     class Program
     {
-        static void GetRectangel() 
+        private static void GetRectangel() 
         {
             int width;
             int heigth;
@@ -14,6 +14,29 @@ namespace Task1_Basics
             heigth = NumberInputСheck();
 
             Console.WriteLine($"Площадь прямоугольника со сторонами {width} и {heigth} = {width * heigth}");
+        }
+
+        private static void GetSlide() 
+        {
+            int Number;
+            Console.WriteLine("Введите число");
+            Number = NumberInputСheck();
+
+            for (int i = 0; i < Number + 1; i++)
+            {
+                for (int j = 0; j != i; j++)
+                {
+                    if (j < i)
+                    {
+                        Console.Write("*");
+                    }
+                    else
+                    {
+                        Console.Write(" ");
+                    }
+                }
+                Console.WriteLine();
+            }
         }
         static int NumberInputСheck()
         {
@@ -43,6 +66,8 @@ namespace Task1_Basics
         static void Main(string[] args)
         {
             GetRectangel();
+            Console.WriteLine();
+            GetSlide();
             Console.ReadKey();
         }
     }
