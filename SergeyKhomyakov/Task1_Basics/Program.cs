@@ -6,8 +6,17 @@ namespace Task1_Basics
 {
     class Program
     {
-        private static string GetAreaOfRectangel(int width, int heigth) => $"Площадь прямоугольника со сторонами {width} и {heigth} = {width * heigth}";
+        /// <summary>
+        /// Task 1.1. Метод возвращает площадь прямоугольника 
+        /// </summary>
+        /// <param name=”width”>Ширина прямоугольника</param>
+        /// <param name=”height”>Высота прямоугольника</param>
+        private static string GetAreaOfRectangel(int width, int height) => $"Площадь прямоугольника со сторонами {width} и {height} = {width * height}";
 
+        /// <summary>
+        /// Task 1.2. Метод выводит на консоль изображение "Горки"
+        /// </summary>
+        /// <param name=”number”>Высота горки </param>
         private static void GetSlide(int number)
         {
             for (int i = 0; i < number + 1; i++)
@@ -26,7 +35,10 @@ namespace Task1_Basics
                 Console.WriteLine();
             }
         }
-
+        /// <summary>
+        /// Task 1.3. Метод выводит на консоль изображение "Треугольника"
+        /// </summary>
+        /// <param name=”number”>Высота треугольника </param>
         private static void GetTriangle(int number)
         {
 
@@ -57,7 +69,10 @@ namespace Task1_Basics
                 Console.WriteLine();
             }
         }
-
+        /// <summary>
+        /// Task 1.4. Метод выводит на консоль изображение "Елки"
+        /// </summary>
+        /// <param name=”number”>Высота елки</param>
         private static void GetChristmasTree(int number) 
         {
             for (int d = 0; d <= number; d++) // построение количество треугольников 
@@ -91,7 +106,9 @@ namespace Task1_Basics
                 }
             }
         }
-
+        /// <summary>
+        /// Task 1.5. Метод выводит сумму всех чисел кратных 3 или 5
+        /// </summary>
         private static void SumOfNumbers(int number) 
         {
             int sum = 0;
@@ -106,7 +123,9 @@ namespace Task1_Basics
             }
             Console.Write("их сумма = " + sum);
         }
-
+        /// <summary>
+        /// Task 1.6. Метод позволяет устанавливать и изменять начертание шрифта 
+        /// </summary>
         private static void GetFontAdjustment()
         {
             List<string> listFont = new List<string>();
@@ -186,6 +205,10 @@ namespace Task1_Basics
             }
         }
 
+        /// <summary>
+        /// 1.7. Метот заполняет массив, выводит максимальное и минимальное значения в массиве, сортирует массив и выводит полученный результат.
+        /// </summary>
+        /// <param name="number">Размер массива</param>
         private static void Array(int number)
         {
             int[] array = new int[number];
@@ -268,6 +291,10 @@ namespace Task1_Basics
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// 1.8. Метод заменяет все положительные элементы в трёхмерном массиве на нули и выводит полученный результат
+        /// </summary>
+        /// <param name="number">Размер массива</param>
         private static void ThreeDimensionalArray(int number) 
         {
             int[,,] array = new int[number,number,number];
@@ -355,51 +382,91 @@ namespace Task1_Basics
         }
         static void Main(string[] args)
         {
+            int number, numberTask;
+            bool isExit = false;
+            string[] arrayTask = { "0 - EXIT","1 - RECTANGLE", "2 - TRIANGLE", "3 - ANOTHER TRIANGLE", "4 - X-MAS TREE",
+                "5 - SUM OF NUMBERS", "6 - FONT ADJUSTMENT", "7 - ARRAY PROCESSING", "8 - NO POSITIVE", "9 - NON-NEGATIVE SUM", "10 - 2D ARRAY",
+                "11 - AVERAGE STRING LENGTH", "12 - CHAR DOUBLER"};
+            while(!isExit)
+            {
+                Console.WriteLine("********************************");
+                foreach (var Task in arrayTask) 
+                {
+                    Console.WriteLine(Task);
+                }
+                Console.Write("Задание № ");
+                numberTask = NumberInputСheck();
+                switch (numberTask) 
+                {
+                    case 0:
+                        isExit = true;
+                        break;
+                    case 1:      
+                    
+                        Console.WriteLine("Введите ширину");
+                        int width = NumberInputСheck();
+                        Console.WriteLine("Введите длину");
+                        int heigth = NumberInputСheck();
 
-            int width, heigth, Number;
+                        Console.WriteLine(GetAreaOfRectangel(width, heigth));
+                        Console.WriteLine();
+                        break;
 
-            Console.WriteLine("Введите ширину");
-            width = NumberInputСheck();
-            Console.WriteLine("Введите длину");
-            heigth = NumberInputСheck();
+                    case 2:     
+                    
+                        Console.WriteLine("Введите число");
+                        number = NumberInputСheck();
+                        GetSlide(number);
+                        Console.WriteLine();
+                        break;
 
-            Console.WriteLine(GetAreaOfRectangel(width, heigth));
-            Console.WriteLine();
+                    case 3:
 
+                        Console.WriteLine("Введите число");
+                        number = NumberInputСheck();
+                        GetTriangle(number);
+                        Console.WriteLine();
+                        break;
 
-            Console.WriteLine("Введите число");
-            Number = NumberInputСheck();
-            GetSlide(Number);
-            Console.WriteLine();
+                    case 4:
 
-            Console.WriteLine("Введите число");
-            Number = NumberInputСheck();
-            GetTriangle(Number);
-            Console.WriteLine();
+                        Console.WriteLine("Введите число");
+                        number = NumberInputСheck();
+                        GetChristmasTree(number);
+                        Console.WriteLine();
+                        break;
 
-            Console.WriteLine("Введите число");
-            Number = NumberInputСheck();
-            GetChristmasTree(Number);
-            Console.WriteLine();
+                    case 5:
 
-            Console.WriteLine("Введите число");
-            Number = NumberInputСheck();
-            SumOfNumbers(Number);
-            Console.WriteLine();
+                        Console.WriteLine("Введите число");
+                        number = NumberInputСheck();
+                        SumOfNumbers(number);
+                        Console.WriteLine();
+                        break;
 
-            GetFontAdjustment();
-            Console.WriteLine();
+                    case 6:
 
-            Console.WriteLine("Введите число");
-            Number = NumberInputСheck();
-            Array(Number);
-            Console.WriteLine();
+                        GetFontAdjustment();
+                        Console.WriteLine();
+                        break;
 
-            Console.WriteLine("Введите число");
-            Number = NumberInputСheck();
-            ThreeDimensionalArray(Number);
-            Console.WriteLine();
+                    case 7:
 
+                        Console.WriteLine("Введите число");
+                        number = NumberInputСheck();
+                        Array(number);
+                        Console.WriteLine();
+                        break;
+
+                    case 8:
+
+                        Console.WriteLine("Введите число");
+                        number = NumberInputСheck();
+                        ThreeDimensionalArray(number);
+                        Console.WriteLine();
+                        break;
+                }
+            }
             Console.ReadKey();
         }
     }
