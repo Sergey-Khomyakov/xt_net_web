@@ -268,6 +268,66 @@ namespace Task1_Basics
             Console.WriteLine();
         }
 
+        private static void ThreeDimensionalArray(int number) 
+        {
+            int[,,] array = new int[number,number,number];
+            FillThreeDimensionalArray(array);
+            Console.WriteLine("Изначальный массив");
+            ViewThreeDimensionalArray(array);
+            ChangingPositiveElementsInArray(array);
+            Console.WriteLine("Изменённый массив");
+            ViewThreeDimensionalArray(array);
+        }
+
+        private static void FillThreeDimensionalArray(int[,,] array)
+        {
+            Random random = new Random();
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    for (int k = 0; k < array.GetLength(2); k++)
+                    {
+                        array[i, j, k] = random.Next(-10, 10);
+                    }
+                }
+            }
+        }
+
+        private static void ChangingPositiveElementsInArray(int[,,]array) 
+        {
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    for (int k = 0; k < array.GetLength(2); k++)
+                    {
+                        if (array[i, j, k] > 0)
+                        {
+                            array[i, j, k] = 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        private static void ViewThreeDimensionalArray(int[,,] array) 
+        {
+            for (int i = 0; i < array.GetLength(0); i++) 
+            {
+                Console.WriteLine($"Массив № {i}");
+                for (int j = 0; j < array.GetLength(1); j++) 
+                {
+                    for (int g = 0; g < array.GetLength(2); g++) 
+                    {
+                        Console.Write(array[i,j,g]);
+                        Console.Write(",");
+                    }
+                    Console.WriteLine();
+                }
+                Console.WriteLine("");
+            }
+        }
         private static int NumberInputСheck()
         {
             var stringNumber = string.Empty;
@@ -333,6 +393,11 @@ namespace Task1_Basics
             Console.WriteLine("Введите число");
             Number = NumberInputСheck();
             Array(Number);
+            Console.WriteLine();
+
+            Console.WriteLine("Введите число");
+            Number = NumberInputСheck();
+            ThreeDimensionalArray(Number);
             Console.WriteLine();
 
             Console.ReadKey();
