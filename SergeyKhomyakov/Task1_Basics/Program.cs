@@ -55,6 +55,39 @@ namespace Task1_Basics
                 Console.WriteLine();
             }
         }
+        private static void GetChristmasTree(int Number) 
+        {
+            for (int d = 0; d <= Number; d++) // построение количество треугольников 
+            {
+                for (int i = 0; i <= d; i++) // построение строк 
+                {
+
+                    for (int j = Number; j != 0; j--) // построение левой части  
+                    {
+                        if (j <= i)
+                        {
+                            Console.Write("*");
+                        }
+                        else
+                        {
+                            Console.Write(" ");
+                        }
+                    }
+                    for (int j = 0; j != Number + 1; j++) // построение правой части 
+                    {
+                        if (j <= i)
+                        {
+                            Console.Write("*");
+                        }
+                        else
+                        {
+                            Console.Write(" ");
+                        }
+                    }
+                    Console.WriteLine();
+                }
+            }
+        }
 
         static int NumberInputСheck()
         {
@@ -103,6 +136,11 @@ namespace Task1_Basics
             Console.WriteLine("Введите число");
             Number = NumberInputСheck();
             GetTriangle(Number);
+            Console.WriteLine();
+
+            Console.WriteLine("Введите число");
+            Number = NumberInputСheck();
+            GetChristmasTree(Number);
             Console.WriteLine();
 
             Console.ReadKey();
