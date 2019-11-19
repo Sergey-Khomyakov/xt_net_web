@@ -6,12 +6,8 @@ namespace Task1_Basics
     {
         private static string GetAreaOfRectangel(int width, int heigth) => $"Площадь прямоугольника со сторонами {width} и {heigth} = {width * heigth}";
 
-        private static void GetSlide()
+        private static void GetSlide(int Number)
         {
-            int Number;
-            Console.WriteLine("Введите число");
-            Number = NumberInputСheck();
-
             for (int i = 0; i < Number + 1; i++)
             {
                 for (int j = 0; j != i; j++)
@@ -29,11 +25,8 @@ namespace Task1_Basics
             }
         }
 
-        private static void GetTriangle()
+        private static void GetTriangle(int Number)
         {
-            int Number;
-            Console.WriteLine("Введите число");
-            Number = NumberInputСheck();
 
             for (int i = 0; i < Number + 1; i++) // построение строк 
             {
@@ -91,20 +84,27 @@ namespace Task1_Basics
         static void Main(string[] args)
         {         
             
-            int width;
-            int heigth;
+            int width, heigth, Number;
+
             Console.WriteLine("Введите ширину");
             width = NumberInputСheck();
             Console.WriteLine("Введите длину");
             heigth = NumberInputСheck();
 
-            GetAreaOfRectangel(width,heigth);
+            Console.WriteLine(GetAreaOfRectangel(width,heigth));
             Console.WriteLine();
 
-            GetSlide();
+            
+            Console.WriteLine("Введите число");
+            Number = NumberInputСheck();
+            GetSlide(Number);
             Console.WriteLine();
-            GetTriangle();
+
+            Console.WriteLine("Введите число");
+            Number = NumberInputСheck();
+            GetTriangle(Number);
             Console.WriteLine();
+
             Console.ReadKey();
         }
     }
