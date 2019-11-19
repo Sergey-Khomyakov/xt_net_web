@@ -4,19 +4,9 @@ namespace Task1_Basics
 {
     class Program
     {
-        private static void GetRectangel() 
-        {
-            int width;
-            int heigth;
-            Console.WriteLine("Введите ширину");
-            width = NumberInputСheck();
-            Console.WriteLine("Введите длину");
-            heigth = NumberInputСheck();
+        private static string GetAreaOfRectangel(int width, int heigth) => $"Площадь прямоугольника со сторонами {width} и {heigth} = {width * heigth}";
 
-            Console.WriteLine($"Площадь прямоугольника со сторонами {width} и {heigth} = {width * heigth}");
-        }
-
-        private static void GetSlide() 
+        private static void GetSlide()
         {
             int Number;
             Console.WriteLine("Введите число");
@@ -39,7 +29,7 @@ namespace Task1_Basics
             }
         }
 
-        private static void GetTriangle() 
+        private static void GetTriangle()
         {
             int Number;
             Console.WriteLine("Введите число");
@@ -72,6 +62,7 @@ namespace Task1_Basics
                 Console.WriteLine();
             }
         }
+
         static int NumberInputСheck()
         {
             var stringNumber = string.Empty;
@@ -98,9 +89,18 @@ namespace Task1_Basics
             return number;
         }
         static void Main(string[] args)
-        {
-            GetRectangel();
+        {         
+            
+            int width;
+            int heigth;
+            Console.WriteLine("Введите ширину");
+            width = NumberInputСheck();
+            Console.WriteLine("Введите длину");
+            heigth = NumberInputСheck();
+
+            GetAreaOfRectangel(width,heigth);
             Console.WriteLine();
+
             GetSlide();
             Console.WriteLine();
             GetTriangle();
