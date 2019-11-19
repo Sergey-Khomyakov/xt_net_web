@@ -89,7 +89,21 @@ namespace Task1_Basics
             }
         }
 
-        static int NumberInputСheck()
+        private static void SumOfNumbers(int Number) 
+        {
+            int sum = 0;
+            Console.Write("Натуральные числа: ");
+            for (int i = 1; i < Number; i++)
+            {
+                if (i % 3 == 0 || i % 5 == 0)
+                {
+                    sum += i;
+                    Console.Write(i + " ");
+                }
+            }
+            Console.Write("их сумма = " + sum);
+        }
+        private static int NumberInputСheck()
         {
             var stringNumber = string.Empty;
             int number;
@@ -141,6 +155,11 @@ namespace Task1_Basics
             Console.WriteLine("Введите число");
             Number = NumberInputСheck();
             GetChristmasTree(Number);
+            Console.WriteLine();
+
+            Console.WriteLine("Введите число");
+            Number = NumberInputСheck();
+            SumOfNumbers(Number);
             Console.WriteLine();
 
             Console.ReadKey();
