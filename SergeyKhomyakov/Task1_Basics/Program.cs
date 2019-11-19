@@ -73,7 +73,7 @@ namespace Task1_Basics
         /// Task 1.4. Метод выводит на консоль изображение "Елки"
         /// </summary>
         /// <param name=”number”>Высота елки</param>
-        private static void GetChristmasTree(int number) 
+        private static void GetChristmasTree(int number)
         {
             for (int d = 0; d <= number; d++) // построение количество треугольников 
             {
@@ -109,7 +109,7 @@ namespace Task1_Basics
         /// <summary>
         /// Task 1.5. Метод выводит сумму всех чисел кратных 3 или 5
         /// </summary>
-        private static void SumOfNumbers(int number) 
+        private static void SumOfNumbers(int number)
         {
             int sum = 0;
             Console.Write("Натуральные числа: ");
@@ -143,12 +143,12 @@ namespace Task1_Basics
                 {
                     Console.WriteLine("Введите существующее число !");
                     stringNumber = Console.ReadLine();
-                } 
+                }
                 if (number == 0)
                 {
                     break;
                 }
-                else 
+                else
                 {
                     switch (number)
                     {
@@ -201,7 +201,7 @@ namespace Task1_Basics
                     Console.WriteLine("Если хотите выйти из программы введите число 0");
                     number = 0;
                 }
-                
+
             }
         }
 
@@ -227,7 +227,7 @@ namespace Task1_Basics
             Random random = new Random();
             for (int i = 0; i < array.Length; i++)
             {
-                array[i] = random.Next(0, 100);
+                array[i] = random.Next(-100, 100);
             }
         }
 
@@ -295,9 +295,9 @@ namespace Task1_Basics
         /// 1.8. Метод заменяет все положительные элементы в трёхмерном массиве на нули и выводит полученный результат
         /// </summary>
         /// <param name="number">Размер массива</param>
-        private static void ThreeDimensionalArray(int number) 
+        private static void ThreeDimensionalArray(int number)
         {
-            int[,,] array = new int[number,number,number];
+            int[,,] array = new int[number, number, number];
             FillThreeDimensionalArray(array);
             Console.WriteLine("Изначальный массив");
             ViewThreeDimensionalArray(array);
@@ -321,7 +321,7 @@ namespace Task1_Basics
             }
         }
 
-        private static void ChangingPositiveElementsInArray(int[,,]array) 
+        private static void ChangingPositiveElementsInArray(int[,,] array)
         {
             for (int i = 0; i < array.GetLength(0); i++)
             {
@@ -338,16 +338,16 @@ namespace Task1_Basics
             }
         }
 
-        private static void ViewThreeDimensionalArray(int[,,] array) 
+        private static void ViewThreeDimensionalArray(int[,,] array)
         {
-            for (int i = 0; i < array.GetLength(0); i++) 
+            for (int i = 0; i < array.GetLength(0); i++)
             {
                 Console.WriteLine($"Массив № {i}");
-                for (int j = 0; j < array.GetLength(1); j++) 
+                for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    for (int g = 0; g < array.GetLength(2); g++) 
+                    for (int g = 0; g < array.GetLength(2); g++)
                     {
-                        Console.Write(array[i,j,g]);
+                        Console.Write(array[i, j, g]);
                         Console.Write(",");
                     }
                     Console.WriteLine();
@@ -355,6 +355,28 @@ namespace Task1_Basics
                 Console.WriteLine("");
             }
         }
+        /// <summary>
+        /// 1.9. Метод определяет сумму неотрицательных элементов в одномерном массиве
+        /// </summary>
+        /// <param name="number">Размер массива</param>
+        private static void SumOfNonNegativeElementsInArray(int number) 
+        {
+            int[] array = new int[number]; 
+            int sum = 0;
+            FillArray(array);
+            Console.Write("Массив: ");
+            ViewArray(array);
+           
+            for (int i = 0; i < number; i++)
+            {
+                if (array[i] > 0)
+                {
+                    sum += array[i];
+                }
+            }
+            Console.WriteLine($"Сумму неотрицательных элементов  = {sum}");
+        }
+
         private static int NumberInputСheck()
         {
             var stringNumber = string.Empty;
@@ -412,9 +434,9 @@ namespace Task1_Basics
                         Console.WriteLine();
                         break;
 
-                    case 2:     
-                    
-                        Console.WriteLine("Введите число");
+                    case 2:
+
+                        Console.Write("Введите число: ");
                         number = NumberInputСheck();
                         GetSlide(number);
                         Console.WriteLine();
@@ -422,7 +444,7 @@ namespace Task1_Basics
 
                     case 3:
 
-                        Console.WriteLine("Введите число");
+                        Console.Write("Введите число: ");
                         number = NumberInputСheck();
                         GetTriangle(number);
                         Console.WriteLine();
@@ -430,7 +452,7 @@ namespace Task1_Basics
 
                     case 4:
 
-                        Console.WriteLine("Введите число");
+                        Console.Write("Введите число: ");
                         number = NumberInputСheck();
                         GetChristmasTree(number);
                         Console.WriteLine();
@@ -438,7 +460,7 @@ namespace Task1_Basics
 
                     case 5:
 
-                        Console.WriteLine("Введите число");
+                        Console.Write("Введите число: ");
                         number = NumberInputСheck();
                         SumOfNumbers(number);
                         Console.WriteLine();
@@ -452,7 +474,7 @@ namespace Task1_Basics
 
                     case 7:
 
-                        Console.WriteLine("Введите число");
+                        Console.Write("Введите число: ");
                         number = NumberInputСheck();
                         Array(number);
                         Console.WriteLine();
@@ -460,9 +482,17 @@ namespace Task1_Basics
 
                     case 8:
 
-                        Console.WriteLine("Введите число");
+                        Console.Write("Введите число: ");
                         number = NumberInputСheck();
                         ThreeDimensionalArray(number);
+                        Console.WriteLine();
+                        break;
+
+                    case 9:
+
+                        Console.Write("Введите число: ");
+                        number = NumberInputСheck();
+                        SumOfNonNegativeElementsInArray(number);
                         Console.WriteLine();
                         break;
                 }
