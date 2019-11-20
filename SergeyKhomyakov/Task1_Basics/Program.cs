@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Task1_Basics
 {
@@ -427,6 +428,40 @@ namespace Task1_Basics
             }
             return sum;
         }
+        /// <summary>
+        /// Task 1.11 Метод выводи среднюю длину слова во введённой текстовой строке
+        /// </summary>
+        /// <param name="textString"> текстовая строка</param>
+        private static void GetAverageWordLength(string textString) 
+        {                      
+            textString = CheckTextForCharacters(textString);
+            string[] stringarray = textString.Split();
+            int sum = SumOfLengthsAllLines(stringarray);
+            Console.WriteLine($"Средняя длина = {sum / stringarray.Length}");
+        }
+
+        private static string CheckTextForCharacters(string textString) 
+        {
+            var text = new StringBuilder();
+
+            foreach (char r in textString)
+            {
+                if (!char.IsPunctuation(r) && !char.IsNumber(r) && !char.IsSymbol(r))
+                {
+                    text.Append(r);
+                }
+            }
+            return text.ToString();
+        }
+        private static int SumOfLengthsAllLines(string[] array)
+        {   
+            int sum = 0;        
+            foreach (var d in array)
+            {
+                sum += d.Length;
+            }
+            return sum;
+        }
         private static int NumberInputСheck()
         {
             var stringNumber = string.Empty;
@@ -551,6 +586,14 @@ namespace Task1_Basics
                         Console.Write("Введите число: ");
                         number = NumberInputСheck();
                         TwoDimensionalArray(number);
+                        Console.WriteLine();
+                        break;
+
+                    case 11:
+
+                        Console.Write("Введите строку: ");
+                        string textLine = Console.ReadLine();
+                        GetAverageWordLength(textLine);
                         Console.WriteLine();
                         break;
                 }
