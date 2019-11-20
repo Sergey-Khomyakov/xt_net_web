@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task0_Intro", "SergeyKhomyakov\Task0_Intro.csproj", "{77292BAE-9067-4512-B2D1-B0085D285452}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task0_Intr", "SergeyKhomyakov\Task0_Intr.csproj", "{77292BAE-9067-4512-B2D1-B0085D285452}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task1_Basics", "Task1_Basics\Task1_Basics.csproj", "{94C028CF-B7D2-439E-9190-0ECB2CDFFF83}"
 EndProject
