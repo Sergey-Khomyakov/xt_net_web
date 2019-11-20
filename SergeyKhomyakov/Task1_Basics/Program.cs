@@ -641,7 +641,7 @@ namespace Task1_Basics
                         string firstLine = Console.ReadLine();
                         Console.Write("Введите вторую строку: ");
                         string secondLine = Console.ReadLine();
-                        DoublesCharacters(firstLine,secondLine);
+                        CharDoubler(firstLine,secondLine);
                         Console.WriteLine();
                         break;
                 }
