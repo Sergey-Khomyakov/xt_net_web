@@ -444,24 +444,62 @@ namespace Task1_Basics
         {
             var text = new StringBuilder();
 
-            foreach (char r in textString)
+            foreach (char txt in textString)
             {
-                if (!char.IsPunctuation(r) && !char.IsNumber(r) && !char.IsSymbol(r))
+                if (!char.IsPunctuation(txt) && !char.IsNumber(txt) && !char.IsSymbol(txt))
                 {
-                    text.Append(r);
+                    text.Append(txt);
                 }
             }
             return text.ToString();
         }
+
         private static int SumOfLengthsAllLines(string[] array)
         {   
             int sum = 0;        
-            foreach (var d in array)
+            foreach (var line in array)
             {
-                sum += d.Length;
+                sum += line.Length;
             }
             return sum;
         }
+        /// <summary>
+        /// Task 1.12 Метод удваивает в первой введённой строке все символы, принадлежащие второй введённой строке
+        /// </summary>
+        /// <param name="firstLine">Первая строка</param>
+        /// <param name="secondLine">Вторая строка</param>
+        private static void CharDoubler(string firstLine, string secondLine) 
+        {
+            var firstCharArray = firstLine.ToCharArray();
+            var secondCharArrray = secondLine.ToCharArray();
+
+            string resultString = CharDoublerInString(firstCharArray, secondCharArrray);
+
+            Console.WriteLine(firstLine);
+            Console.WriteLine(secondLine);
+            Console.WriteLine(resultString);
+        }
+
+        private static string CharDoublerInString(char[] firstCharArray, char[] secondCharArrray)
+        {
+            string resultString = string.Empty;
+
+            for (int i = 0; i < firstCharArray.Length; i++)
+            {
+                for (int j = 0; j < secondCharArrray.Length; j++)
+                {
+                    if (firstCharArray[i] == secondCharArrray[j] && 
+                        (!char.IsPunctuation(secondCharArrray[j]) && !char.IsNumber(secondCharArrray[j]) && !char.IsWhiteSpace(secondCharArrray[j])))
+                    {
+                        resultString += secondCharArrray[j];
+                        break;
+                    }
+                }
+                resultString += firstCharArray[i];
+            }
+            return resultString;
+        }
+
         private static int NumberInputСheck()
         {
             var stringNumber = string.Empty;
@@ -594,6 +632,16 @@ namespace Task1_Basics
                         Console.Write("Введите строку: ");
                         string textLine = Console.ReadLine();
                         GetAverageWordLength(textLine);
+                        Console.WriteLine();
+                        break;
+
+                    case 12:
+
+                        Console.Write("Введите первую строку: ");
+                        string firstLine = Console.ReadLine();
+                        Console.Write("Введите вторую строку: ");
+                        string secondLine = Console.ReadLine();
+                        DoublesCharacters(firstLine,secondLine);
                         Console.WriteLine();
                         break;
                 }
