@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Task0_Intro
 {
@@ -6,20 +7,14 @@ namespace Task0_Intro
     {
         static string ReturnSequenceOfNumbers(int number) 
         {
-            var stringNumbers = string.Empty;
+            var stringNumbers = new StringBuilder();
 
-            for (int i = 1; i < number + 1; i++) 
+            for (int i = 1; i < number; i++) 
             {
-                if (i == number)
-                {
-                    stringNumbers += i.ToString();
-                }
-                else 
-                {
-                    stringNumbers += i.ToString() + ",";
-                }               
+                stringNumbers.Append(i + ",");            
             }
-            return stringNumbers;
+            stringNumbers.Append(number);
+            return stringNumbers.ToString();
         }
 
         static void CheckOfSimpleNumber(int number) 

@@ -129,37 +129,19 @@ namespace Task1_Basics
         /// </summary>
         /// <param name="firstLine">Первая строка</param>
         /// <param name="secondLine">Вторая строка</param>
-        public void GetCharDoubler(string firstLine, string secondLine) 
+        public void GetCharDoubler(string firstLine, string secondLine)
         {
-            var firstCharArray = firstLine.ToCharArray();
-            var secondCharArrray = secondLine.ToCharArray();
+            var line = new StringBuilder();
 
-            string resultString = CharDoublerInString(firstCharArray, secondCharArrray);
-
-            Console.WriteLine(firstLine);
-            Console.WriteLine(secondLine);
-            Console.WriteLine(resultString);
-        }
-
-        private string CharDoublerInString(char[] firstCharArray, char[] secondCharArrray)
-        {
-            string resultString = string.Empty;
-
-            for (int i = 0; i < firstCharArray.Length; i++)
+            foreach (var ch in firstLine) 
             {
-                for (int j = 0; j < secondCharArrray.Length; j++)
+                line.Append(ch);
+                if (!char.IsPunctuation(ch) && !char.IsSeparator(ch)) 
                 {
-                    if (firstCharArray[i] == secondCharArrray[j] && 
-                        (!char.IsPunctuation(secondCharArrray[j]) && !char.IsNumber(secondCharArrray[j]) && !char.IsWhiteSpace(secondCharArrray[j])))
-                    {
-                        resultString += secondCharArrray[j];
-                        break;
-                    }
-                }
-                resultString += firstCharArray[i];
+                    line.Append(ch);
+                }               
             }
-            return resultString;
+            Console.WriteLine(line);
         }
-
     }
 }
