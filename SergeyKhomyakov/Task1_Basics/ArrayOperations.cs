@@ -9,7 +9,7 @@ namespace Task1_Basics
         /// 1.7. Метот выводит максимальное и минимальное значения в массиве, сортирует массив и выводит полученный результат.
         /// </summary>
         /// <param name="arraySize">Размер массива</param>
-        public void GetArray(int arraySize)
+        public void ShowArray(int arraySize)
         {
             if (arraySize == 0)
             {
@@ -18,18 +18,18 @@ namespace Task1_Basics
             else 
             {
                int[] array = new int[arraySize];
-                FillOneDimensionalArray(array);
+                FillArray(array);
                 Console.Write("Изначальный массив: ");
-                ViewOneDimensionalArray(array);
+                ViewArray(array);
                 Console.WriteLine($"Максимальное значение в массиве {MaxValueInArray(array)}");
                 Console.WriteLine($"Минимальное значение в массиве {MinValueInArray(array)}");
-                SortOneDimensionalArray(array);
+                SortArray(array);
                 Console.Write("Отсортированный массив: ");
-                ViewOneDimensionalArray(array);
+                ViewArray(array);
             }
         }
 
-        private void FillOneDimensionalArray(int[] array)
+        private void FillArray(int[] array)
         {
             Random random = new Random();
             for (int i = 0; i < array.Length; i++)
@@ -63,7 +63,7 @@ namespace Task1_Basics
             }
             return maxValue;
         }
-        private void SortOneDimensionalArray(int[] array)
+        private void SortArray(int[] array)
         {
             int number = 0;
             for (int i = 0; i < array.Length - 1; i++)
@@ -80,7 +80,7 @@ namespace Task1_Basics
             }
         }
 
-        private void ViewOneDimensionalArray(int[] array)
+        private void ViewArray(int[] array)
         {
             Console.Write("{ ");
             for (int i = 0; i < array.Length; i++)
@@ -102,7 +102,7 @@ namespace Task1_Basics
         /// 1.8. Метод заменяет все положительные элементы в трёхмерном массиве на нули и выводит полученный результат
         /// </summary>
         /// <param name="arraySize">Размер массива</param>
-        public void GetNoPositiveNumbersInArray(int arraySize)
+        public void ShowNoPositiveNumbersInArray(int arraySize)
         {
             if (arraySize == 0) 
             {
@@ -111,17 +111,17 @@ namespace Task1_Basics
             else 
             {
                 int[,,] array = new int[arraySize, arraySize, arraySize];
-                FillThreeDimensionalArray(array);
+                FillArray(array);
                 Console.WriteLine("Изначальный массив");
-                ViewThreeDimensionalArray(array);
+                ViewArray(array);
                 ChangingPositiveElementsInArray(array);
                 Console.WriteLine("Изменённый массив");
-                ViewThreeDimensionalArray(array);
+                ViewArray(array);
             }
 
         }
 
-        private void FillThreeDimensionalArray(int[,,] array)
+        private void FillArray(int[,,] array)
         {
             Random random = new Random();
             for (int i = 0; i < array.GetLength(0); i++)
@@ -153,7 +153,7 @@ namespace Task1_Basics
             }
         }
 
-        private void ViewThreeDimensionalArray(int[,,] array)
+        private void ViewArray(int[,,] array)
         {
             for (int i = 0; i < array.GetLength(0); i++)
             {
@@ -175,7 +175,7 @@ namespace Task1_Basics
         /// 1.9. Метод определяет сумму неотрицательных элементов в одномерном массиве
         /// </summary>
         /// <param name="arraySize">Размер массива</param>
-        public void GetSumOfNonNegativeElementsInArray(int arraySize) 
+        public void ShowSumOfNonNegativeElementsInArray(int arraySize) 
         {
             if (arraySize == 0)
             {
@@ -185,9 +185,9 @@ namespace Task1_Basics
             {
                 int[] array = new int[arraySize];
                 int sum = 0;
-                FillOneDimensionalArray(array);
+                FillArray(array);
                 Console.Write("Массив: ");
-                ViewOneDimensionalArray(array);
+                ViewArray(array);
 
                 for (int i = 0; i < arraySize; i++)
                 {
@@ -204,7 +204,7 @@ namespace Task1_Basics
         /// 1.10. Метод выводит сумму элементов массива, стоящих на чётных позициях
         /// </summary>
         /// <param name="arraySize">Размер массива</param>
-        public void GetSumEvenPositionsInArray(int arraySize) 
+        public void ShowSumEvenPositionsInArray(int arraySize) 
         {
             if (arraySize == 0)
             {
@@ -213,13 +213,13 @@ namespace Task1_Basics
             else
             {
                 int[,] array = new int[arraySize, arraySize];
-                FillTwoDimensionalArray(array);
-                ViewTwoDimensionalArray(array);
+                FillArray(array);
+                ViewArray(array);
                 Console.WriteLine($"Сумма стоящих на чётных позициях = {SumEvenPositions(array)}");
             }
         }
 
-        private void FillTwoDimensionalArray(int[,]array) 
+        private void FillArray(int[,]array) 
         {
             Random random = new Random();
             for (int k = 0; k < array.GetLength(0); k++)
@@ -231,7 +231,7 @@ namespace Task1_Basics
             }
         }
 
-        private void ViewTwoDimensionalArray(int[,]array) 
+        private void ViewArray(int[,]array) 
         {
             for (int k = 0; k < array.GetLength(0); k++)
             {

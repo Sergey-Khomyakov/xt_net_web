@@ -4,7 +4,7 @@ namespace Task1_Basics
 {
     class Program
     {
-        private static int NumberInputСheck()
+        private static int СheckInputNumber()
         {
             var stringNumber = string.Empty;
             int number;
@@ -29,6 +29,107 @@ namespace Task1_Basics
             }
             return number;
         }
+        private static void ShowRectangle() 
+        {                        
+            Console.WriteLine("Введите ширину");
+            int width = СheckInputNumber();
+            Console.WriteLine("Введите длину");
+            int heigth = СheckInputNumber();
+            NumberOperations rectangle = new NumberOperations();
+            Console.WriteLine(rectangle.GetAreaOfRectangel(width, heigth));
+            Console.WriteLine();
+
+        }
+        private static void ShowTriangle() 
+        {
+            Console.Write("Введите число: ");
+            int number = СheckInputNumber();
+            FigurePrinte rightTriangle = new FigurePrinte();
+            rightTriangle.ShowRightTriangle(number);
+            Console.WriteLine();
+        }
+        private static void ShowAnotherTriangle() 
+        {
+            Console.Write("Введите число: ");
+            int number = СheckInputNumber();
+            FigurePrinte triangle = new FigurePrinte();
+            triangle.ShowEquilateralTriangle(number);
+            Console.WriteLine();
+        }
+        private static void ShowXMasTree() 
+        {
+            Console.Write("Введите число: ");
+            int number = СheckInputNumber();
+            FigurePrinte tree = new FigurePrinte();
+            tree.ShowTriangleTree(number);
+            Console.WriteLine();
+        }
+        private static void ShowSumOfNumbers() 
+        {
+            Console.Write("Введите число: ");
+            int number = СheckInputNumber();
+            NumberOperations sumOfNumbers = new NumberOperations();
+            Console.WriteLine($"Сумма = {sumOfNumbers.GetSumOfNumbersMultiplesOf(number, new int[] { 3, 5 })}");
+            Console.WriteLine();
+        }
+
+        private static void ShowFontAdjustment() 
+        {
+            StringOperations fontAdjustment = new StringOperations();
+            fontAdjustment.ShowFontAdjustment();
+            Console.WriteLine();
+        }
+        private static void ShowArrayProcessing() 
+        {
+            Console.Write("Введите число: ");
+            int number = СheckInputNumber();
+            ArrayOperations array = new ArrayOperations();
+            array.ShowArray(number);
+            Console.WriteLine();
+        }
+        private static void ShowNoPositive() 
+        {
+            Console.Write("Введите число: ");
+            int number = СheckInputNumber();
+            ArrayOperations array1 = new ArrayOperations();
+            array1.ShowNoPositiveNumbersInArray(number);
+            Console.WriteLine();
+        }
+
+        private static void ShowNonNegativeSum() 
+        {
+            Console.Write("Введите число: ");
+            int number = СheckInputNumber();
+            ArrayOperations array2 = new ArrayOperations();
+            array2.ShowSumOfNonNegativeElementsInArray(number);
+            Console.WriteLine();
+        }
+        private static void ShowTwoDArray() 
+        {
+            Console.Write("Введите число: ");
+            int number = СheckInputNumber();
+            ArrayOperations array3 = new ArrayOperations();
+            array3.ShowSumEvenPositionsInArray(number);
+            Console.WriteLine();
+        }
+        private static void ShowAverageStringLength() 
+        {
+            Console.Write("Введите строку: ");
+            string textLine = Console.ReadLine();
+            StringOperations stringOperations = new StringOperations();
+            stringOperations.ShowAverageWordLength(textLine);
+            Console.WriteLine();
+        }
+        private static void ShowCharDoubler() 
+        {
+            Console.Write("Введите первую строку: ");
+            string firstLine = Console.ReadLine();
+            Console.Write("Введите вторую строку: ");
+            string secondLine = Console.ReadLine();
+            StringOperations stringOperations1 = new StringOperations();
+            stringOperations1.ShowCharDoubler(firstLine,secondLine);
+            Console.WriteLine();
+        }
         static void Main(string[] args)
         {
             int number, numberTask;
@@ -44,120 +145,47 @@ namespace Task1_Basics
                     Console.WriteLine(Task);
                 }
                 Console.Write("Задание № ");
-                numberTask = NumberInputСheck();
+                numberTask = СheckInputNumber();
                 switch (numberTask) 
                 {
                     case 0:
                         isExit = true;
                         break;
-                    case 1:      
-                        
-                        Console.WriteLine("Введите ширину");
-                        int width = NumberInputСheck();
-                        Console.WriteLine("Введите длину");
-                        int heigth = NumberInputСheck();
-                        NumberOperations rectangle = new NumberOperations();
-                        Console.WriteLine(rectangle.GetAreaOfRectangel(width, heigth));
-                        Console.WriteLine();
+                    case 1:
+                        ShowRectangle();
                         break;
-
                     case 2:
-
-                        Console.Write("Введите число: ");
-                        number = NumberInputСheck();
-                        FigurePrinte rightTriangle = new FigurePrinte();
-                        rightTriangle.GetRightTriangle(number);
-                        Console.WriteLine();
+                        ShowTriangle();
                         break;
-
                     case 3:
-
-                        Console.Write("Введите число: ");
-                        number = NumberInputСheck();
-                        FigurePrinte triangle = new FigurePrinte();
-                        triangle.GetEquilateralTriangle(number);
-                        Console.WriteLine();
+                        ShowAnotherTriangle();
                         break;
-
                     case 4:
-
-                        Console.Write("Введите число: ");
-                        number = NumberInputСheck();
-                        FigurePrinte tree = new FigurePrinte();
-                        tree.GetTriangleTree(number);
-                        Console.WriteLine();
+                        ShowXMasTree();
                         break;
-
                     case 5:
-
-                        Console.Write("Введите число: ");
-                        number = NumberInputСheck();
-                        NumberOperations sumOfNumbers = new NumberOperations();
-                        sumOfNumbers.GetSumOfNumbersMultiplesOfThreeOrFive(number);
-                        Console.WriteLine();
+                        ShowSumOfNumbers();
                         break;
-
                     case 6:
-
-                        StringOperations fontAdjustment = new StringOperations();
-                        fontAdjustment.GetFontAdjustment();
-                        Console.WriteLine();
+                        ShowFontAdjustment();
                         break;
-
                     case 7:
-
-                        Console.Write("Введите число: ");
-                        number = NumberInputСheck();
-                        ArrayOperations array = new ArrayOperations();
-                        array.GetArray(number);
-                        Console.WriteLine();
+                        ShowArrayProcessing();
                         break;
-
                     case 8:
-
-                        Console.Write("Введите число: ");
-                        number = NumberInputСheck();
-                        ArrayOperations array1 = new ArrayOperations();
-                        array1.GetNoPositiveNumbersInArray(number);
-                        Console.WriteLine();
+                        ShowNoPositive();
                         break;
-
                     case 9:
-
-                        Console.Write("Введите число: ");
-                        number = NumberInputСheck();
-                        ArrayOperations array2 = new ArrayOperations();
-                        array2.GetSumOfNonNegativeElementsInArray(number);
-                        Console.WriteLine();
+                        ShowNonNegativeSum();
                         break;
-
                     case 10:
-
-                        Console.Write("Введите число: ");
-                        number = NumberInputСheck();
-                        ArrayOperations array3 = new ArrayOperations();
-                        array3.GetSumEvenPositionsInArray(number);
-                        Console.WriteLine();
+                        ShowTwoDArray();
                         break;
-
                     case 11:
-
-                        Console.Write("Введите строку: ");
-                        string textLine = Console.ReadLine();
-                        StringOperations stringOperations = new StringOperations();
-                        stringOperations.GetAverageWordLength(textLine);
-                        Console.WriteLine();
+                        ShowAverageStringLength();
                         break;
-
                     case 12:
-
-                        Console.Write("Введите первую строку: ");
-                        string firstLine = Console.ReadLine();
-                        Console.Write("Введите вторую строку: ");
-                        string secondLine = Console.ReadLine();
-                        StringOperations stringOperations1 = new StringOperations();
-                        stringOperations1.GetCharDoubler(firstLine,secondLine);
-                        Console.WriteLine();
+                        ShowCharDoubler();
                         break;
                 }
             }

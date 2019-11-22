@@ -10,7 +10,7 @@ namespace Task1_Basics
         /// <summary>
         /// Task 1.6. Метод позволяет устанавливать и изменять начертание шрифта 
         /// </summary>
-        public void GetFontAdjustment()
+        public void ShowFontAdjustment()
         {
             List<string> listFont = new List<string>();
             int number = 0;
@@ -93,7 +93,7 @@ namespace Task1_Basics
         /// Task 1.11 Метод выводи среднюю длину слова во введённой текстовой строке
         /// </summary>
         /// <param name="textString"> текстовая строка</param>
-        public void GetAverageWordLength(string textString) 
+        public void ShowAverageWordLength(string textString) 
         {                      
             textString = CheckTextForPunctuation(textString);
             string[] stringarray = textString.Split();
@@ -103,7 +103,7 @@ namespace Task1_Basics
 
         private string CheckTextForPunctuation(string textString) 
         {
-            var text = new StringBuilder();
+            var text = new StringBuilder(textString.Length);
 
             foreach (char txt in textString)
             {
@@ -129,7 +129,7 @@ namespace Task1_Basics
         /// </summary>
         /// <param name="firstLine">Первая строка</param>
         /// <param name="secondLine">Вторая строка</param>
-        public void GetCharDoubler(string firstLine, string secondLine)
+        public void ShowCharDoubler(string firstLine, string secondLine)
         {
             var line = new StringBuilder();
 

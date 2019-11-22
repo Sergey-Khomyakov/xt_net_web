@@ -8,7 +8,7 @@ namespace Task1_Basics
         /// Task 1.2. Метод выводит на консоль изображение "правой стороны треугольника"
         /// </summary>
         /// <param name=”height”>Высота треугольника </param>
-        public void GetRightTriangle(int height)
+        public void ShowRightTriangle(int height)
         {
             for (int i = 0; i < height + 1; i++)
             {
@@ -30,7 +30,7 @@ namespace Task1_Basics
         /// Task 1.3. Метод выводит на консоль изображение "Треугольника"
         /// </summary>
         /// <param name=”height”>Высота треугольника </param>
-        public void GetEquilateralTriangle(int height)
+        public void ShowEquilateralTriangle(int height)
         {
 
             for (int i = 0; i < height + 1; i++) // построение строк 
@@ -64,7 +64,7 @@ namespace Task1_Basics
         /// Task 1.4. Метод выводит на консоль изображение "Елки"
         /// </summary>
         /// <param name=”countOfTriangle”>Количество треугольников</param>
-        public void GetTriangleTree(int countOfTriangle)
+        public void ShowTriangleTree(int countOfTriangle)
         {
             for (int d = 0; d <= countOfTriangle; d++) // построение количество треугольников 
             {

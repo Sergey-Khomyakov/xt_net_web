@@ -14,19 +14,20 @@ namespace Task1_Basics
         /// <summary>
         /// Task 1.5. Метод выводит сумму всех чисел кратных 3 или 5
         /// </summary>
-        public void GetSumOfNumbersMultiplesOfThreeOrFive(int number)
+        public int GetSumOfNumbersMultiplesOf(int number, int[] ArrayNumber)
         {
             int sum = 0;
-            Console.Write("Натуральные числа: ");
-            for (int i = 1; i < number; i++)
+            for (int i = 0; i < number; i++)
             {
-                if (i % 3 == 0 || i % 5 == 0)
+                foreach (var item in ArrayNumber) 
                 {
-                    sum += i;
-                    Console.Write(i + " ");
+                    if (i % item == 0)
+                    {
+                        sum += i;                   
+                    }
                 }
             }
-            Console.Write("их сумма = " + sum);
+            return sum;
         }
     }
 }
