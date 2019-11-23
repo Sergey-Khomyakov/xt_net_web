@@ -63,6 +63,19 @@ namespace ExperimentalTraining.Task2
             int age = СheckInputNumber();
             User user = new User(lastName,firstName,middleName,age);
             user.ShowUser();
+        }
+        private static void ShowWorkWithMyString() 
+        {
+            Console.WriteLine("Введите первую строку");
+            string firstLine = Console.ReadLine();
+            Console.WriteLine("Введите вторую строку");
+            string secondLine = Console.ReadLine();
+            MyString myString = new MyString();
+            Console.WriteLine($"Соединил две строки: {myString.Concat(firstLine,secondLine)}");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
 
         }
         static void Main(string[] args)
@@ -93,6 +106,9 @@ namespace ExperimentalTraining.Task2
                         break;
                     case 3:
                         ShowUser();
+                        break;
+                    case 4:
+                        ShowWorkWithMyString();
                         break;
                 }
             }

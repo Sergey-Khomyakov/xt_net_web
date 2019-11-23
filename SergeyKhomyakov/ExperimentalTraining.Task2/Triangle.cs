@@ -4,9 +4,9 @@ namespace ExperimentalTraining.Task2
 {
     class Triangle
     {
-        private double A { get; set; }
-        private double B { get; set; }
-        private double C { get; set; }
+        private double A;
+        private double B;
+        private double C;
         
         public Triangle(double a, double b, double c)
         {
@@ -14,27 +14,21 @@ namespace ExperimentalTraining.Task2
             this.B = b;
             this.C = c;
         }
-        private double Perimeter
+        private double GetPerimeter() 
         {
-            get
-            {
-                return A + B + C;
-            }
+            return A + B + C;
         }
-        private double Square
+        private double GetSquare() 
         {
-            get
-            {
                 double perimeter = (A + B + C) / 2;
                 return Math.Sqrt(perimeter * (perimeter - A) * (perimeter - B) * (perimeter - C));
-            }
         }
 
         public void ShowTriangle()
         {
             Console.WriteLine("Сторона A = {0} B = {1} C = {2}", A, B, C);
-            Console.WriteLine("Периметр треугольника = {0:0.##}", Perimeter);
-            Console.WriteLine("Площадь треугольника = {0:0.##}", Square);
+            Console.WriteLine("Периметр треугольника = {0:0.##}", GetPerimeter());
+            Console.WriteLine("Площадь треугольника = {0:0.##}", GetSquare());
         }
     }
 }

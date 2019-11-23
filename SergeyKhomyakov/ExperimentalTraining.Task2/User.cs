@@ -4,22 +4,37 @@ namespace ExperimentalTraining.Task2
 {
     class User
     {
-        private string LastName { get; set; } // Фамилия
-        private string FirstName { get; set; } // Имя
-        private string MiddleName { get; set; } // Отчество       
-        private int Age { get; set; }  // Возраст
+        private string lastName;
+        private string firstName;
+        private string middleName;     
+        private int age;
 
-        public User(string lastname, string firstname, string middlename, int age)
+        public User(string LastName, string FirstName, string MiddleName, int Age)
         {
-            this.LastName = lastname;
-            this.FirstName = firstname;
-            this.MiddleName = middlename;
-            this.Age = age;
+            this.lastName = LastName;
+            this.firstName = FirstName;
+            this.middleName = MiddleName;
+            this.age = Age;
+        }
+
+        private int Age 
+        {
+            get 
+            {
+                return age;
+            }
+            set
+            {
+                if (value >= 0 && value < 99) 
+                {
+                    age = value;
+                }
+            }
         }
         public void ShowUser()
         {
             int dateOfBirth = DateTime.Now.Year - Age;
-            Console.WriteLine($"Здравствуйте !! \n{LastName} {FirstName} {MiddleName} \nВы родились в {dateOfBirth} году, сейчас вам {Age}");
+            Console.WriteLine($"Здравствуйте !! \n{lastName} {firstName} {middleName} \nВы родились в {dateOfBirth} году, сейчас вам {age}");
         }
     }
 }
