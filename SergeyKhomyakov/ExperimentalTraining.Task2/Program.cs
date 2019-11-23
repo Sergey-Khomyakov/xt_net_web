@@ -51,6 +51,20 @@ namespace ExperimentalTraining.Task2
             Triangle triangle = new Triangle(a,b,c);
             triangle.ShowTriangle();
         }
+        private static void ShowUser() 
+        {
+            Console.Write("Введите фамилию - ");
+            string lastName = Console.ReadLine();
+            Console.Write("Введите имя - ");
+            string firstName = Console.ReadLine();
+            Console.Write("Введите отчество - ");
+            string middleName = Console.ReadLine();
+            Console.Write("Введите возраст - ");
+            int age = СheckInputNumber();
+            User user = new User(lastName,firstName,middleName,age);
+            user.ShowUser();
+
+        }
         static void Main(string[] args)
         {
             string[] menuTask = new string[] { "1 - ROUND", "2 - TRIANGLE", "3 - USER", "4 - MY STRING", "5 - EMPLOYEE", "6 - RING", "7 - VECTOR GRAPHICS EDITOR", "8 - GAME", "0 - EXIT"};
@@ -76,6 +90,9 @@ namespace ExperimentalTraining.Task2
                         break;
                     case 2:
                         ShowTriangle();
+                        break;
+                    case 3:
+                        ShowUser();
                         break;
                 }
             }
