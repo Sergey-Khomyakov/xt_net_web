@@ -72,11 +72,37 @@ namespace ExperimentalTraining.Task2
             string secondLine = Console.ReadLine();
             MyString myString = new MyString();
             Console.WriteLine($"Соединил две строки: {myString.Concat(firstLine,secondLine)}");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-
+            Console.WriteLine($"Сравнение двух строк {myString.Equals(firstLine,secondLine)}");
+        }
+        private static void ShowEmployee() 
+        {
+            Console.Write("Введите фамилию - ");
+            string lastName = Console.ReadLine();
+            Console.Write("Введите имя - ");
+            string firstName = Console.ReadLine();
+            Console.Write("Введите отчество - ");
+            string middleName = Console.ReadLine();
+            Console.Write("Введите возраст - ");
+            int age = СheckInputNumber();
+            Console.WriteLine("Введите вашу должность");
+            string position = Console.ReadLine();
+            Console.WriteLine("Введите ваш рабочий стаж");
+            int workExperience = СheckInputNumber();
+            var employee = new Employee(lastName,firstName,middleName,age,workExperience,position);
+            employee.ShowUser();
+        }
+        private static void ShowRing() 
+        {
+            Console.Write("Введите координату Х - ");
+            int x = СheckInputNumber();
+            Console.Write("Введите координату Y - ");
+            int y = СheckInputNumber();
+            Console.Write("Введите внешний радиус R - ");
+            int r = СheckInputNumber();
+            Console.Write("Введите внутренний радиус R - ");
+            int interiorR = СheckInputNumber();
+            var ring = new Ring(x,y,r,interiorR);
+            ring.ShowRound();
         }
         static void Main(string[] args)
         {
@@ -109,6 +135,12 @@ namespace ExperimentalTraining.Task2
                         break;
                     case 4:
                         ShowWorkWithMyString();
+                        break;
+                    case 5:
+                        ShowEmployee();
+                        break;
+                    case 6:
+                        ShowRing();
                         break;
                 }
             }

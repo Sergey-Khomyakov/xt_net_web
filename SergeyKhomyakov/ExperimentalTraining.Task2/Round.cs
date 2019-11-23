@@ -14,15 +14,15 @@ namespace ExperimentalTraining.Task2
             this.Y = y;
             this.R = r;  
         }
-        private double GetSquare() 
+        public virtual double GetSquare() 
         {
             return Math.PI * R * R;
         }
-        private double GetLength() 
+        public virtual double GetLength() 
         {
             return 2 * Math.PI * R;
         }
-        public void ShowRound()
+        public virtual void ShowRound()
         {
             Console.WriteLine("X = {0} Y = {1} R = {2}", X, Y, R);
             Console.WriteLine("Длина круга = {0:0.##}", GetLength());

@@ -31,7 +31,7 @@ namespace ExperimentalTraining.Task2
                 }
             }
         }
-        public void ShowUser()
+        public virtual void ShowUser()
         {
             int dateOfBirth = DateTime.Now.Year - Age;
             Console.WriteLine($"Здравствуйте !! \n{lastName} {firstName} {middleName} \nВы родились в {dateOfBirth} году, сейчас вам {age}");
