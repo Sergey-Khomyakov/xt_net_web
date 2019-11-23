@@ -12,16 +12,7 @@ namespace ExperimentalTraining.Task2
         {
             this.X = x;
             this.Y = y;
-            if (r > 0)
-            {
-                this.R = r;
-            }
-            else
-            {
-                throw new ArgumentException(" Wrong !!! The radius can not be negative.");
-            }
-            
-            
+            this.R = r;  
         }
         private double Square
         {

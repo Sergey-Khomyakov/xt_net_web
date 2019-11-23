@@ -11,9 +11,16 @@ namespace ExperimentalTraining.Task2
 
             stringNumber = Console.ReadLine();
 
-            while (!int.TryParse(stringNumber, out number))
+            while (!int.TryParse(stringNumber, out number) || number < 0)
             {
-                Console.WriteLine("Я не понимаю что вы ввели :(((");
+                if (number < 0)
+                {
+                    Console.WriteLine("Вы ввели отрицательное число");
+                }
+                else
+                {
+                    Console.WriteLine("Я не понимаю что вы ввели :(((");
+                }
                 Console.WriteLine();
 
                 Console.Write("Введите число: ");
@@ -32,6 +39,17 @@ namespace ExperimentalTraining.Task2
             int r = СheckInputNumber();
             Round round = new Round(x,y,r);
             round.ShowRound();
+        }
+        private static void ShowTriangle() 
+        {
+            Console.Write("Введите сторону A - ");
+            int a = СheckInputNumber();
+            Console.Write("Введите сторону B - ");
+            int b = СheckInputNumber();
+            Console.Write("Введите сторону C - ");
+            int c = СheckInputNumber();
+            Triangle triangle = new Triangle(a,b,c);
+            triangle.ShowTriangle();
         }
         static void Main(string[] args)
         {
@@ -55,6 +73,9 @@ namespace ExperimentalTraining.Task2
                         break;
                     case 1:
                         ShowRound();
+                        break;
+                    case 2:
+                        ShowTriangle();
                         break;
                 }
             }
