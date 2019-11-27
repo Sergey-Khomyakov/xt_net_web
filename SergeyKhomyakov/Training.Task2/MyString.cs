@@ -1,9 +1,15 @@
 ﻿using System;
 
-namespace ExperimentalTraining.Task2
+namespace Training.Task2
 {
     class MyString
     {
+        private char[] chararray;
+
+        public MyString(string str) 
+        {
+            chararray = str.ToCharArray();
+        }
         /// <summary>
         /// Метод стравнивает две строки
         /// </summary>

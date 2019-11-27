@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Globalization;
 
-namespace ExperimentalTraining.Task2
+namespace Training.Task2
 {
     class Program
     {
@@ -13,14 +14,14 @@ namespace ExperimentalTraining.Task2
 
             while (!int.TryParse(stringNumber, out number) || number < 0)
             {
-                if (number < 0)
+                if (number <= 0)
                 {
-                    Console.WriteLine("Вы ввели отрицательное число");
+                    Console.WriteLine("Введите положительное число !");
                 }
-                else
+                else 
                 {
                     Console.WriteLine("Я не понимаю что вы ввели :(((");
-                }
+                }             
                 Console.WriteLine();
 
                 Console.Write("Введите число: ");
@@ -28,6 +29,25 @@ namespace ExperimentalTraining.Task2
                 Console.WriteLine();
             }
             return number;
+        }
+        private static string CheckInputWordOnNull() 
+        {
+            string str = string.Empty;
+
+            while (true) 
+            {
+                str = Console.ReadLine();
+                if (string.IsNullOrEmpty(str))
+                {
+                    Console.WriteLine("Строка пуста !!");
+                    Console.Write("Введите строку - ");
+                }
+                else 
+                {
+                    break;
+                }
+            }         
+            return str;
         }
         private static void ShowRound() 
         {
@@ -54,14 +74,22 @@ namespace ExperimentalTraining.Task2
         private static void ShowUser() 
         {
             Console.Write("Введите фамилию - ");
-            string lastName = Console.ReadLine();
+            string lastName = CheckInputWordOnNull();
             Console.Write("Введите имя - ");
-            string firstName = Console.ReadLine();
+            string firstName = CheckInputWordOnNull();
             Console.Write("Введите отчество - ");
-            string middleName = Console.ReadLine();
-            Console.Write("Введите возраст - ");
-            int age = СheckInputNumber();
-            User user = new User(lastName,firstName,middleName,age);
+            string middleName = CheckInputWordOnNull();
+            Console.Write("Введите дату рождения - ");
+            DateTime birthOfDate;
+            while(true)
+            {
+                if (DateTime.TryParse(Console.ReadLine(), out birthOfDate)) 
+                {
+                    break;
+                }
+                Console.Write("Введите дату рождения {День Месяц Год} : ");
+            }
+            User user = new User(lastName,firstName,middleName, birthOfDate);
             user.ShowUser();
         }
         private static void ShowWorkWithMyString() 
@@ -70,25 +98,34 @@ namespace ExperimentalTraining.Task2
             string firstLine = Console.ReadLine();
             Console.WriteLine("Введите вторую строку");
             string secondLine = Console.ReadLine();
-            MyString myString = new MyString();
+            MyString myString = new MyString(firstLine);
             Console.WriteLine($"Соединил две строки: {myString.Concat(firstLine,secondLine)}");
             Console.WriteLine($"Сравнение двух строк {myString.Equals(firstLine,secondLine)}");
         }
         private static void ShowEmployee() 
         {
             Console.Write("Введите фамилию - ");
-            string lastName = Console.ReadLine();
+            string lastName = CheckInputWordOnNull();
             Console.Write("Введите имя - ");
-            string firstName = Console.ReadLine();
+            string firstName = CheckInputWordOnNull();
             Console.Write("Введите отчество - ");
-            string middleName = Console.ReadLine();
+            string middleName = CheckInputWordOnNull();
             Console.Write("Введите возраст - ");
             int age = СheckInputNumber();
             Console.WriteLine("Введите вашу должность");
-            string position = Console.ReadLine();
+            string position = CheckInputWordOnNull();
             Console.WriteLine("Введите ваш рабочий стаж");
             int workExperience = СheckInputNumber();
-            var employee = new Employee(lastName,firstName,middleName,age,workExperience,position);
+            DateTime birthOfDate;
+            while (true)
+            {
+                if (DateTime.TryParse(Console.ReadLine(), out birthOfDate))
+                {
+                    break;
+                }
+                Console.Write("Введите дату рождения {День Месяц Год} : ");
+            }
+            var employee = new Employee(lastName,firstName,middleName, birthOfDate, workExperience,position);
             employee.ShowUser();
         }
         private static void ShowRing() 

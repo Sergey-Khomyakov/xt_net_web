@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Task1_Basics
+namespace Training.Task1
 {
     class FigurePrinte
     {

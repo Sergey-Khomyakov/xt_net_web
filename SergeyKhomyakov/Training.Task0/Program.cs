@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Task0_Intro
+namespace Training.Task0
 {
     class Program
     {
