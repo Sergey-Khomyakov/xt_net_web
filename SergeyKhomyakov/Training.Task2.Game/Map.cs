@@ -6,6 +6,10 @@ namespace Training.Task2.Game
     {
         private int _Width;
         private int _Height;
+        private Player _player;
+        private Monster _monster;
+        private Bonuses _bonuses;
+        private Obstacles _obstacles;
 
         public Map()
         {
@@ -14,7 +18,10 @@ namespace Training.Task2.Game
         }
         public Map(Player player, Monster monster, Bonuses bonuses, Obstacles obstacles)
         {
-
+            _player = player;
+            _monster = monster;
+            _bonuses = bonuses;
+            _obstacles = obstacles;
         }
         public virtual void Motion() { }
         public virtual void Position() { }

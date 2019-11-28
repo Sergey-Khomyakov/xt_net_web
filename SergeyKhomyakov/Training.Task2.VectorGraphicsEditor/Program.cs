@@ -4,26 +4,21 @@ namespace Training.Task2.VectorGraphicsEditor
 {
     class Program
     {
-        private static void GetMenu()
-        {
-            Console.WriteLine("Выберите фигру: ");
-            Console.WriteLine("1 - Круг");
-            Console.WriteLine("2 - Линия");
-            Console.WriteLine("3 - Кольцо");
-            Console.WriteLine("4 - Окружность");
-            Console.WriteLine("5 - Прямоугольник");
-            Console.WriteLine("===================");
-            Console.Write("Фигура - ");
-        }
         static void Main(string[] args)
         {
             string figureNumberString = string.Empty;
             int numberFigure;
+            bool isExit = false;
+            string[] arraymenu = new string[] {"Выберите фигру: ", "0 - Выход", "1 - Круг", "2 - Линия", "3 - Кольцо", "4 - Окружность", "5 - Прямоугольник", "==================="};
             do
             {
-                GetMenu();
+                foreach (var item in arraymenu) 
+                {
+                    Console.WriteLine(item);
+                }
+                Console.Write("Фигура - ");
                 figureNumberString = Console.ReadLine();
-                while (!int.TryParse(figureNumberString, out numberFigure) || numberFigure > 5 || numberFigure == 0)
+                while (!int.TryParse(figureNumberString, out numberFigure) || numberFigure > 5)
                 {
                     Console.WriteLine("Фигура не найдена ");
                     Console.Write("Фигура - ");
@@ -31,6 +26,9 @@ namespace Training.Task2.VectorGraphicsEditor
                 }
                 switch (numberFigure)
                 {
+                    case 0:
+                        isExit = true;
+                        break;
                     case 1:
                         Console.WriteLine("Вы выбрали фигуру Круг");
                         Round myRound = new Round();
@@ -62,7 +60,7 @@ namespace Training.Task2.VectorGraphicsEditor
                         myRectangle.ShowFigures();
                         break;
                 }
-            } while (true);
+            } while (!isExit);
         }
     }
 }
