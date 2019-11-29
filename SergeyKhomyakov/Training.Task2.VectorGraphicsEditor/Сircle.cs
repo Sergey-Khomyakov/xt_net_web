@@ -2,52 +2,36 @@
 
 namespace Training.Task2.VectorGraphicsEditor
 {
-    class Сircle : IFigures
+    class Circle : IFigures
     {
-        private int _X;
-        private int _Y;
+        private Point point;
         private double _R;
-        public void GetСoordinates()
+
+        public Circle(Point point, double r)
         {
-            string coordinate_X = string.Empty;
-            string coordinate_Y = string.Empty;
-            string radius_R = string.Empty;
-
-            Console.Write("Введите координаты центра окружности Х = ");
-            coordinate_X = Console.ReadLine();
-            while (!int.TryParse(coordinate_X, out _X))
-            {
-                Console.WriteLine("Ошибка !!");
-                Console.Write("Х = ");
-                coordinate_X = Console.ReadLine();
-            }
-
-            Console.Write("Введите координаты центра окружности Y = ");
-            coordinate_Y = Console.ReadLine();
-            while (!int.TryParse(coordinate_Y, out _Y))
-            {
-                Console.WriteLine("Ошибка !!");
-                Console.Write("Y = ");
-                coordinate_Y = Console.ReadLine();
-            }
-
-            Console.Write("Введите радиус окружности R = ");
-            radius_R = Console.ReadLine();
-            while (!double.TryParse(radius_R, out _R))
-            {
-                if (_R < 0)
-                {
-                    Console.WriteLine("Радиус отрицательный !! Ошибка");
-                }
-                else
-                {
-                    Console.WriteLine("Ошибка !!");
-                }
-                Console.Write("R = ");
-                radius_R = Console.ReadLine();
-            }
-
+            this.point = point;
+            this._R = r;
         }
+
+        public double R 
+        {
+            get 
+            {
+                return _R;
+            }
+            set 
+            {
+                if (value > 0)
+                {
+                    _R = value;
+                }
+                else 
+                {
+                    throw new ArgumentException("Inner radius cannot be greater than outer !!!");
+                }
+            }
+        }
+
         private double Square
         {
             get
@@ -65,7 +49,7 @@ namespace Training.Task2.VectorGraphicsEditor
         public void ShowFigures()
         {
             Console.WriteLine("\nВы создали фигуру !!");
-            Console.WriteLine($"Тип Фигуры: 'Окружность' с координатами центра ({_X},{_Y}) радиус = {_R}\nПлощадь окружности = {Square:#.##}\nДлина окружности = {Length:#.##}\n");
+            Console.WriteLine($"Тип Фигуры: 'Окружность' с координатами центра ({point.X},{point.Y}) радиус = {_R}\nПлощадь окружности = {Square:#.##}\nДлина окружности = {Length:#.##}\n");
         }
     }
 }

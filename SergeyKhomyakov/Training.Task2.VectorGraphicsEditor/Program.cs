@@ -31,32 +31,27 @@ namespace Training.Task2.VectorGraphicsEditor
                         break;
                     case 1:
                         Console.WriteLine("Вы выбрали фигуру Круг");
-                        Round myRound = new Round();
-                        myRound.GetСoordinates();
+                        var myRound = new Round(new Point(5,5), 5.5);
                         myRound.ShowFigures();
                         break;
                     case 2:
                         Console.WriteLine("Вы выбрали фигуру Линию");
-                        Line myLine = new Line();
-                        myLine.GetСoordinates();
+                        var myLine = new Line(new Point(3,4), new Point(5,5));
                         myLine.ShowFigures();
                         break;
                     case 3:
                         Console.WriteLine("Вы выбрали фигуру Кольцо");
-                        Ring myRing = new Ring();
-                        myRing.GetСoordinates();
+                        var myRing = new Ring(new Point(4,5), 10,5);
                         myRing.ShowFigures();
                         break;
                     case 4:
                         Console.WriteLine("Вы выбрали фигуру Окружность");
-                        Сircle myСircle = new Сircle();
-                        myСircle.GetСoordinates();
+                        var myСircle = new Circle(new Point(3,3), 10);
                         myСircle.ShowFigures();
                         break;
                     case 5:
                         Console.WriteLine("Вы выбрали фигуру Прямоугольник");
-                        Rectangle myRectangle = new Rectangle();
-                        myRectangle.GetСoordinates();
+                        var myRectangle = new Rectangle(new Point(5,5), new Point(5,10), new Point(10,10), new Point(10,5));
                         myRectangle.ShowFigures();
                         break;
                 }
