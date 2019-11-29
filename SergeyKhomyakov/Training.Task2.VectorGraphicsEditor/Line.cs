@@ -4,14 +4,15 @@ namespace Training.Task2.VectorGraphicsEditor
 {
     class Line : IFigures
     {
-        private Point point1;
-        private Point point2;
+        protected Point point1;
+        protected Point point2;
 
-        public Line(Point point1, Point point2) 
+        public Line(Point point1, Point point2)
         {
             this.point1 = point1;
             this.point2 = point2;
         }
+
         private double Length
         {
             get
@@ -23,7 +24,7 @@ namespace Training.Task2.VectorGraphicsEditor
         {
 
             Console.WriteLine("\nВы создали фигуру !!");
-            Console.WriteLine($"Тип Фигуры: 'Линия' координаты первой точки ({point2.X},{point1.Y})\nКоординаты второй точки ({point2.X},{point2.Y})\nДлина прямой = {Length:#.##}\n");
+            Console.WriteLine($"Тип Фигуры: 'Линия'\nкоординаты первой точки ({point1.X},{point1.Y})\nКоординаты второй точки ({point2.X},{point2.Y})\nДлина прямой = {Length:#.##}\n");
         }
     }
 }

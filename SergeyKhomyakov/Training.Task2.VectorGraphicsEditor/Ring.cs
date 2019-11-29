@@ -4,9 +4,7 @@ namespace Training.Task2.VectorGraphicsEditor
 {
     internal class Ring : Circle, IFigures
     {
-        private Point point;
-        private double _R;
-        private double _interiorR;
+        protected double _interiorR;
 
         public Ring(Point point, double r, double InteriorR) : base(point, r)
         {
@@ -20,7 +18,7 @@ namespace Training.Task2.VectorGraphicsEditor
 
             set
             {
-                if (value < _R && value > 0)
+                if (value < R && value > 0)
                 {
                     _interiorR = value;
                 }
@@ -31,12 +29,12 @@ namespace Training.Task2.VectorGraphicsEditor
             }
         }
 
-        private double Square { get { return Math.PI * (Math.Pow(_R, 2) - Math.Pow(_interiorR, 2)); } }
+        private double Square { get { return Math.PI * (Math.Pow(R, 2) - Math.Pow(_interiorR, 2)); } }
 
         public new void ShowFigures()
         {
             Console.WriteLine("\nВы создали фигуру !!");
-            Console.WriteLine($"Тип Фигуры: 'Кольцо' с координатами центр ({point.X},{point.Y})\nВнешним радиусом {_R}\nВнутренним радиусом {_interiorR}\nПлощадь кольца {Square:#.##}\n");
+            Console.WriteLine($"Тип Фигуры: 'Кольцо' с координатами центр ({point.X},{point.Y})\nВнешним радиусом {R}\nВнутренним радиусом {_interiorR}\nПлощадь кольца {Square:#.##}\n");
         }
     }
 }

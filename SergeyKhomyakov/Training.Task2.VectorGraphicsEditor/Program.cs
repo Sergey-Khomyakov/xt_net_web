@@ -51,7 +51,7 @@ namespace Training.Task2.VectorGraphicsEditor
                         break;
                     case 5:
                         Console.WriteLine("Вы выбрали фигуру Прямоугольник");
-                        var myRectangle = new Rectangle(new Point(5,5), new Point(5,10), new Point(10,10), new Point(10,5));
+                        var myRectangle = new Rectangle(new Point(5,5), new Point(5,10), new Point(10,5), new Point(10,10));
                         myRectangle.ShowFigures();
                         break;
                 }

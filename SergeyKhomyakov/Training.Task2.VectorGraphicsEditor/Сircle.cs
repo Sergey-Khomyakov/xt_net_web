@@ -4,8 +4,8 @@ namespace Training.Task2.VectorGraphicsEditor
 {
     class Circle : IFigures
     {
-        private Point point;
-        private double _R;
+        protected Point point;
+        protected double _R;
 
         public Circle(Point point, double r)
         {
