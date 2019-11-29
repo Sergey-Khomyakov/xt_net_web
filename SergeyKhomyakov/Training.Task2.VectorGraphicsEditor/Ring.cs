@@ -29,7 +29,7 @@ namespace Training.Task2.VectorGraphicsEditor
             }
         }
 
-        private double Square { get { return Math.PI * (Math.Pow(R, 2) - Math.Pow(_interiorR, 2)); } }
+        private new double Square { get { return Math.PI * (Math.Pow(R, 2) - Math.Pow(_interiorR, 2)); } }
 
         public new void ShowFigures()
         {

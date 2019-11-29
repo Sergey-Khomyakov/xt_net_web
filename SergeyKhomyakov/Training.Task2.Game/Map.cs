@@ -23,8 +23,6 @@ namespace Training.Task2.Game
             _bonuses = bonuses;
             _obstacles = obstacles;
         }
-        public virtual void Motion() { }
-        public virtual void Position() { }
 
     }
 }

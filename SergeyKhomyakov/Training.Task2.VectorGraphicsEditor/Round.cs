@@ -6,14 +6,6 @@ namespace Training.Task2.VectorGraphicsEditor
     {
         public Round(Point Point, double r) : base(Point, r){}
 
-        private double Square
-        {
-            get
-            {
-                return Math.PI * R * R;
-            }
-        }
-
         public new void ShowFigures()
         {
             Console.WriteLine("\nВы создали фигуру !!");

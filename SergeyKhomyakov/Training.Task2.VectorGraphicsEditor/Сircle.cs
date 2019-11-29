@@ -32,7 +32,7 @@ namespace Training.Task2.VectorGraphicsEditor
             }
         }
 
-        private double Square
+        protected double Square
         {
             get
             {
