@@ -6,7 +6,7 @@ namespace Training.Task2
     {
         private string _lastName;
         private string _firstName;
-        private string _middleName; 
+        private string _middleName;
         private DateTime _birthOfDate;
 
         public User(string LastName, string FirstName, string MiddleName, DateTime BirthOfDate)

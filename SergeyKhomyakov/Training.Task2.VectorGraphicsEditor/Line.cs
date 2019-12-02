@@ -11,6 +11,10 @@ namespace Training.Task2.VectorGraphicsEditor
         {
             this.point1 = point1;
             this.point2 = point2;
+            if (point1 == point2)
+            {
+                throw new ArgumentException("Points have the same coordinates !!! ");
+            }
         }
 
         private double Length

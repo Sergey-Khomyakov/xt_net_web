@@ -4,12 +4,16 @@ namespace Training.Task2.VectorGraphicsEditor
 {
     class Rectangle : Line, IFigures
     {
-        private Point point3;
-        private Point point4;
+        protected Point point3;
+        protected Point point4;
         public Rectangle(Point point1 ,Point point2 ,Point point3 , Point point4): base(point1, point2) 
         {
             this.point3 = point3;
             this.point4 = point4;
+            if (point3 == point4)
+            {
+                throw new ArgumentException("Points have the same coordinates !!! ");
+            }
         }
 
         private double Height
