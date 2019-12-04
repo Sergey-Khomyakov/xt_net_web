@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training.Task2.VectorGraphi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training.Task2.Game", "Training.Task2.Game\Training.Task2.Game.csproj", "{3310E373-397B-4EBC-B85F-FD1D3508B430}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training.Task3", "Training.Task3\Training.Task3.csproj", "{C37B4EF0-D177-4DB5-9547-74F9E981EF1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training.Task3.DynamicArray", "Training.Task3.DynamicArray\Training.Task3.DynamicArray.csproj", "{1C88E773-3482-4E56-A275-BFA590B65ED5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{3310E373-397B-4EBC-B85F-FD1D3508B430}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3310E373-397B-4EBC-B85F-FD1D3508B430}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3310E373-397B-4EBC-B85F-FD1D3508B430}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C37B4EF0-D177-4DB5-9547-74F9E981EF1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C37B4EF0-D177-4DB5-9547-74F9E981EF1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C37B4EF0-D177-4DB5-9547-74F9E981EF1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C37B4EF0-D177-4DB5-9547-74F9E981EF1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C88E773-3482-4E56-A275-BFA590B65ED5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C88E773-3482-4E56-A275-BFA590B65ED5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C88E773-3482-4E56-A275-BFA590B65ED5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C88E773-3482-4E56-A275-BFA590B65ED5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

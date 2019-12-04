@@ -8,7 +8,7 @@ namespace Training.Task2
         private static int СheckInputNumber()
         {
             var stringNumber = string.Empty;
-            int number;
+            int number = 0;
 
             stringNumber = Console.ReadLine();
 
@@ -145,7 +145,7 @@ namespace Training.Task2
         {
             string[] menuTask = new string[] { "1 - ROUND", "2 - TRIANGLE", "3 - USER", "4 - MY STRING", "5 - EMPLOYEE", "6 - RING", "7 - VECTOR GRAPHICS EDITOR", "8 - GAME", "0 - EXIT"};
             bool isExit = false;
-            int numberTask;
+            int numberTask = 0;
             while (!isExit) 
             {
                 Console.WriteLine("********************************");

@@ -7,7 +7,7 @@ namespace Training.Task2.VectorGraphicsEditor
         static void Main(string[] args)
         {
             string figureNumberString = string.Empty;
-            int numberFigure;
+            int numberFigure = 0;
             bool isExit = false;
             string[] arraymenu = new string[] {"Выберите фигру: ", "0 - Выход", "1 - Круг", "2 - Линия", "3 - Кольцо", "4 - Окружность", "5 - Прямоугольник", "==================="};
             do

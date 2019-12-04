@@ -7,7 +7,7 @@ namespace Training.Task1
         private static int СheckInputNumber()
         {
             var stringNumber = string.Empty;
-            int number;
+            int number = 0;
 
             stringNumber = Console.ReadLine();
 
@@ -36,7 +36,7 @@ namespace Training.Task1
             Console.WriteLine("Введите длину");
             int heigth = СheckInputNumber();
             NumberOperations rectangle = new NumberOperations();
-            Console.WriteLine(rectangle.GetAreaOfRectangel(width, heigth));
+            rectangle.ShowAreaOfRectangel(width, heigth);
             Console.WriteLine();
 
         }
@@ -132,7 +132,8 @@ namespace Training.Task1
         }
         static void Main(string[] args)
         {
-            int number, numberTask;
+            int number = 0;
+            int numberTask = 0;
             bool isExit = false;
             string[] arrayTask = { "0 - EXIT","1 - RECTANGLE", "2 - TRIANGLE", "3 - ANOTHER TRIANGLE", "4 - X-MAS TREE",
                 "5 - SUM OF NUMBERS", "6 - FONT ADJUSTMENT", "7 - ARRAY PROCESSING", "8 - NO POSITIVE", "9 - NON-NEGATIVE SUM", "10 - 2D ARRAY",

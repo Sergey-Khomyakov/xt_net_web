@@ -73,7 +73,7 @@ namespace Training.Task0
         static int NumberInputСheck() 
         {           
             var stringNumber = string.Empty;
-            int number;
+            int number = 0;
 
             stringNumber = Console.ReadLine();
 
@@ -162,7 +162,7 @@ namespace Training.Task0
         }
         static void Main(string[] args)
         {
-            int number;
+            int number = 0;
 
             Console.Write("Введите положительное число: ");
             number = NumberInputСheck();            
