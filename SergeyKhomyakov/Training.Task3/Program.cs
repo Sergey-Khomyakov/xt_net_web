@@ -29,6 +29,9 @@ namespace Training.Task3
             }
             return number;
         }
+        /// <summary>
+        ///  Task 3.1 
+        /// </summary>
         public static void ShowLastPerson() 
         {
             int number = 0;
@@ -75,6 +78,10 @@ namespace Training.Task3
             }
             Console.WriteLine($"Остался в живых {list[0]}");
         }   
+
+        /// <summary>
+        /// Task 3.2 
+        /// </summary>
         public static void ShowWordFrequency()
         {
             string text = "Positive thinking is one of the main hallmarks of self improvement. "
