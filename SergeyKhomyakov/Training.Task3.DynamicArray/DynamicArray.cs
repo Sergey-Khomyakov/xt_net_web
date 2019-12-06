@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Training.Task3.DynamicArray
 {
-    class DynamicArray<T>: IEnumerable<T>, IEnumerable
+    class DynamicArray<T>: IEnumerable<T>, IEnumerable, ICloneable
     {
         private T[] _array;
         private int _size;
@@ -102,8 +102,26 @@ namespace Training.Task3.DynamicArray
             return true;
         }
         public int Length { get { return _size; } }
-        public int Capacity { get { return _array.Length; } }
-        public IEnumerator<T> GetEnumerator()
+        public int Capacity
+        { 
+            get
+            { 
+                return _array.Length;
+            }
+            set 
+            {
+                if (value <= 0) 
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                if (_size > value) 
+                {
+                    _size = value;
+                }
+                _array = ToArray(value);
+            }
+        }
+        public virtual IEnumerator<T> GetEnumerator()
         {
             return new Enumerator<T>(this);
         }
@@ -112,17 +130,38 @@ namespace Training.Task3.DynamicArray
             return new Enumerator<T>(this);
         }
 
-        public T this[int index] 
+        // index = -1 последний элемент, index = -2 предпоследний элемент 
+        public T this[int index]
         {
-            get 
+            get
             {
-                ChekIndex(index,this);
-                return _array[index];
+                if (index == -1)
+                {
+                    return _array[_array.Length];
+                }
+                else if (index == -2)
+                {
+                    return _array[_array.Length - 1];
+                }
+                else 
+                {
+                    return _array[index];
+                }              
             } 
             set 
             {
-                ChekIndex(index, this);
-                _array[index] = value;
+                if (index == -1)
+                {
+                    _array[_array.Length] = value;
+                }
+                else if (index == -2)
+                {
+                    _array[_array.Length - 1] = value;
+                }
+                else 
+                {
+                    _array[index] = value;
+                }                
             }
         }
 
@@ -130,8 +169,12 @@ namespace Training.Task3.DynamicArray
         {
             if (index < 0 || index > _array.Length)
             {
-                throw new ArgumentException("Index is outside the array !");
+                throw new IndexOutOfRangeException();
             }
+        }
+        public object Clone()
+        {
+            return new DynamicArray<T>();
         }
     }
 }
