@@ -40,6 +40,7 @@ namespace Training.Task4
             {
                 Console.Write(item + " ");
             }
+            Console.WriteLine("\n");
             array1.onSort -= handler.Message;
         }
 
@@ -58,14 +59,67 @@ namespace Training.Task4
             Console.WriteLine();
             CustomSortDemo();
         }
+
+        private static int СheckInputNumber()
+        {
+            var stringNumber = string.Empty;
+            int number = 0;
+
+            stringNumber = Console.ReadLine();
+            while (!int.TryParse(stringNumber, out number) || number < 0)
+            {
+                if (number < 0)
+                {
+                    Console.WriteLine("Вы ввели отрицательное число");
+                }
+                else
+                {
+                    Console.WriteLine("Я не понимаю что вы ввели :(((");
+                }
+                Console.WriteLine();
+
+                Console.Write("Введите число: ");
+                stringNumber = Console.ReadLine();
+                Console.WriteLine();
+            }
+            return number;
+        }
         static void Main(string[] args)
         {
-            Thread th1 = new Thread(SortingUnit);
-            Console.WriteLine("Начата сортировка массива, пожалуйста подождите..");
-            Console.WriteLine();
-            th1.Start();
-            string str = "-12";           
-            Console.WriteLine(str.IsCheckPositiveNumber());
+            string[] array = new string[] {"0 - Exit", "1 - SortArray", "2 - CheckSpeedSorting", "3 - PositiveNumber" };
+            bool isExit = false;
+            while (!isExit) 
+            {
+                foreach (var item in array)
+                {
+                    Console.WriteLine(item);
+                }
+                Console.Write("Введите число: ");
+                int number  = СheckInputNumber();
+
+                switch (number) 
+                {
+                    case 0:
+                        isExit = true;
+                        break;
+                    case 1:
+                        Thread th1 = new Thread(SortingUnit);
+                        Console.WriteLine("Начата сортировка массива, пожалуйста подождите..");
+                        Console.WriteLine();
+                        th1.Start();
+                        th1.Join();
+                        break;
+                    case 2:            
+                        СheckSpeedSorting check = new СheckSpeedSorting();
+                        check.ShowSpeedSorting();
+                        break;
+                    case 3:
+                        Console.WriteLine("Введите число:");
+                        string str = Console.ReadLine();           
+                        Console.WriteLine(str.IsCheckPositiveNumber());
+                        break;
+                }
+            }
             Console.ReadKey();
         }
     }

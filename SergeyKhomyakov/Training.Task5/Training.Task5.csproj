@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{70E4350A-5E22-455F-8F5E-BD87C31940E0}</ProjectGuid>
+    <ProjectGuid>{BC5427D7-C4AD-4E17-B88A-E8E0FEA319DD}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Training.Task4</RootNamespace>
-    <AssemblyName>Training.Task4</AssemblyName>
+    <RootNamespace>Training.Task5</RootNamespace>
+    <AssemblyName>Training.Task5</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,13 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Handler.cs" />
-    <Compile Include="Helper.cs" />
-    <Compile Include="ISeekYou.cs" />
+    <Compile Include="LogFile.cs" />
+    <Compile Include="Observations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SortArray.cs" />
-    <Compile Include="СheckSpeedSorting.cs" />
+    <Compile Include="RollbackChanges.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
