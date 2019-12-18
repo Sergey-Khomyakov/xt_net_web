@@ -8,16 +8,16 @@ namespace Training.Task5
     {
         private string _path;
 
-        private List<string> _list;
-        private List<string> _newlist;
+        private List<string> _newlog;
         private StreamReader _streamReader;
         private StreamWriter _streamWriter;
+        private string _pathLog;
         public LogFile(string path) 
         {
             _path = path;
-            _list = new List<string>();
+            _pathLog = path + @"\Log\Log.txt";
             CreatedFolder();
-            WriteFile();
+            //WriteFile();
         }
 
         private void CreatedFolder() 
@@ -27,50 +27,46 @@ namespace Training.Task5
         /// <summary>
         /// Adds changes to the logs
         /// </summary>
-        private void WriteFile()
+        private void WriteFile(string logging)
         {
-            using (_streamWriter = new StreamWriter(_path + @"\Log\Log.txt", true))
+            using (_streamWriter = new StreamWriter(_pathLog, true))
             {
-                foreach (var item in _list)
-                {
-                    _streamWriter.WriteLine(item);
-                }
-                _streamWriter.Close();
+                _streamWriter.WriteLine(logging);
             }
         }
 
         /// <summary>
         /// Changes in the logs
         /// </summary>
-        private void OverwritesFile() 
+        private void OverwritesFile(List<string> logging) 
         {
-            using (_streamWriter = new StreamWriter(_path + @"\Log\Log.txt"))
+            using (_streamWriter = new StreamWriter(_pathLog))
             {
-                foreach (var item in _newlist)
+                foreach (var item in logging)
                 {
                     _streamWriter.WriteLine(item);
                 }
-                _streamWriter.Close();
             }
         }        
-        private void ReaderLogFile() 
+        private List<string> ReaderLogFile() 
         {
+            List<string> list = new List<string>();
 
-            using (_streamReader = new StreamReader(_path + @"\Log\Log.txt"))
+            using (_streamReader = new StreamReader(_pathLog))
             {
                 var arrayLog = _streamReader
                     .ReadToEnd()
                     .Split('\r','\n');
-
+                
                 foreach (var item in arrayLog)
                 {
-                    if (string.IsNullOrWhiteSpace(item))
+                    if (!string.IsNullOrWhiteSpace(item))
                     {
-                        _list.Add(item);
+                        list.Add(item);
                     }
                 }
-                _streamReader.Close();
             }
+            return list;
         }
 
         /// <summary>
@@ -78,13 +74,12 @@ namespace Training.Task5
         /// </summary>
         public void ChangedFile(string nameFile) 
         {
-            using (var fileStream = new FileStream(_path + @"\" + nameFile, FileMode.OpenOrCreate, FileAccess.Read))
-            using (_streamReader = new StreamReader(fileStream))
+            string logging = string.Empty;
+            using (_streamReader = new StreamReader(_path + @"\" + nameFile))
             {
-                _list.Add("File - " + nameFile + " | Date of change - " + DateTime.Now.ToString() + " | Text - " + _streamReader.ReadToEnd());
-                fileStream.Close();
-            }   
-            WriteFile();
+                logging = "File - " + nameFile + " | Date of change - " + DateTime.Now.ToString() + " | Text - " + _streamReader.ReadToEnd();
+            }
+            WriteFile(logging);
         }
 
         /// <summary>
@@ -92,18 +87,18 @@ namespace Training.Task5
         /// </summary>
         public void DeleteFile(string nameFile) 
         {
-            _newlist = new List<string>();
+            _newlog = new List<string>();
 
-            ReaderLogFile();
+            List<string> log = ReaderLogFile();
 
-            for (int i = 0; i < _list.Count; i++)
+            for (int i = 0; i < log.Count; i++)
             {
-                if (!_list[i].Contains(nameFile))
+                if (!log[i].Contains(nameFile))
                 {
-                    _newlist.Add(_list[i]);
+                    _newlog.Add(log[i]);
                 }
             }
-            OverwritesFile();
+            OverwritesFile(_newlog);
         }
 
         /// <summary>
@@ -111,22 +106,22 @@ namespace Training.Task5
         /// </summary>
         public void RenameFile(string nameFile, string OldNameFile) 
         {
-            _newlist = new List<string>();
+            _newlog = new List<string>();
 
-            ReaderLogFile();
+            List<string> log = ReaderLogFile();
 
-            for (int i = 0; i < _list.Count; i++)
+            for (int i = 0; i < log.Count; i++)
             {
-                if (_list[i].Contains(OldNameFile))
+                if (log[i].Contains(OldNameFile))
                 {
-                    _newlist.Add(_list[i].Replace(OldNameFile, nameFile));
+                    _newlog.Add(log[i].Replace(OldNameFile, nameFile));
                 }
                 else 
                 {
-                    _newlist.Add(_list[i]);
+                    _newlog.Add(log[i]);
                 }
             }
-            OverwritesFile();
+            OverwritesFile(_newlog);
         }
     }
 }

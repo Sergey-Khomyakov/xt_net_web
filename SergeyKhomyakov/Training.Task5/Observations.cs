@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 
 namespace Training.Task5
 {
@@ -7,19 +8,21 @@ namespace Training.Task5
     {
         private string _path;
         private LogFile log;
-
+        private FileSystemWatcher systemWatcher;
         public Observations(string path) 
         {
             _path = path;
         }
-        // Метод начинает отслеживать действия пользователя и фиксировать их в файл 
+        /// <summary>
+        /// Tracking user actions and commit them to a file
+        /// </summary>
         public void Start() 
         {
             log = new LogFile(_path);
 
-            using (FileSystemWatcher systemWatcher = new FileSystemWatcher(_path)) 
+            using (systemWatcher = new FileSystemWatcher(_path)) 
             {
-                systemWatcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName ;
+                systemWatcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName;
 
                 systemWatcher.Filter = "*.txt";
 
@@ -27,7 +30,6 @@ namespace Training.Task5
                 systemWatcher.Created += OnChanged;
                 systemWatcher.Deleted += OnDeleted;
                 systemWatcher.Renamed += OnRenamed;
-                
 
                 systemWatcher.EnableRaisingEvents = true;
 
@@ -39,18 +41,20 @@ namespace Training.Task5
 
         private void OnRenamed(object sender, RenamedEventArgs e)
         {
+            Thread.Sleep(50);
             log.RenameFile(e.Name,e.OldName);
         }
 
         private void OnDeleted(object sender, FileSystemEventArgs e)
         {
+            Thread.Sleep(50);
             log.DeleteFile(e.Name);
         }
 
         private void OnChanged(object sender, FileSystemEventArgs e)
         {
-            log.ChangedFile(e.Name);
+            Thread.Sleep(50);
+            log.ChangedFile(e.Name);          
         }
-
     }
 }
