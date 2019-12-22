@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-
+using System.Linq;
 namespace Training.Task5
 {
     class Program
@@ -50,12 +50,12 @@ namespace Training.Task5
             bool isFlag = false;
             string path = GetFolderPath();
 
-            while (!isFlag) 
+            while (!isFlag)
             {
                 Console.WriteLine("Choose a mode");
                 Console.Write("> ");
                 string str = Console.ReadLine();
-                switch (str.ToUpper()) 
+                switch (str.ToUpper())
                 {
                     case "1":
                     case "OBSERVATIONS":

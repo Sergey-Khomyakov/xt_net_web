@@ -17,7 +17,6 @@ namespace Training.Task5
             _path = path;
             _pathLog = path + @"\Log\Log.txt";
             CreatedFolder();
-            //WriteFile();
         }
 
         private void CreatedFolder() 
@@ -48,9 +47,9 @@ namespace Training.Task5
                 }
             }
         }        
-        private List<string> ReaderLogFile() 
+        private List<string> GetFileContent() 
         {
-            List<string> list = new List<string>();
+            List<string> fileСontents = new List<string>();
 
             using (_streamReader = new StreamReader(_pathLog))
             {
@@ -62,11 +61,11 @@ namespace Training.Task5
                 {
                     if (!string.IsNullOrWhiteSpace(item))
                     {
-                        list.Add(item);
+                        fileСontents.Add(item);
                     }
                 }
             }
-            return list;
+            return fileСontents;
         }
 
         /// <summary>
@@ -89,7 +88,7 @@ namespace Training.Task5
         {
             _newlog = new List<string>();
 
-            List<string> log = ReaderLogFile();
+            List<string> log = GetFileContent();
 
             for (int i = 0; i < log.Count; i++)
             {
@@ -108,7 +107,7 @@ namespace Training.Task5
         {
             _newlog = new List<string>();
 
-            List<string> log = ReaderLogFile();
+            List<string> log = GetFileContent();
 
             for (int i = 0; i < log.Count; i++)
             {
