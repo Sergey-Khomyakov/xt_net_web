@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
+
 namespace Training.Task5
 {
     class Program

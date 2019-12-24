@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -11,8 +12,7 @@ namespace Training.Task5
         private string _nameFile;
         private string _pathLog;
         private string _writeInFile;
-        private List<string> _contentsByFileNameInLog;
-        private List<string> _contentsOfLogFile;
+        private List<File> _file;
         public RollbackChanges(string path) 
         {
             _path = path;
@@ -22,15 +22,8 @@ namespace Training.Task5
         {
             _nameFile = GetNameFile();
             FileContent();
-            if (_contentsByFileNameInLog.Count == 0)
-            {
-                Console.WriteLine("Error: Rollback not possible");
-            }
-            else 
-            {
-                DateTimeRollback();
-                FileRollBack();
-            }
+            DateTimeRollback();
+            FileRollBack();
         }
 
         /// <summary>
@@ -50,75 +43,53 @@ namespace Training.Task5
         /// </summary>
         private void ShowDateTimeInLog()
         {
-            foreach (var item in _contentsByFileNameInLog)
+            foreach (var item in _file)
             {
-                Console.WriteLine($"{GetRecordFromLogFile(item, "Date of change - ").Remove(22)}");
+                if (item.NameFile == _nameFile) 
+                {
+                    Console.WriteLine(item.dateTime);
+                }
             }
         }
-
         /// <summary>
         /// Removes entries from the log file
         /// </summary>
-        private void CleaningLog() 
+        private void CleaningLog()
         {
-            var dateTime = new DateTime();
-            string[] splitestring; 
-            for (int i = 0; i < _contentsByFileNameInLog.Count; i++)
+            var newLog = new List<File>();
+            foreach (var item in _file)
             {
-                splitestring = _contentsByFileNameInLog[i].Split(' ');
-                dateTime = Convert.ToDateTime(splitestring[8] + " " + splitestring[9] + " " + splitestring[10]);
-                if (dateTime < _dateTime) 
+                if (item.NameFile != _nameFile || item.dateTime < _dateTime)
                 {
-                    _contentsOfLogFile.Add(_contentsByFileNameInLog[i]); 
+                    newLog.Add(item);
                 }
             }
             using (var writer = new StreamWriter(_pathLog))
             {
-                foreach (var item in _contentsOfLogFile)
+                foreach (var item in newLog)
                 {
-                    writer.WriteLine(item);     
+                    writer.WriteLine(JsonConvert.SerializeObject(item));
                 }
             }
         }
-
         /// <summary>
         /// Get file contents Log
         /// </summary>
         /// <returns></returns>
-        private void FileContent() 
+        private void FileContent()
         {
-            _contentsByFileNameInLog = new List<string>();
-            _contentsOfLogFile = new List<string>();
-
+            _file = new List<File>();
             using (var streamReader = new StreamReader(_pathLog))
             {
-                var arrayLog = streamReader
-                    .ReadToEnd()
-                    .Split('\r', '\n');
-
-                foreach (var item in arrayLog)
+                while (streamReader.Peek() >= 0)
                 {
-                    if (!string.IsNullOrWhiteSpace(item) && item.Contains(_nameFile))
+                    var jsonfile = JsonConvert.DeserializeObject<File>(streamReader.ReadLine());
+                    if (jsonfile != null)
                     {
-                        _contentsByFileNameInLog.Add(item);
-                    }
-                    else if (!string.IsNullOrWhiteSpace(item)) 
-                    {
-                        _contentsOfLogFile.Add(item);
-                    }
+                        _file.Add(new File(jsonfile.NameFile, jsonfile.dateTime, jsonfile.Text));
+                    } 
                 }
             }
-        }
-        /// <summary>
-        /// Retrieves file contents for a specific date
-        /// </summary>
-        /// <param name="line">String from Log file </param>
-        /// <param name="txt">Substring</param>
-        /// <returns></returns>
-        private string GetRecordFromLogFile(string line, string txt) 
-        {
-            int startIndex = line.LastIndexOf(txt);
-            return line.Substring(startIndex + txt.Length);
         }
 
         /// <summary>
@@ -128,21 +99,26 @@ namespace Training.Task5
         private bool IsCheckRollback()
         {
             bool isCanRollBack = false;
-            string date = _dateTime.ToString();
-            for (int i = 0; i < _contentsByFileNameInLog.Count; i++)
+
+            foreach (var item in _file)
             {
-                if (_contentsByFileNameInLog[i].Contains(_dateTime.ToString()) && _contentsByFileNameInLog[i].Contains(_nameFile)) 
+                if (EqualsUpToSeconds(item.dateTime, _dateTime) && item.NameFile == _nameFile) 
                 {
                     isCanRollBack = true;
-                    _writeInFile = GetRecordFromLogFile(_contentsByFileNameInLog[i],"Text - ");
+                    _writeInFile = item.Text;
                     break;
                 }
             }
-            if (!isCanRollBack) 
+            if (!isCanRollBack)
             {
                 Console.WriteLine("File cannot be rolled back to this date and time");
             }
             return isCanRollBack;
+        }
+        private static bool EqualsUpToSeconds(DateTime dt1, DateTime dt2)
+        {
+            return dt1.Year == dt2.Year && dt1.Month == dt2.Month && dt1.Day == dt2.Day &&
+                   dt1.Hour == dt2.Hour && dt1.Minute == dt2.Minute && dt1.Second == dt2.Second;
         }
         /// <summary>
         /// Gets the date and time by which you need to roll back the file

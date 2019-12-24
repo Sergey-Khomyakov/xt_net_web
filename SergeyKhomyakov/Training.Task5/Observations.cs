@@ -8,7 +8,6 @@ namespace Training.Task5
     {
         private string _path;
         private LogFile log;
-        private FileSystemWatcher systemWatcher;
         public Observations(string path) 
         {
             _path = path;
@@ -20,7 +19,7 @@ namespace Training.Task5
         {
             log = new LogFile(_path);
 
-            using (systemWatcher = new FileSystemWatcher(_path)) 
+            using (var systemWatcher = new FileSystemWatcher(_path)) 
             {
                 systemWatcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName;
 

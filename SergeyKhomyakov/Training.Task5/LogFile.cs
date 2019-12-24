@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -7,11 +8,8 @@ namespace Training.Task5
     class LogFile
     {
         private string _path;
-
-        private List<string> _newlog;
-        private StreamReader _streamReader;
-        private StreamWriter _streamWriter;
         private string _pathLog;
+        private List<File> _file;
         public LogFile(string path) 
         {
             _path = path;
@@ -28,40 +26,37 @@ namespace Training.Task5
         /// </summary>
         private void WriteFile(string logging)
         {
-            using (_streamWriter = new StreamWriter(_pathLog, true))
+            using (var streamWriter = new StreamWriter(_pathLog, true))
             {
-                _streamWriter.WriteLine(logging);
+                streamWriter.WriteLine(logging);
             }
         }
 
         /// <summary>
         /// Changes in the logs
         /// </summary>
-        private void OverwritesFile(List<string> logging) 
+        private void OverwritesFile(List<File> logging)
         {
-            using (_streamWriter = new StreamWriter(_pathLog))
+            using (var streamWriter = new StreamWriter(_pathLog))
             {
                 foreach (var item in logging)
                 {
-                    _streamWriter.WriteLine(item);
+                    streamWriter.WriteLine(JsonConvert.SerializeObject(item));
                 }
             }
-        }        
-        private List<string> GetFileContent() 
+        }
+        private List<File> GetFileContent()
         {
-            List<string> fileСontents = new List<string>();
+            var fileСontents = new List<File>();
 
-            using (_streamReader = new StreamReader(_pathLog))
+            using (var streamReader = new StreamReader(_pathLog))
             {
-                var arrayLog = _streamReader
-                    .ReadToEnd()
-                    .Split('\r','\n');
-                
-                foreach (var item in arrayLog)
+                while (streamReader.Peek() >= 0)
                 {
-                    if (!string.IsNullOrWhiteSpace(item))
+                    var jsonfile = JsonConvert.DeserializeObject<File>(streamReader.ReadLine());
+                    if (jsonfile != null)
                     {
-                        fileСontents.Add(item);
+                        _file.Add(new File(jsonfile.NameFile, jsonfile.dateTime, jsonfile.Text));
                     }
                 }
             }
@@ -73,54 +68,52 @@ namespace Training.Task5
         /// </summary>
         public void ChangedFile(string nameFile) 
         {
-            string logging = string.Empty;
-            using (_streamReader = new StreamReader(_path + @"\" + nameFile))
+            using (var streamReader = new StreamReader(_path + @"\" + nameFile))
             {
-                logging = "File - " + nameFile + " | Date of change - " + DateTime.Now.ToString() + " | Text - " + _streamReader.ReadToEnd();
+                WriteFile(JsonConvert.SerializeObject(new File(nameFile,DateTime.Now,streamReader.ReadToEnd())));
             }
-            WriteFile(logging);
         }
 
         /// <summary>
         /// Delete a file in the logs
         /// </summary>
-        public void DeleteFile(string nameFile) 
+        public void DeleteFile(string nameFile)
         {
-            _newlog = new List<string>();
+            _file = new List<File>();
 
-            List<string> log = GetFileContent();
+            var log = GetFileContent();
 
             for (int i = 0; i < log.Count; i++)
             {
-                if (!log[i].Contains(nameFile))
+                if (log[i].NameFile != nameFile) 
                 {
-                    _newlog.Add(log[i]);
+                    _file.Add(log[i]);
                 }
             }
-            OverwritesFile(_newlog);
+            OverwritesFile(_file);
         }
-
         /// <summary>
         ///  Сhanges the name of the file in the logs
         /// </summary>
-        public void RenameFile(string nameFile, string OldNameFile) 
+        public void RenameFile(string nameFile, string OldNameFile)
         {
-            _newlog = new List<string>();
+            _file = new List<File>();
 
-            List<string> log = GetFileContent();
+            var log = GetFileContent();
 
             for (int i = 0; i < log.Count; i++)
             {
-                if (log[i].Contains(OldNameFile))
+                if (log[i].NameFile == OldNameFile)
                 {
-                    _newlog.Add(log[i].Replace(OldNameFile, nameFile));
+                    log[i].NameFile = nameFile;
+                    _file.Add(log[i]);
                 }
                 else 
                 {
-                    _newlog.Add(log[i]);
+                    _file.Add(log[i]);
                 }
             }
-            OverwritesFile(_newlog);
+            OverwritesFile(_file);
         }
     }
 }
