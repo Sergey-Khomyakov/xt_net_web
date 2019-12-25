@@ -17,63 +17,6 @@ namespace Training.Task5
             CreatedFolder();
         }
 
-        private void CreatedFolder() 
-        {
-            Directory.CreateDirectory(_path + @"\Log");
-        }
-        /// <summary>
-        /// Adds changes to the logs
-        /// </summary>
-        private void WriteFile(string logging)
-        {
-            using (var streamWriter = new StreamWriter(_pathLog, true))
-            {
-                streamWriter.WriteLine(logging);
-            }
-        }
-
-        /// <summary>
-        /// Changes in the logs
-        /// </summary>
-        private void OverwritesFile(List<File> logging)
-        {
-            using (var streamWriter = new StreamWriter(_pathLog))
-            {
-                foreach (var item in logging)
-                {
-                    streamWriter.WriteLine(JsonConvert.SerializeObject(item));
-                }
-            }
-        }
-        private List<File> GetFileContent()
-        {
-            var fileСontents = new List<File>();
-
-            using (var streamReader = new StreamReader(_pathLog))
-            {
-                while (streamReader.Peek() >= 0)
-                {
-                    var jsonfile = JsonConvert.DeserializeObject<File>(streamReader.ReadLine());
-                    if (jsonfile != null)
-                    {
-                        _file.Add(new File(jsonfile.NameFile, jsonfile.dateTime, jsonfile.Text));
-                    }
-                }
-            }
-            return fileСontents;
-        }
-
-        /// <summary>
-        /// Writes changes to the logs
-        /// </summary>
-        public void ChangedFile(string nameFile) 
-        {
-            using (var streamReader = new StreamReader(_path + @"\" + nameFile))
-            {
-                WriteFile(JsonConvert.SerializeObject(new File(nameFile,DateTime.Now,streamReader.ReadToEnd())));
-            }
-        }
-
         /// <summary>
         /// Delete a file in the logs
         /// </summary>
@@ -114,6 +57,64 @@ namespace Training.Task5
                 }
             }
             OverwritesFile(_file);
+        }
+
+        /// <summary>
+        /// Writes changes to the logs
+        /// </summary>
+        public void ChangedFile(string nameFile) 
+        {
+            using (var streamReader = new StreamReader(_path + @"\" + nameFile))
+            {
+                WriteFile(JsonConvert.SerializeObject(new File(nameFile,DateTime.Now,streamReader.ReadToEnd())));
+            }
+        }
+
+        private void CreatedFolder() 
+        {
+            Directory.CreateDirectory(_path + @"\Log");
+        }
+
+        /// <summary>
+        /// Adds changes to the logs
+        /// </summary>
+        private void WriteFile(string logging)
+        {
+            using (var streamWriter = new StreamWriter(_pathLog, true))
+            {
+                streamWriter.WriteLine(logging);
+            }
+        }
+
+        /// <summary>
+        /// Changes in the logs
+        /// </summary>
+        private void OverwritesFile(List<File> logging)
+        {
+            using (var streamWriter = new StreamWriter(_pathLog))
+            {
+                foreach (var item in logging)
+                {
+                    streamWriter.WriteLine(JsonConvert.SerializeObject(item));
+                }
+            }
+        }
+        private List<File> GetFileContent()
+        {
+            var fileСontents = new List<File>();
+
+            using (var streamReader = new StreamReader(_pathLog))
+            {
+                while (streamReader.Peek() >= 0)
+                {
+                    var jsonfile = JsonConvert.DeserializeObject<File>(streamReader.ReadLine());
+                    if (jsonfile != null)
+                    {
+                        _file.Add(new File(jsonfile.NameFile, jsonfile.dateTime, jsonfile.Text));
+                    }
+                }
+            }
+            return fileСontents;
         }
     }
 }

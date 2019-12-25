@@ -70,15 +70,15 @@ namespace Training.Task4
             {
                 if (number < 0)
                 {
-                    Console.WriteLine("Вы ввели отрицательное число");
+                    Console.WriteLine("You entered a negative number");
                 }
                 else
                 {
-                    Console.WriteLine("Я не понимаю что вы ввели :(((");
+                    Console.WriteLine("I do not understand what you entered :(((");
                 }
                 Console.WriteLine();
 
-                Console.Write("Введите число: ");
+                Console.Write("Insert the number: ");
                 stringNumber = Console.ReadLine();
                 Console.WriteLine();
             }
@@ -86,7 +86,7 @@ namespace Training.Task4
         }
         static void Main(string[] args)
         {
-            string[] array = new string[] {"0 - Exit", "1 - SortArray", "2 - CheckSpeedSorting", "3 - PositiveNumber" };
+            string[] array = new string[] {"0 - Exit", "1 - SortArray", "2 - CheckSpeedSorting", "3 - PositiveNumber","4 - I SEEK YOU" };
             bool isExit = false;
             while (!isExit) 
             {
@@ -94,7 +94,7 @@ namespace Training.Task4
                 {
                     Console.WriteLine(item);
                 }
-                Console.Write("Введите число: ");
+                Console.Write("Insert the number: ");
                 int number  = СheckInputNumber();
 
                 switch (number) 
@@ -104,19 +104,24 @@ namespace Training.Task4
                         break;
                     case 1:
                         Thread th1 = new Thread(SortingUnit);
-                        Console.WriteLine("Начата сортировка массива, пожалуйста подождите..");
+                        Console.WriteLine("Array sorting started, please wait..");
                         Console.WriteLine();
                         th1.Start();
                         th1.Join();
                         break;
                     case 2:            
-                        СheckSpeedSorting check = new СheckSpeedSorting();
+                        CheckSpeedSorting check = new CheckSpeedSorting();
                         check.ShowSpeedSorting();
                         break;
                     case 3:
-                        Console.WriteLine("Введите число:");
+                        Console.WriteLine("Insert the number:");
                         string str = Console.ReadLine();           
                         Console.WriteLine(str.IsCheckPositiveNumber());
+                        break;
+                    case 4:
+                        Console.WriteLine("");
+                        var speed = new CheckSpeedSorting();
+                        speed.ShowSpeedSorting();
                         break;
                 }
             }

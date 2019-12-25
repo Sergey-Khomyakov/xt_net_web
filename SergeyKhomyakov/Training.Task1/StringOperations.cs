@@ -8,24 +8,24 @@ namespace Training.Task1
     class StringOperations
     {
         /// <summary>
-        /// Task 1.6. Метод позволяет устанавливать и изменять начертание шрифта 
+        /// Task 1.6. Set and change the font style
         /// </summary>
         public void ShowFontAdjustment()
         {
             List<string> listFont = new List<string>();
             int number = 0;
             var stringNumber = string.Empty;
-            Console.WriteLine($"Параметры надписи: None");
+            Console.WriteLine($"Label Options: None");
             while (true)
             {
-                Console.WriteLine("Введите:");
+                Console.WriteLine("Enter:");
                 Console.WriteLine($"\t 1: Bold");
                 Console.WriteLine($"\t 2: Italic");
                 Console.WriteLine($"\t 3: Underline");
                 stringNumber = Console.ReadLine();
-                while (!int.TryParse(stringNumber, out number) || number > 3) // Проверка ввода 
+                while (!int.TryParse(stringNumber, out number) || number > 3)
                 {
-                    Console.WriteLine("Введите существующее число !");
+                    Console.WriteLine("Enter an existing number !");
                     stringNumber = Console.ReadLine();
                 }
                 if (number == 0)
@@ -76,13 +76,13 @@ namespace Training.Task1
                                 break;
                             }
                     }
-                    Console.Write($"Параметры надписи: ");
+                    Console.Write($"Label options: ");
                     foreach (var list in listFont)
                     {
                         Console.Write(list + " ");
                     }
                     Console.WriteLine();
-                    Console.WriteLine("Если хотите выйти из программы введите число 0");
+                    Console.WriteLine("If you want to exit the program, enter the number 0");
                     number = 0;
                 }
 
@@ -90,15 +90,35 @@ namespace Training.Task1
         }
 
         /// <summary>
-        /// Task 1.11 Метод выводи среднюю длину слова во введённой текстовой строке
+        /// Task 1.11 Print the average word length in the entered text string
         /// </summary>
-        /// <param name="textString"> текстовая строка</param>
+        /// <param name="textString"> text string</param>
         public void ShowAverageWordLength(string textString) 
         {                      
             textString = CheckTextForPunctuation(textString);
             string[] stringarray = textString.Split();
             int sum = SumOfLengthsAllWords(stringarray);
             Console.WriteLine($"Средняя длина = {sum / stringarray.Length}");
+        }
+
+        /// <summary>
+        /// Task 1.12 Doubles in the first line entered all characters belonging to the second line entered
+        /// </summary>
+        /// <param name="firstLine">First line</param>
+        /// <param name="secondLine">Second line</param>
+        public void ShowCharDoubler(string firstLine, string secondLine)
+        {
+            var line = new StringBuilder();
+
+            foreach (var ch in firstLine) 
+            {
+                line.Append(ch);
+                if (!char.IsPunctuation(ch) && !char.IsSeparator(ch)) 
+                {
+                    line.Append(ch);
+                }               
+            }
+            Console.WriteLine(line);
         }
 
         private string CheckTextForPunctuation(string textString) 
@@ -123,25 +143,6 @@ namespace Training.Task1
                 sum += line.Length;
             }
             return sum;
-        }
-        /// <summary>
-        /// Task 1.12 Метод удваивает в первой введённой строке все символы, принадлежащие второй введённой строке
-        /// </summary>
-        /// <param name="firstLine">Первая строка</param>
-        /// <param name="secondLine">Вторая строка</param>
-        public void ShowCharDoubler(string firstLine, string secondLine)
-        {
-            var line = new StringBuilder();
-
-            foreach (var ch in firstLine) 
-            {
-                line.Append(ch);
-                if (!char.IsPunctuation(ch) && !char.IsSeparator(ch)) 
-                {
-                    line.Append(ch);
-                }               
-            }
-            Console.WriteLine(line);
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Training.Task2
         public override double GetSquare() => Math.PI * (Math.Pow(_r, 2) - Math.Pow(_interiorR, 2));
         public override void ShowRound()
         {
-            Console.WriteLine($"Внутренний радиус = {_r}");
+            Console.WriteLine($"Inner radius = {_r}");
             base.ShowRound();
         }
     }

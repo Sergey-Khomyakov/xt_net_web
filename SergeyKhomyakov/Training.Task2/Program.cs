@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 
 namespace Training.Task2
 {
@@ -16,15 +15,15 @@ namespace Training.Task2
             {
                 if (number <= 0)
                 {
-                    Console.WriteLine("Введите положительное число !");
+                    Console.WriteLine("Enter a positive number !");
                 }
                 else 
                 {
-                    Console.WriteLine("Я не понимаю что вы ввели :(((");
+                    Console.WriteLine("I do not understand what you entered :(((");
                 }             
                 Console.WriteLine();
 
-                Console.Write("Введите число: ");
+                Console.Write("Insert the number: ");
                 stringNumber = Console.ReadLine();
                 Console.WriteLine();
             }
@@ -39,8 +38,8 @@ namespace Training.Task2
                 str = Console.ReadLine();
                 if (string.IsNullOrEmpty(str))
                 {
-                    Console.WriteLine("Строка пуста !!");
-                    Console.Write("Введите строку - ");
+                    Console.WriteLine("Row is empty !!");
+                    Console.Write("Enter the string - ");
                 }
                 else 
                 {
@@ -51,35 +50,35 @@ namespace Training.Task2
         }
         private static void ShowRound() 
         {
-            Console.Write("Введите координату Х - ");
+            Console.Write("Enter the coordinate Х - ");
             int x = СheckInputNumber();
-            Console.Write("Введите координату Y - ");
+            Console.Write("Enter the coordinate Y - ");
             int y = СheckInputNumber();
-            Console.Write("Введите радиус R - ");
+            Console.Write("Enter radius R - ");
             int r = СheckInputNumber();
             Round round = new Round(x,y,r);
             round.ShowRound();
         }
         private static void ShowTriangle() 
         {
-            Console.Write("Введите сторону A - ");
+            Console.Write("Enter side A - ");
             int a = СheckInputNumber();
-            Console.Write("Введите сторону B - ");
+            Console.Write("Enter side B - ");
             int b = СheckInputNumber();
-            Console.Write("Введите сторону C - ");
+            Console.Write("Enter side C - ");
             int c = СheckInputNumber();
             Triangle triangle = new Triangle(a,b,c);
             triangle.ShowTriangle();
         }
         private static void ShowUser() 
         {
-            Console.Write("Введите фамилию - ");
+            Console.Write("Enter last name - ");
             string lastName = CheckInputWordOnNull();
-            Console.Write("Введите имя - ");
+            Console.Write("Enter your name - ");
             string firstName = CheckInputWordOnNull();
-            Console.Write("Введите отчество - ");
+            Console.Write("Enter middle name - ");
             string middleName = CheckInputWordOnNull();
-            Console.Write("Введите дату рождения - ");
+            Console.Write("Enter date of birth - ");
             DateTime birthOfDate;
             while(true)
             {
@@ -87,34 +86,34 @@ namespace Training.Task2
                 {
                     break;
                 }
-                Console.Write("Введите дату рождения {День Месяц Год} : ");
+                Console.Write("Enter date of birth { Day Month Year} : ");
             }
             User user = new User(lastName,firstName,middleName, birthOfDate);
             user.ShowUser();
         }
         private static void ShowWorkWithMyString() 
         {
-            Console.WriteLine("Введите первую строку");
+            Console.WriteLine("Enter the first line");
             string firstLine = Console.ReadLine();
-            Console.WriteLine("Введите вторую строку");
+            Console.WriteLine("Enter the second line");
             string secondLine = Console.ReadLine();
             MyString myString = new MyString(firstLine);
-            Console.WriteLine($"Соединил две строки: {myString.Concat(firstLine,secondLine)}");
-            Console.WriteLine($"Сравнение двух строк {myString.Equals(firstLine,secondLine)}");
+            Console.WriteLine($"Joined two lines: {myString.Concat(firstLine,secondLine)}");
+            Console.WriteLine($"Compare two strings {myString.Equals(firstLine,secondLine)}");
         }
         private static void ShowEmployee() 
         {
-            Console.Write("Введите фамилию - ");
+            Console.Write("Enter last name - ");
             string lastName = CheckInputWordOnNull();
-            Console.Write("Введите имя - ");
+            Console.Write("Enter your name - ");
             string firstName = CheckInputWordOnNull();
-            Console.Write("Введите отчество - ");
+            Console.Write("Enter middle name - ");
             string middleName = CheckInputWordOnNull();
-            Console.Write("Введите возраст - ");
+            Console.Write("Enter date of birth - ");
             int age = СheckInputNumber();
-            Console.WriteLine("Введите вашу должность");
+            Console.WriteLine("Enter your position");
             string position = CheckInputWordOnNull();
-            Console.WriteLine("Введите ваш рабочий стаж");
+            Console.WriteLine("Enter your work experience");
             int workExperience = СheckInputNumber();
             DateTime birthOfDate;
             while (true)
@@ -123,20 +122,20 @@ namespace Training.Task2
                 {
                     break;
                 }
-                Console.Write("Введите дату рождения {День Месяц Год} : ");
+                Console.Write("Enter date of birth { Day Month Year} : ");
             }
             var employee = new Employee(lastName,firstName,middleName, birthOfDate, workExperience,position);
             employee.ShowUser();
         }
         private static void ShowRing() 
         {
-            Console.Write("Введите координату Х - ");
+            Console.Write("Enter the coordinate Х - ");
             int x = СheckInputNumber();
-            Console.Write("Введите координату Y - ");
+            Console.Write("Enter the coordinate Y - ");
             int y = СheckInputNumber();
-            Console.Write("Введите внешний радиус R - ");
+            Console.Write("Enter outer radius R - ");
             int r = СheckInputNumber();
-            Console.Write("Введите внутренний радиус R - ");
+            Console.Write("Enter the inner radius R - ");
             int interiorR = СheckInputNumber();
             var ring = new Ring(x,y,r,interiorR);
             ring.ShowRound();

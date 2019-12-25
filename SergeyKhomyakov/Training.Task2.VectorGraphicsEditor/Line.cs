@@ -27,8 +27,8 @@ namespace Training.Task2.VectorGraphicsEditor
         public void ShowFigures()
         {
 
-            Console.WriteLine("\nВы создали фигуру !!");
-            Console.WriteLine($"Тип Фигуры: 'Линия'\nкоординаты первой точки ({point1.X},{point1.Y})\nКоординаты второй точки ({point2.X},{point2.Y})\nДлина прямой = {Length:#.##}\n");
+            Console.WriteLine("\nYou created a shape !!");
+            Console.WriteLine($"Shape Type: 'Line' \nfirst point coordinates ({point1.X},{point1.Y})\nThe coordinates of the second point ({point2.X},{point2.Y})\nStraight length = {Length:#.##}\n");
         }
     }
 }

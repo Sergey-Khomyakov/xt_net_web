@@ -31,7 +31,11 @@ namespace Training.Task2.VectorGraphicsEditor
                 }
             }
         }
-
+        public void ShowFigures()
+        {
+            Console.WriteLine("\nYou created a shape!!");
+            Console.WriteLine($"Shape Type: 'Circle' with center coordinates ({point.X},{point.Y}) radius = {_R}\nCircle area = {Square:#.##}\nCircumference = {Length:#.##}\n");
+        }
         protected double Square
         {
             get
@@ -45,11 +49,6 @@ namespace Training.Task2.VectorGraphicsEditor
             {
                 return 2 * Math.PI * _R;
             }
-        }
-        public void ShowFigures()
-        {
-            Console.WriteLine("\nВы создали фигуру !!");
-            Console.WriteLine($"Тип Фигуры: 'Окружность' с координатами центра ({point.X},{point.Y}) радиус = {_R}\nПлощадь окружности = {Square:#.##}\nДлина окружности = {Length:#.##}\n");
         }
     }
 }

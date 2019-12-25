@@ -8,8 +8,8 @@ namespace Training.Task2.VectorGraphicsEditor
 
         public new void ShowFigures()
         {
-            Console.WriteLine("\nВы создали фигуру !!");
-            Console.WriteLine($"Тип Фигуры: 'Круг' с координатами центра ({point.X},{point.Y}) радиус = {R}\nПлощадь круга = {Square:#.##}\n");
+            Console.WriteLine("\nYou created a shape !!");
+            Console.WriteLine($"Shape Type: 'Circle' with center coordinates ({point.X},{point.Y}) radius = {R}\nArea of ​​a circle = {Square:#.##}\n");
         }
     }
 }

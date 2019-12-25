@@ -6,7 +6,7 @@ namespace Training.Task4
     {
         public void Message()
         {
-            Console.WriteLine("Сортировка завершена !!");
+            Console.WriteLine("Sort completed !!");
         }
     }
 }

@@ -41,13 +41,6 @@ namespace Training.Task3.DynamicArray
             }
             _array[_size++] = item;
         }
-
-        private T[] ToArray(int size) 
-        {
-            T[] array = new T[size];
-            _array.CopyTo(array, 0);
-            return array;
-        } 
         public void AddRange(IEnumerable<T> collection)
         {
             if (collection == null)
@@ -130,7 +123,7 @@ namespace Training.Task3.DynamicArray
             return new Enumerator<T>(this);
         }
 
-        // index = -1 последний элемент, index = -2 предпоследний элемент 
+        // index = -1 last item, index = -2 penultimate item
         public T this[int index]
         {
             get
@@ -164,6 +157,10 @@ namespace Training.Task3.DynamicArray
                 }                
             }
         }
+        public object Clone()
+        {
+            return new DynamicArray<T>();
+        }
 
         private void ChekIndex(int index, DynamicArray<T> array) 
         {
@@ -172,9 +169,12 @@ namespace Training.Task3.DynamicArray
                 throw new IndexOutOfRangeException();
             }
         }
-        public object Clone()
+
+        private T[] ToArray(int size) 
         {
-            return new DynamicArray<T>();
-        }
+            T[] array = new T[size];
+            _array.CopyTo(array, 0);
+            return array;
+        } 
     }
 }

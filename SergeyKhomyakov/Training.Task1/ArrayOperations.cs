@@ -6,29 +6,98 @@ namespace Training.Task1
     {
 
         /// <summary>
-        /// 1.7. Метот выводит максимальное и минимальное значения в массиве, сортирует массив и выводит полученный результат.
+        /// 1.7. Show maximum and minimum values ​​in the array, sorts the array
         /// </summary>
-        /// <param name="arraySize">Размер массива</param>
+        /// <param name="arraySize">Size array</param>
         public void ShowArray(int arraySize)
         {
             if (arraySize == 0)
             {
-                Console.WriteLine("Массив равен 0");
+                Console.WriteLine("The array is 0");
             }
             else 
             {
                int[] array = new int[arraySize];
                 FillArray(array);
-                Console.Write("Изначальный массив: ");
+                Console.Write("The original array: ");
                 ViewArray(array);
-                Console.WriteLine($"Максимальное значение в массиве {MaxValueInArray(array)}");
-                Console.WriteLine($"Минимальное значение в массиве {MinValueInArray(array)}");
+                Console.WriteLine($"The maximum value in the array {MaxValueInArray(array)}");
+                Console.WriteLine($"The minimum value in the array {MinValueInArray(array)}");
                 SortArray(array);
-                Console.Write("Отсортированный массив: ");
+                Console.Write("Sorted array: ");
                 ViewArray(array);
             }
         }
 
+        /// <summary>
+        /// 1.8. Show all positive elements in a three-dimensional array to zeros
+        /// </summary>
+        /// <param name="arraySize">Size array</param>
+        public void ShowNoPositiveNumbersInArray(int arraySize)
+        {
+            if (arraySize == 0) 
+            {
+                Console.WriteLine("The array is 0");
+            }
+            else 
+            {
+                int[,,] array = new int[arraySize, arraySize, arraySize];
+                FillArray(array);
+                Console.WriteLine("Original array");
+                ViewArray(array);
+                ChangingPositiveElementsInArray(array);
+                Console.WriteLine("Modified array");
+                ViewArray(array);
+            }
+        }
+
+        /// <summary>
+        /// 1.9. Show sum of non-negative elements in a one-dimensional array
+        /// </summary>
+        /// <param name="arraySize">Size array</param>
+        public void ShowSumOfNonNegativeElementsInArray(int arraySize) 
+        {
+            if (arraySize == 0)
+            {
+                Console.WriteLine("The array is 0");
+            }
+            else
+            {
+                int[] array = new int[arraySize];
+                int sum = 0;
+                FillArray(array);
+                Console.Write("Array: ");
+                ViewArray(array);
+
+                for (int i = 0; i < arraySize; i++)
+                {
+                    if (array[i] > 0)
+                    {
+                        sum += array[i];
+                    }
+                }
+                Console.WriteLine($"Sum of non-negative elements  = {sum}");
+            }
+        }
+
+        /// <summary>
+        /// 1.10. Show the sum of array elements in even positions
+        /// </summary>
+        /// <param name="arraySize">Size array</param>
+        public void ShowSumEvenPositionsInArray(int arraySize) 
+        {
+            if (arraySize == 0)
+            {
+                Console.WriteLine("The array is 0");
+            }
+            else
+            {
+                int[,] array = new int[arraySize, arraySize];
+                FillArray(array);
+                ViewArray(array);
+                Console.WriteLine($"The amount of standing in even positions = {SumEvenPositions(array)}");
+            }
+        }
         private void FillArray(int[] array)
         {
             Random random = new Random();
@@ -98,29 +167,6 @@ namespace Training.Task1
             Console.WriteLine();
         }
 
-        /// <summary>
-        /// 1.8. Метод заменяет все положительные элементы в трёхмерном массиве на нули и выводит полученный результат
-        /// </summary>
-        /// <param name="arraySize">Размер массива</param>
-        public void ShowNoPositiveNumbersInArray(int arraySize)
-        {
-            if (arraySize == 0) 
-            {
-                Console.WriteLine("Массив равен 0");
-            }
-            else 
-            {
-                int[,,] array = new int[arraySize, arraySize, arraySize];
-                FillArray(array);
-                Console.WriteLine("Изначальный массив");
-                ViewArray(array);
-                ChangingPositiveElementsInArray(array);
-                Console.WriteLine("Изменённый массив");
-                ViewArray(array);
-            }
-
-        }
-
         private void FillArray(int[,,] array)
         {
             Random random = new Random();
@@ -171,54 +217,6 @@ namespace Training.Task1
             }
         }
 
-        /// <summary>
-        /// 1.9. Метод определяет сумму неотрицательных элементов в одномерном массиве
-        /// </summary>
-        /// <param name="arraySize">Размер массива</param>
-        public void ShowSumOfNonNegativeElementsInArray(int arraySize) 
-        {
-            if (arraySize == 0)
-            {
-                Console.WriteLine("Массив равен 0");
-            }
-            else
-            {
-                int[] array = new int[arraySize];
-                int sum = 0;
-                FillArray(array);
-                Console.Write("Массив: ");
-                ViewArray(array);
-
-                for (int i = 0; i < arraySize; i++)
-                {
-                    if (array[i] > 0)
-                    {
-                        sum += array[i];
-                    }
-                }
-                Console.WriteLine($"Сумму неотрицательных элементов  = {sum}");
-            }
-        }
-
-        /// <summary>
-        /// 1.10. Метод выводит сумму элементов массива, стоящих на чётных позициях
-        /// </summary>
-        /// <param name="arraySize">Размер массива</param>
-        public void ShowSumEvenPositionsInArray(int arraySize) 
-        {
-            if (arraySize == 0)
-            {
-                Console.WriteLine("Массив равен 0");
-            }
-            else
-            {
-                int[,] array = new int[arraySize, arraySize];
-                FillArray(array);
-                ViewArray(array);
-                Console.WriteLine($"Сумма стоящих на чётных позициях = {SumEvenPositions(array)}");
-            }
-        }
-
         private void FillArray(int[,]array) 
         {
             Random random = new Random();
@@ -242,7 +240,6 @@ namespace Training.Task1
                 Console.WriteLine();
             }
         }
-
         private int SumEvenPositions(int[,]array) 
         {
             int sum = 0;
@@ -258,6 +255,5 @@ namespace Training.Task1
             }
             return sum;
         }
-
     }
 }

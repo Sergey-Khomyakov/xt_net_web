@@ -15,6 +15,16 @@ namespace Training.Task2.VectorGraphicsEditor
                 throw new ArgumentException("Points have the same coordinates !!! ");
             }
         }
+        public new void ShowFigures()
+        {
+            Console.WriteLine("\nYou created a shape !!");
+            Console.WriteLine($"Shape Type: Rectangle'\n" +
+                $"First point coordinates ({point1.X},{point1.Y})\n" +
+                $"The coordinates of the second point ({point2.X},{point2.Y})\n" + 
+                $"Third Point Coordinates ({point3.X},{point3.Y})\n" + 
+                $"Fourth Point Coordinates ({point4.X},{point4.Y})\n" +
+                $"Height = {Height:#.##} Width = {Width:#.##} Area = {Height * Width:#.##}\n");
+        }
 
         private double Height
         {
@@ -29,16 +39,6 @@ namespace Training.Task2.VectorGraphicsEditor
             {
                 return Math.Sqrt((Math.Pow((point2.X - point3.X), 2) + Math.Pow((point2.Y - point3.Y), 2)));
             }
-        }
-        public new void ShowFigures()
-        {
-            Console.WriteLine("\nВы создали фигуру !!");
-            Console.WriteLine($"Тип Фигуры: 'Прямоугольник'\n" +
-                $"Координаты первой точки ({point1.X},{point1.Y})\n" +
-                $"Координаты второй точки ({point2.X},{point2.Y})\n" + 
-                $"Координаты третей точки ({point3.X},{point3.Y})\n" + 
-                $"Координаты четвертой точки ({point4.X},{point4.Y})\n" +
-                $"Высота = {Height:#.##} Ширина = {Width:#.##} Площадь = {Height * Width:#.##}\n");
         }
     }
 }

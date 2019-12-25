@@ -69,19 +69,18 @@ namespace Training.Task2
                 }
             }
         }
+        public void ShowTriangle()
+        {
+            Console.WriteLine("Side A = {0} B = {1} C = {2}", _a, _b, _c);
+            Console.WriteLine("Triangle perimeter = {0:0.##}", GetPerimeter());
+            Console.WriteLine("Area of ​​a triangle = {0:0.##}", GetSquare());
+        }
         private double GetPerimeter() => _a + _b + _c;
 
         private double GetSquare() 
         {
                 double perimeter = (_a + _b + _c) / 2;
                 return Math.Sqrt(perimeter * (perimeter - _a) * (perimeter - _b) * (perimeter - _c));
-        }
-
-        public void ShowTriangle()
-        {
-            Console.WriteLine("Сторона A = {0} B = {1} C = {2}", _a, _b, _c);
-            Console.WriteLine("Периметр треугольника = {0:0.##}", GetPerimeter());
-            Console.WriteLine("Площадь треугольника = {0:0.##}", GetSquare());
         }
     }
 }

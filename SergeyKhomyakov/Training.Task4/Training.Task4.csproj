@@ -49,7 +49,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SortArray.cs" />
-    <Compile Include="СheckSpeedSorting.cs" />
+    <Compile Include="CheckSpeedSorting.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

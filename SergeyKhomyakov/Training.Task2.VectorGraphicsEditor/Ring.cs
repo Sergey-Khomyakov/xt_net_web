@@ -28,13 +28,11 @@ namespace Training.Task2.VectorGraphicsEditor
                 }
             }
         }
-
-        private new double Square { get { return Math.PI * (Math.Pow(R, 2) - Math.Pow(_interiorR, 2)); } }
-
         public new void ShowFigures()
         {
-            Console.WriteLine("\nВы создали фигуру !!");
-            Console.WriteLine($"Тип Фигуры: 'Кольцо' с координатами центр ({point.X},{point.Y})\nВнешним радиусом {R}\nВнутренним радиусом {_interiorR}\nПлощадь кольца {Square:#.##}\n");
+            Console.WriteLine("\nYou created a shape !!");
+            Console.WriteLine($"Shape Type: 'Ring' with center coordinates ({point.X},{point.Y})\nOuter radius {R}\nInner radius {_interiorR}\nRing area {Square:#.##}\n");
         }
+        private new double Square { get { return Math.PI * (Math.Pow(R, 2) - Math.Pow(_interiorR, 2)); } }
     }
 }

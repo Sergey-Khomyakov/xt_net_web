@@ -5,30 +5,6 @@ namespace Training.Task3
 {
     class Program
     {
-        private static int СheckInputNumber() 
-        {
-            int number = 0;
-            string numberInput = string.Empty;
-            Console.Write("Введите число: ");
-            numberInput = Console.ReadLine();
-            while (!int.TryParse(numberInput, out number) || number < 0)
-            {
-                if (number < 0)
-                {
-                    Console.WriteLine("Вы ввели отрицательное число");
-                }
-                else
-                {
-                    Console.WriteLine("Я не понимаю что вы ввели :(((");
-                }
-                Console.WriteLine();
-
-                Console.Write("Введите число: ");
-                numberInput = Console.ReadLine();
-                Console.WriteLine();
-            }
-            return number;
-        }
         /// <summary>
         ///  Task 3.1 
         /// </summary>
@@ -46,38 +22,6 @@ namespace Training.Task3
             Console.WriteLine();
             RemovePerson(list, step);
         }
-
-        /// <summary>
-        /// Метод заполняет список числами  
-        /// </summary>
-        /// <param name="number">Размер списка</param>
-        /// <returns></returns>
-        private static List<int> GetСompletedListOf(List<int> list,int number) 
-        {
-            for (int i = 1; i < number + 1; i++) 
-            {
-                list.Add(i);
-            }
-            return list;
-        }
-        /// <summary>
-        /// Метод удаляет из списка элементы с шагом (step)
-        /// </summary>
-        /// <param name="step">шаг по списку</param>
-        private static void RemovePerson(List<int> list, int step) 
-        {
-            Console.WriteLine("================");
-            int count = list.Count;
-            int removeAt = 0;
-            while (count != 1) 
-            {
-                removeAt = (removeAt + step - 1) % count;
-                list.RemoveAt(removeAt);
-                string.Join(" ", list);
-                count--;
-            }
-            Console.WriteLine($"Остался в живых {list[0]}");
-        }   
 
         /// <summary>
         /// Task 3.2 
@@ -107,6 +51,63 @@ namespace Training.Task3
             }
         }
 
+        private static int СheckInputNumber() 
+        {
+            int number = 0;
+            string numberInput = string.Empty;
+            Console.Write("Insert the number: ");
+            numberInput = Console.ReadLine();
+            while (!int.TryParse(numberInput, out number) || number < 0)
+            {
+                if (number < 0)
+                {
+                    Console.WriteLine("You entered a negative number");
+                }
+                else
+                {
+                    Console.WriteLine("I do not understand what you entered :(((");
+                }
+                Console.WriteLine();
+
+                Console.Write("Insert the number: ");
+                numberInput = Console.ReadLine();
+                Console.WriteLine();
+            }
+            return number;
+        }
+
+        /// <summary>
+        /// Fills the list with numbers
+        /// </summary>
+        /// <param name="size">List size</param>
+        /// <returns></returns>
+        private static List<int> GetСompletedListOf(List<int> list,int size) 
+        {
+            for (int i = 1; i < size + 1; i++) 
+            {
+                list.Add(i);
+            }
+            return list;
+        } 
+
+        /// <summary>
+        /// Removes items from the list in increments
+        /// </summary>
+        /// <param name="step">list step</param>
+        private static void RemovePerson(List<int> list, int step) 
+        {
+            Console.WriteLine("================");
+            int count = list.Count;
+            int removeAt = 0;
+            while (count != 1) 
+            {
+                removeAt = (removeAt + step - 1) % count;
+                list.RemoveAt(removeAt);
+                string.Join(" ", list);
+                count--;
+            }
+            Console.WriteLine($"Stayed alive {list[0]}");
+        }   
         private static SortedDictionary<string, int> GetWordFrequency(string[] words)
         {
             SortedDictionary<string, int> pairs = new SortedDictionary<string, int>();
@@ -128,12 +129,10 @@ namespace Training.Task3
                     }
                 }               
             }
-
             return pairs;
         }
         static void Main(string[] args)
         {
-
             int number = 0;
             bool isExit = false;
             string[] arraymenu = new string[] { "0 - Exit", "1 - Lost", "2 - Word Frequency" };
@@ -152,18 +151,17 @@ namespace Training.Task3
                         isExit = true;
                         break;
                     case 1:
-                        Console.WriteLine("Введите количество человек ");
+                        Console.WriteLine("Enter the number of people ");
                         ShowLastPerson();
                         break;
                     case 2:
                         ShowWordFrequency();
                         break;
                     default:
-                        Console.WriteLine("Число не найдено !");
+                        Console.WriteLine("Number not found !");
                         break;
                 }
             }
-
         }
     }
 }

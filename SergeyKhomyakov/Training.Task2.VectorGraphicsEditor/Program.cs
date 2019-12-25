@@ -9,19 +9,19 @@ namespace Training.Task2.VectorGraphicsEditor
             string figureNumberString = string.Empty;
             int numberFigure = 0;
             bool isExit = false;
-            string[] arraymenu = new string[] {"Выберите фигру: ", "0 - Выход", "1 - Круг", "2 - Линия", "3 - Кольцо", "4 - Окружность", "5 - Прямоугольник", "==================="};
+            string[] arraymenu = new string[] { "Choose a figure: ", "0 - Exit", "1 - Circle", "2 - Line", "3 - Ring", "4 - Circumference", "5 - Rectangle", "==================="};
             do
             {
                 foreach (var item in arraymenu) 
                 {
                     Console.WriteLine(item);
                 }
-                Console.Write("Фигура - ");
+                Console.Write("Figure - ");
                 figureNumberString = Console.ReadLine();
                 while (!int.TryParse(figureNumberString, out numberFigure) || numberFigure > 5)
                 {
-                    Console.WriteLine("Фигура не найдена ");
-                    Console.Write("Фигура - ");
+                    Console.WriteLine("No shape found ");
+                    Console.Write("Figure - ");
                     figureNumberString = Console.ReadLine();
                 }
                 switch (numberFigure)
@@ -30,27 +30,27 @@ namespace Training.Task2.VectorGraphicsEditor
                         isExit = true;
                         break;
                     case 1:
-                        Console.WriteLine("Вы выбрали фигуру Круг");
+                        Console.WriteLine("You have selected the Circle shape");
                         var myRound = new Round(new Point(5,5), 5.5);
                         myRound.ShowFigures();
                         break;
                     case 2:
-                        Console.WriteLine("Вы выбрали фигуру Линию");
+                        Console.WriteLine("You have selected a line shape");
                         var myLine = new Line(new Point(3,4), new Point(5,5));
                         myLine.ShowFigures();
                         break;
                     case 3:
-                        Console.WriteLine("Вы выбрали фигуру Кольцо");
+                        Console.WriteLine("You have selected the Ring shape");
                         var myRing = new Ring(new Point(4,5), 10,5);
                         myRing.ShowFigures();
                         break;
                     case 4:
-                        Console.WriteLine("Вы выбрали фигуру Окружность");
+                        Console.WriteLine("You have selected the Circle shape");
                         var myСircle = new Circle(new Point(3,3), 10);
                         myСircle.ShowFigures();
                         break;
                     case 5:
-                        Console.WriteLine("Вы выбрали фигуру Прямоугольник");
+                        Console.WriteLine("You have selected a Rectangle shape");
                         var myRectangle = new Rectangle(new Point(5,5), new Point(5,10), new Point(10,5), new Point(10,10));
                         myRectangle.ShowFigures();
                         break;

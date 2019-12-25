@@ -11,10 +11,10 @@ namespace Training.Task2
             chararray = str.ToCharArray();
         }
         /// <summary>
-        /// Метод стравнивает две строки
+        /// Compares two lines
         /// </summary>
-        /// <param name="firstLine">первая строка</param>
-        /// <param name="secondLine">вторая строка</param>
+        /// <param name="firstLine">First line</param>
+        /// <param name="secondLine">second line</param>
         /// <returns></returns>
         public bool Equals(string firstLine, string secondLine)
         {
@@ -32,10 +32,10 @@ namespace Training.Task2
             return true;
         }
         /// <summary>
-        /// Метод объединяет две строки 
+        /// Concatenates two lines
         /// </summary>
-        /// <param name="firstLine">первая строка</param>
-        /// <param name="secondLine">вторая строка</param>
+        /// <param name="firstLine">First line</param>
+        /// <param name="secondLine">second line</param>
         /// <returns></returns>
         public string Concat(string firstLine, string secondLine)
         {
@@ -44,9 +44,9 @@ namespace Training.Task2
             return resultString;
         }
         /// <summary>
-        /// Метод преобразует массив символов в строку
+        /// Converts an array of characters to a string
         /// </summary>
-        /// <param name="array">массив символов</param>
+        /// <param name="array">character array</param>
         /// <returns></returns>
         public string ConvetrToString(char[] array)
         {
@@ -58,9 +58,9 @@ namespace Training.Task2
             return str;
         }
         /// <summary>
-        /// Метод преобразует строку в массив символов
+        /// Converts a string to an array of characters
         /// </summary>
-        /// <param name="str">строка</param>
+        /// <param name="str">string</param>
         /// <returns></returns>
         public char[] ConvertToCharArray(string str)
         {
@@ -72,10 +72,10 @@ namespace Training.Task2
             return cha;
         }
         /// <summary>
-        /// Метод поиска символа в строке, если не находит символ возвращает -1
+        /// Looks for a character in a string, if it does not find a character returns -1
         /// </summary>
-        /// <param name="str">строка</param>
-        /// <param name="ch">символ</param>
+        /// <param name="str">string</param>
+        /// <param name="ch">Char</param>
         /// <returns></returns>
         public int GetIndexOfChar(string str, char ch)
         {

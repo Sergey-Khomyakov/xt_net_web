@@ -6,6 +6,7 @@ namespace Training.Task4
     class SortArray
     {  
         public event MethodContainer onSort;
+
         /// <summary>
         ///  Task 4.1
         /// </summary>

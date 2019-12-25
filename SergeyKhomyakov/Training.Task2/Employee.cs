@@ -12,7 +12,11 @@ namespace Training.Task2
             this._workExperience = workExperience;
             this._position = position;
         }
-
+        public override void ShowUser()
+        {
+            base.ShowUser();
+            Console.WriteLine($"Your work experience {_workExperience} \nyour position {_position}");
+        }
         private int WorkExperience 
         {
             get { return _workExperience; }
@@ -24,11 +28,5 @@ namespace Training.Task2
                 }
             }
         }
-        public override void ShowUser()
-        {
-            base.ShowUser();
-            Console.WriteLine($"Ваш стаж работы {_workExperience} \nВаша должность {_position}");
-        }
-
     }
 }

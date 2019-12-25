@@ -15,15 +15,15 @@ namespace Training.Task1
             {
                 if (number < 0)
                 {
-                    Console.WriteLine("Вы ввели отрицательное число");
+                    Console.WriteLine("You entered a negative number");
                 }
                 else
                 {
-                    Console.WriteLine("Я не понимаю что вы ввели :(((");
+                    Console.WriteLine("I do not understand what you entered :(((");
                 }
                 Console.WriteLine();
 
-                Console.Write("Введите число: ");
+                Console.Write("Insert the number: ");
                 stringNumber = Console.ReadLine();
                 Console.WriteLine();
             }
@@ -31,9 +31,9 @@ namespace Training.Task1
         }
         private static void ShowRectangle() 
         {                        
-            Console.WriteLine("Введите ширину");
+            Console.WriteLine("Enter width");
             int width = СheckInputNumber();
-            Console.WriteLine("Введите длину");
+            Console.WriteLine("Enter length");
             int heigth = СheckInputNumber();
             NumberOperations rectangle = new NumberOperations();
             rectangle.ShowAreaOfRectangel(width, heigth);
@@ -42,7 +42,7 @@ namespace Training.Task1
         }
         private static void ShowTriangle() 
         {
-            Console.Write("Введите число: ");
+            Console.Write("Insert the number: ");
             int number = СheckInputNumber();
             FigurePrinte rightTriangle = new FigurePrinte();
             rightTriangle.ShowRightTriangle(number);
@@ -50,7 +50,7 @@ namespace Training.Task1
         }
         private static void ShowAnotherTriangle() 
         {
-            Console.Write("Введите число: ");
+            Console.Write("Insert the number: ");
             int number = СheckInputNumber();
             FigurePrinte triangle = new FigurePrinte();
             triangle.ShowEquilateralTriangle(number);
@@ -58,7 +58,7 @@ namespace Training.Task1
         }
         private static void ShowXMasTree() 
         {
-            Console.Write("Введите число: ");
+            Console.Write("Insert the number: ");
             int number = СheckInputNumber();
             FigurePrinte tree = new FigurePrinte();
             tree.ShowTriangleTree(number);
@@ -66,10 +66,10 @@ namespace Training.Task1
         }
         private static void ShowSumOfNumbers() 
         {
-            Console.Write("Введите число: ");
+            Console.Write("Insert the number: ");
             int number = СheckInputNumber();
             NumberOperations sumOfNumbers = new NumberOperations();
-            Console.WriteLine($"Сумма = {sumOfNumbers.GetSumOfNumbersMultiplesOf(number, new int[] { 3, 5 })}");
+            Console.WriteLine($"Amount = {sumOfNumbers.GetSumOfNumbersMultiplesOf(number, new int[] { 3, 5 })}");
             Console.WriteLine();
         }
 
@@ -81,7 +81,7 @@ namespace Training.Task1
         }
         private static void ShowArrayProcessing() 
         {
-            Console.Write("Введите число: ");
+            Console.Write("Insert the number: ");
             int number = СheckInputNumber();
             ArrayOperations array = new ArrayOperations();
             array.ShowArray(number);
@@ -89,7 +89,7 @@ namespace Training.Task1
         }
         private static void ShowNoPositive() 
         {
-            Console.Write("Введите число: ");
+            Console.Write("Insert the number: ");
             int number = СheckInputNumber();
             ArrayOperations array1 = new ArrayOperations();
             array1.ShowNoPositiveNumbersInArray(number);
@@ -98,7 +98,7 @@ namespace Training.Task1
 
         private static void ShowNonNegativeSum() 
         {
-            Console.Write("Введите число: ");
+            Console.Write("Insert the number: ");
             int number = СheckInputNumber();
             ArrayOperations array2 = new ArrayOperations();
             array2.ShowSumOfNonNegativeElementsInArray(number);
@@ -106,7 +106,7 @@ namespace Training.Task1
         }
         private static void ShowTwoDArray() 
         {
-            Console.Write("Введите число: ");
+            Console.Write("Insert the number: ");
             int number = СheckInputNumber();
             ArrayOperations array3 = new ArrayOperations();
             array3.ShowSumEvenPositionsInArray(number);
@@ -114,7 +114,7 @@ namespace Training.Task1
         }
         private static void ShowAverageStringLength() 
         {
-            Console.Write("Введите строку: ");
+            Console.Write("Enter the string: ");
             string textLine = Console.ReadLine();
             StringOperations stringOperations = new StringOperations();
             stringOperations.ShowAverageWordLength(textLine);
@@ -122,9 +122,9 @@ namespace Training.Task1
         }
         private static void ShowCharDoubler() 
         {
-            Console.Write("Введите первую строку: ");
+            Console.Write("Enter the first line: ");
             string firstLine = Console.ReadLine();
-            Console.Write("Введите вторую строку: ");
+            Console.Write("Enter the second line: ");
             string secondLine = Console.ReadLine();
             StringOperations stringOperations1 = new StringOperations();
             stringOperations1.ShowCharDoubler(firstLine,secondLine);
@@ -145,7 +145,7 @@ namespace Training.Task1
                 {
                     Console.WriteLine(Task);
                 }
-                Console.Write("Задание № ");
+                Console.Write("The task № ");
                 numberTask = СheckInputNumber();
                 switch (numberTask) 
                 {

@@ -39,11 +39,11 @@ namespace Training.Task0
 
             if (isFlagSimpleNumber)
             {
-                Console.WriteLine($"Число {number} простое");
+                Console.WriteLine($"Number {number} simple");
             }
             else 
             {
-                Console.WriteLine($"Число {number} непростое");
+                Console.WriteLine($"Number {number} not prime");
             }
         }
 
@@ -81,15 +81,15 @@ namespace Training.Task0
             {
                 if (number < 0)
                 {
-                    Console.WriteLine("Вы ввели отрицательное число");
+                    Console.WriteLine("You entered a negative number");
                 }
                 else 
                 {
-                    Console.WriteLine("Я не понимаю что вы ввели :(((");               
+                    Console.WriteLine("I do not understand what you entered :(((");               
                 }
                 Console.WriteLine();
 
-                Console.Write("Введите число: ");
+                Console.Write("Insert the number: ");
                 stringNumber = Console.ReadLine();
                 Console.WriteLine();
             }
@@ -120,13 +120,13 @@ namespace Training.Task0
 
         static void SortArray(int[,] array) 
         {
-            for (int i = 0; i < array.GetLength(0); i++) // перечисление строк
+            for (int i = 0; i < array.GetLength(0); i++) // line listing
             {
-                for (int j = 0; j < array.GetLength(1); j++) // перечисление столбцов 
+                for (int j = 0; j < array.GetLength(1); j++) // column listing
                 {
-                    for (int h = i; h < array.GetLength(0); h++) // перечисление строк для проверки 
+                    for (int h = i; h < array.GetLength(0); h++) // enumeration of lines to check
                     {
-                        for (int m = (h == i) ? j : 0; m < array.GetLength(1); m++) // перечисление столбцов для проверки (исключаем проверенные и заменннеые символы)
+                        for (int m = (h == i) ? j : 0; m < array.GetLength(1); m++) // enumeration of columns for verification (exclude checked and replaced characters)
                         {
                             if (array[i, j] > array[h, m])
                             {
@@ -164,29 +164,29 @@ namespace Training.Task0
         {
             int number = 0;
 
-            Console.Write("Введите положительное число: ");
+            Console.Write("Enter a positive number: ");
             number = NumberInputСheck();            
             Console.WriteLine(ReturnSequenceOfNumbers(number));
 
-            Console.Write("Введите число: ");
+            Console.Write("Insert the number: ");
             number = NumberInputСheck();
             CheckOfSimpleNumber(number);
             Console.WriteLine();
 
-            Console.Write("Введите нечётное число: ");
+            Console.Write("Enter an odd number: ");
             number = NumberInputСheck();
             while (ParityCheck(number)) 
             {
-                Console.WriteLine("Вы ввели чётное число ");
+                Console.WriteLine("You entered an even number ");
                 Console.WriteLine();
-                Console.Write("Введите нечётное число: ");
+                Console.Write("Enter an odd number: ");
                 number = NumberInputСheck();
             }
             Console.WriteLine();
 
             GetSquare(number);
             Console.WriteLine();
-            Console.Write("Введите размерность массива: ");
+            Console.Write("Enter the dimension of the array: ");
             number = NumberInputСheck();
             Console.WriteLine();
             Array(number);

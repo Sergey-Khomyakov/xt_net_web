@@ -17,6 +17,11 @@ namespace Training.Task2
             this._birthOfDate = BirthOfDate;
         }
 
+        public virtual void ShowUser()
+        {
+            Console.WriteLine($"Hello !! \n{_lastName} {_firstName} {_middleName} \nYou were born {_birthOfDate.ToString("dd.MM.yyyy")} year, now you {Age}");
+        }
+
         private int Age 
         {
             get 
@@ -24,9 +29,6 @@ namespace Training.Task2
                 return DateTime.Now.Year - _birthOfDate.Year;
             }
         }
-        public virtual void ShowUser()
-        {
-            Console.WriteLine($"Здравствуйте !! \n{_lastName} {_firstName} {_middleName} \nВы родились {_birthOfDate.ToString("dd.MM.yyyy")} году, сейчас вам {Age}");
-        }
+
     }
 }

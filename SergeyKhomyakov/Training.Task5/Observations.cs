@@ -12,6 +12,7 @@ namespace Training.Task5
         {
             _path = path;
         }
+
         /// <summary>
         /// Tracking user actions and commit them to a file
         /// </summary>
@@ -49,7 +50,6 @@ namespace Training.Task5
             Thread.Sleep(50);
             log.DeleteFile(e.Name);
         }
-
         private void OnChanged(object sender, FileSystemEventArgs e)
         {
             Thread.Sleep(50);
