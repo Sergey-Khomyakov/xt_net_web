@@ -4,10 +4,10 @@ using Training.Task6.Entity;
 
 namespace Training.Task6.BLL.Interfaces
 {
-    public interface IUserLogic
+    public interface IAwardLogic
     {
-        int Add(User user);
+        void Add(Award award);
         void DeleteById(int id);
-        IEnumerable<User> GetAll();
+        IEnumerable<Award> GetAll();
     }
 }

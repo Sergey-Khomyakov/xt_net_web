@@ -13,6 +13,7 @@ namespace Training.Task6.DAL
         private static Dictionary<int, User> _allUser = new Dictionary<int, User>();
         public UserDAL()
         {
+            CreateFile();
             ReadFileDataBase();
         }
 
@@ -30,6 +31,21 @@ namespace Training.Task6.DAL
             return user.Id;
         }
 
+        public void DeleteById(int id)
+        {
+            _allUser.Remove(id);
+            WriterFileDateBase();
+        }
+
+        public IEnumerable<User> GetAll()
+        {
+            return _allUser.Values;
+        }
+
+        private void CreateFile()
+        {
+            using (var wreater = new StreamWriter(@"DateBaseUser.txt", true)) { }
+        }
         /// <summary>
         /// Get all users from database
         /// </summary>
@@ -54,16 +70,6 @@ namespace Training.Task6.DAL
                     writer.WriteLine(JsonConvert.SerializeObject(item));
                 }
             }
-        }
-        public void DeleteById(int id)
-        {
-            _allUser.Remove(id);
-            WriterFileDateBase();
-        }
-
-        public IEnumerable<User> GetAll()
-        {
-            return _allUser.Values;
         }
     }
 }

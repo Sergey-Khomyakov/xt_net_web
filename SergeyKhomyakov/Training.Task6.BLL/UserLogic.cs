@@ -19,7 +19,6 @@ namespace Training.Task6.BLL
         {
             return _userDAL.Add(user);
         }
-
         public void DeleteById(int id)
         {
             _userDAL.DeleteById(id);
