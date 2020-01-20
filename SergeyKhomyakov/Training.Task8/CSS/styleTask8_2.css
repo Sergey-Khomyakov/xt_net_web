@@ -1,0 +1,44 @@
+.context{
+    height: 310px;
+    width: 453px;
+    background-color: #0690cf;
+    border: solid;
+    border-color: #0072b2;
+}
+.input1{
+    width: 350px;
+}
+.input2{
+    width: 160px;
+}
+.passwordpos{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.buttons{
+    background-color: #ffdf7f;
+    border-color: #ffdf7f;
+    width: 93px;
+    height: 28px;
+}
+h3{
+    width: 433px;
+    height: 32px;
+    margin: 0px;
+    color: white;
+    border-bottom: 1px ridge;
+    padding: 25px 0px 5px 20px;
+    font: 25px sans-serif;
+}
+p{
+    font-size: larger;
+    color: beige;
+    margin: 0;
+    padding-top: 35px;
+    padding-left: 25px;
+}
+label{
+    font-family: Arial;
+}

@@ -1,0 +1,20 @@
+body{
+    background-color: #333333;
+}
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+ul {
+    width: 50px;
+	background: linear-gradient(#FDCD57, #FF8D02);
+	border-radius: 10px 10px 0 0;
+	display: inline-block;
+	margin-right: 10px;
+}
+li{
+    display: block;
+	height: 28px;
+	border-bottom: 4px solid #333;
+}

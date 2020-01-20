@@ -1,0 +1,43 @@
+.context{
+    height: auto;
+    width: auto;
+} 
+.context li{
+    position: relative;
+    margin-left: -7px;
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background-color: #bfbfbf;
+}
+.context li:hover{
+    color: white;
+    background-color: #75cb36;
+}
+.context li:not(:last-child)::before,li:not(:last-child)::after{
+    content: "";
+    position: absolute;
+    height: 15px; 
+    width: 7px;
+    right: 0; 
+    background: #fff;
+    z-index: 100;
+}
+.context li:not(:last-child){
+    border-radius: 0 10px 10px 0;
+}
+.context li:not(:last-child)::after{
+    top: 0;
+    transform: skewX(25deg);
+}
+
+.context li:not(:last-child)::before{
+    top:15px;  
+    transform: skewX(-25deg);
+}
+div{
+    width: 10px;
+    height: 10px;
+}

@@ -1,0 +1,24 @@
+.menu {
+  background: #F9E497;
+  width: 200px;
+  height: 170px;
+  border-radius: 10px;
+  padding-top: 3px;
+  border: 1px solid gray;
+  box-shadow: 5px 5px 0 2px brown; 
+}
+li {
+  list-style: none;
+  margin: 10px 5px;
+  color: brown;
+  font-size: 14px;
+  font-weight: 700;
+}
+ul{
+  line-height: 19px;
+	padding: 0px;
+	margin: 0;
+}
+div{
+  margin-bottom: 15px;
+}

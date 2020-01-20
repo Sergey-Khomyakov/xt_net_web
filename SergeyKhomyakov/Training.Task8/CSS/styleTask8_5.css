@@ -1,0 +1,48 @@
+body{
+    background-color: #4e6379;
+    margin: 0px;
+    padding: 0px;
+}
+.item_menu {
+    float: left;
+    list-style-type: none;
+}
+.line{
+    height: 163px;
+    border-left: ridge;
+    border-color: white;
+    float: left;
+}
+.context input{
+    width: 87px;
+    height: 23px;
+    border-color: #f56333;
+    background-color: #f56333;
+    color: white;
+    border-radius: 3px;
+}
+.context{
+    display: block;
+    width: 600px;
+    height: 165px;
+    padding: 10px 0px;
+    margin: auto;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 5px 25px 50px #303d4b;
+}
+.context ul{
+    list-style-type: none;
+    text-align: center;
+    margin-top: 0px;
+    padding: 0px 26px 0px 25px;
+}
+.context h3{
+    color: #f56333;
+    font-size: 14px;
+}
+.context h4{
+    color: black;
+    font-size: 12px;
+    font-family: Time;
+}

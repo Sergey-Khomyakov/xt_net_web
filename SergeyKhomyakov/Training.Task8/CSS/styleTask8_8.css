@@ -1,0 +1,39 @@
+body{
+    background-color: #000000;
+}
+h1{
+    color:white;
+}
+.context{
+    width: 380px;
+    height: 219px;
+    background-color: white;
+    margin: 10px;
+    border-radius: 0px 0px 8px 8px;
+}
+.context h2{
+    width: 99px;
+    height: 37px;
+    margin: initial;
+    color: #ffb163;
+    background-color: black;
+    text-align: center;
+    position: sticky;
+    font-family: Arial;
+}
+.context h3{
+    width: 340px;
+    height: 193px;
+    margin: 10px;
+    font-family: Time;
+    font-size: 14px;
+}
+.angle{
+    width: 34px;
+    height: 53px;
+    left: 97px;
+    top: 59px;
+    transform: rotate(28deg);
+    background-color: black;
+    position: absolute;
+}

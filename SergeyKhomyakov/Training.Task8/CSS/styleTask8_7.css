@@ -1,0 +1,37 @@
+.context{
+    position: relative;
+    width: 15px;
+    height: 260px;
+}
+.context1{
+    width: 472px;
+    height: 47px;
+    padding: 2px;
+    font-size: 20px;
+    font-weight: normal;
+    background-color: #008B66;
+    color: #fff;
+}
+.context1 h3{
+    height: auto;
+    width: auto;
+    margin: auto;
+    padding: 10px 0px 0px 5px;
+    font-weight: lighter;
+}
+.context2{
+    position: absolute;
+    width: 423px;
+    height: 160px;
+    left: 33px;
+    top: 45px;
+    padding: 10px;
+    background-color: #ddd;
+    box-shadow: -1px -1px 0 1px #fff;
+}
+.context2 h3{
+    height: auto;
+    width: auto;
+    margin: auto;
+    font-weight: lighter;
+}
