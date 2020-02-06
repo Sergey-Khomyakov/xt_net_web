@@ -1,0 +1,35 @@
+.col-Awailable
+{
+    width: auto;
+    height: auto;
+    margin: 10px;
+}
+.col-Selected
+{
+    width: auto;
+    height: auto;
+    margin: 10px;
+}
+.main{
+    width: 500px;
+    height: 200px;
+    margin: auto;
+
+}
+.centerimg
+{
+    margin: 0 auto;
+    width: auto;
+    max-inline-size: fit-content;
+}
+h3{
+    width: auto;
+    height: auto;
+    margin-bottom: 2px;
+    text-align: center;
+}
+select{
+    width: 200px;
+    height: 100px;
+    overflow: auto;
+}

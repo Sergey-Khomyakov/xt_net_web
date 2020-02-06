@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1> Task 9.3</h1>
+        <link rel="stylesheet" type="text/css" href="../CSS/Task_9.3.css">
+    </head>
+    <body>
+        <table>
+                <tr>             
+                    <td class="col-Awailable">
+                        <h3>Awailable</h3>
+                        <select name="select-Awailable" multiple size="5" role="listbox" id="select-Awailable">
+                            <option value="Option 1">Option 1</option>
+                            <option value="Option 2">Option 2</option>
+                            <option value="Option 3">Option 3</option>
+                            <option value="Option 4">Option 4</option>
+                            <option value="Option 5">Option 5</option>
+                        </select>
+                    </td>
+                    <td>
+                        <div class="centerimg">
+                            <img src="../IMAGE/button3.png" width="35px" height="35px" onclick="AllElementAdd()" alt="">
+                            <img src="../IMAGE/button1.png" width="35px" height="35px" onclick="OneElementAdd()" alt="">
+                            <img src="../IMAGE/button2.png" width="35px" height="35px" onclick="OneElementDelete()" alt="">
+                            <img src="../IMAGE/button4.png" width="35px" height="35px" onclick="AllElementDelete()" alt=""> 
+                        </div>                     
+                    </td>              
+                    <td class="col-Selected">
+                        <h3>Selected</h3>
+                        <select name="select-Selected" multiple size="5" role="listbox" id="select-Selected">
+                        </select>
+                    </td>
+                </tr>
+        </table>                      
+        <div>
+
+            <a href="../Index.html">Menu</a>
+        </div>
+        <script type="text/javascript" src="../JS/Task_9.3.js"></script>
+    </body>
+</html>
