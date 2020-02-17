@@ -1,0 +1,30 @@
+﻿@using Training.Task6.Common;
+@{
+    var userAwardLogic = DependencyResolver.UserAwardLogic;
+    var awardLogic = DependencyResolver.AwardLogic;
+    string user_id = null;
+    string award_id = null;
+    user_id = Request["AddAward"];
+    award_id = Request["awardId"];
+
+    if (IsPost)
+    {
+        userAwardLogic.AddUserRewards(int.Parse(user_id), int.Parse(award_id));
+        Response.Redirect("~");
+    }
+}
+<form action="~/ModalWindow/AddAward.cshtml" method="post">
+    <div class="container">
+        <div class="nav justify-content-center">
+            <div class="col-5">
+                @foreach (var Award in awardLogic.GetAll().ToList())
+                {
+                    <div class="form-inline">
+                        <h1>@Award.Title</h1>
+                        <button class="btn btn-success" name="awardId" value="@Award.Id">Add</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</form>

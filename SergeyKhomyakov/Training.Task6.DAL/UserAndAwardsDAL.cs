@@ -11,11 +11,11 @@ namespace Training.Task6.DAL
     public class UserAndAwardsDAL : IUserAndAwardsDAL
     {
         private static List<UsersAndAward> _allUserAwards = new List<UsersAndAward>();
-
+        private string path;
         public UserAndAwardsDAL()
-        {
+        {      
             CreateFile();
-            ReadFileUserAward();
+            ReadFileUserAward();         
         }
         public void AddUserRewards(int userId, int awardId)
         {
@@ -25,7 +25,7 @@ namespace Training.Task6.DAL
                 AwardId = awardId
             };
 
-            using (var wreater = new StreamWriter(@"UserAward.txt",true))
+            using (var wreater = new StreamWriter(path, true))
             {
                 var jsontxt = JsonConvert.SerializeObject(user);
                 wreater.WriteLine(jsontxt);
@@ -53,11 +53,20 @@ namespace Training.Task6.DAL
         }
         private void CreateFile() 
         {
-            using (var wreater = new StreamWriter(@"UserAward.txt", true)) { }
+            try
+            {
+                path = Path.GetFullPath("../../../Training.Task6.BD/UserAward.txt");
+                using (var wreater = new StreamWriter(path, true)) { }
+            }
+            catch (Exception)
+            {
+                path = Path.Combine(new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName, "Training.Task6.BD\\UserAward.txt");
+                using (var wreater = new StreamWriter(path, true)) { }
+            }
         }
         private void WriterFileUserAward()
         {
-            using (var writer = new StreamWriter(@"UserAward.txt"))
+            using (var writer = new StreamWriter(path))
             {
                 foreach (var item in _allUserAwards)
                 {
@@ -68,7 +77,7 @@ namespace Training.Task6.DAL
         }
         private void ReadFileUserAward()
         {
-            using (var reader = new StreamReader(@"UserAward.txt"))
+            using (var reader = new StreamReader(path))
             {
                 while (reader.Peek() >= 0)
                 {

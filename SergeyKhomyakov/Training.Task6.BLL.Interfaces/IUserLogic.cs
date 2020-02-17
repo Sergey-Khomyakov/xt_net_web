@@ -9,5 +9,6 @@ namespace Training.Task6.BLL.Interfaces
         int Add(User user);
         void DeleteById(int id);
         IEnumerable<User> GetAll();
+        User GetById(int id);
     }
 }

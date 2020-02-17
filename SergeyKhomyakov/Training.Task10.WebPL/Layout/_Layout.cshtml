@@ -1,0 +1,41 @@
+﻿@using Training.Task10.WebPL.Models;
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <meta charset="utf-8" />
+    <title>@Page.Title</title>
+</head>
+<body>
+    <div class="navbar sticky-top navbar-light" style="background-color: #0094ff">
+        <div class="container">
+            <a class="col-form-label" href="~/Index.cshtml" style="color:#000000"><label> MyDataBase </label></a>
+            @if (User.IsInRole("Admin"))
+            {
+                <a class="col-form-label" href="~/Home/Users.cshtml" style="color:#000000"><label> Add Users </label></a>
+                <a class="col-form-label" href="~/Home/Awards.cshtml" style="color:#000000"><label> Add Awards </label></a>
+                <a class="col-form-label" href="~/Home/Awards.cshtml" style="color:#000000"><label> Editing Awards </label></a>
+                <a href="~/ModalWindow/SignOut.cshtml" class="btn btn-dark" role="button">SignOut</a>
+            }
+            else if (User.IsInRole("User"))
+            {
+                <a href="~/ModalWindow/SignOut.cshtml" class="btn btn-dark" role="button">SignOut</a>
+            }
+            else
+            {
+                <a href="~/Home/Login.cshtml" class="btn btn-dark" role="button">Login</a>
+            }
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <div style="margin-top:450px">
+            <hr />
+            <footer>
+                <p style="color: #000000">&copy; @DateTime.Now.Year - Task 10 </p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

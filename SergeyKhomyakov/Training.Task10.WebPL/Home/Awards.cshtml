@@ -1,0 +1,50 @@
+﻿@using Training.Task6.Common;
+@{
+    Layout = "~/Layout/_Layout.cshtml";
+    Page.Title = "Award";
+    var awardLogic = DependencyResolver.AwardLogic;
+    string title = Request["title"];
+
+    if (IsPost)
+    {
+        var fileSavePath = "";
+        var uploadedFile = Request.Files[0];
+        var filePath = "/Image/Award/" + uploadedFile.FileName;
+        fileSavePath = Server.MapPath(filePath);
+        uploadedFile.SaveAs(fileSavePath);
+
+        awardLogic.Add(new Training.Task6.Entity.Award()
+        {
+            Title = title,
+            Path_image = filePath
+        });
+
+        Response.Redirect("~");
+    }
+}
+
+<form action="~/Home/Users.cshtml" enctype="multipart/form-data" method="post">
+    <div class="container">
+        <div class="nav justify-content-center">
+            <div class="col-5">
+                <div class="form-group row m-3">
+                    <label class="col-2 col-form-label">Title</label>
+                    <div class="col-12">
+                        <input type="text" class="form-control" name="Name" id="Name" value=@title required>
+                    </div>
+                </div>
+                <div class="form-group row m-3">
+                    <label class="col col-form-label">Image</label>
+                    <div class="col-12">
+                        <input type="file" class="form-control-file" id="image" name="image" multiple accept="image/png">
+                    </div>
+                </div>
+                <div class="form-group row m-3">
+                    <div class="col-12">
+                        <button class="form-control">Добавить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -11,19 +11,22 @@ namespace Training.Task6.DAL
     public class UserDAL : IUserDAL
     {
         private static Dictionary<int, User> _allUser = new Dictionary<int, User>();
+        private string path; 
+
         public UserDAL()
         {
             CreateFile();
             ReadFileDataBase();
+            
         }
 
         public int Add(User user)
         {
             var lastid = _allUser.Keys.Count > 0 ? _allUser.Keys.Max() : 0;
             user.Id = lastid + 1;
-            var age = DateTime.Now.Year - user.DateOfBirth.Year;
-            user.Age = age;
-            using (var writer = new StreamWriter(@"DateBaseUser.txt", true))
+            user.Age = DateTime.Now.Year - user.DateOfBirth.Year;
+
+            using (var writer = new StreamWriter(path, true))
             {
                 writer.WriteLine(JsonConvert.SerializeObject(user));
                 _allUser.Add(user.Id,user);
@@ -44,14 +47,24 @@ namespace Training.Task6.DAL
 
         private void CreateFile()
         {
-            using (var wreater = new StreamWriter(@"DateBaseUser.txt", true)) { }
+              
+            try
+            {               
+                path = Path.GetFullPath("../../../Training.Task6.BD/DateBaseUser.txt");
+                using (var wreater = new StreamWriter(path, true)) { }    
+            }
+            catch (Exception) 
+            {
+                path = Path.Combine(new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName, "Training.Task6.BD\\DateBaseUser.txt");
+                using (var wreater = new StreamWriter(path, true)) { }
+            }
         }
         /// <summary>
         /// Get all users from database
         /// </summary>
         private void ReadFileDataBase() 
         {
-            using (var reader = new StreamReader(@"DateBaseUser.txt"))
+            using (var reader = new StreamReader(path))
             {
                 while (reader.Peek() >= 0)
                 {
@@ -62,7 +75,7 @@ namespace Training.Task6.DAL
         }
         private void WriterFileDateBase() 
         {
-            using (var writer = new StreamWriter(@"DateBaseUser.txt"))
+            using (var writer = new StreamWriter(path))
             {
                 foreach (var item in _allUser.Values)
                 {

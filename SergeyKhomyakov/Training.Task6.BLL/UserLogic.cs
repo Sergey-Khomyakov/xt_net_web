@@ -27,6 +27,11 @@ namespace Training.Task6.BLL
         public IEnumerable<User> GetAll()
         {
             return _userDAL.GetAll();
-        }     
+        }
+
+        public User GetById(int id)
+        {
+            return _userDAL.GetAll().FirstOrDefault(item => item.Id == id);
+        }
     }
 }

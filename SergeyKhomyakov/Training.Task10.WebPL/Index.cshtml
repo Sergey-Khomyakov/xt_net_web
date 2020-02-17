@@ -1,0 +1,97 @@
+﻿@using Training.Task6.Common;
+@using Training.Task10.WebPL.Models;
+@{
+    Layout = "~/Layout/_Layout.cshtml";
+    Page.Title = "Home";
+    var userLogic = DependencyResolver.UserLogic;
+    var userAwards = DependencyResolver.UserAwardLogic;
+    var awardLogic = DependencyResolver.AwardLogic;
+}
+<body>
+    <form action="~/Index.cshtml" method="post">
+        <div class="container">
+            <div class="row m-3">
+                @if (User.IsInRole("User") || User.IsInRole("Admin"))
+                {
+                    <div class="card-deck">
+                        @foreach (var user in userLogic.GetAll().ToList())
+                        {
+                            <div class="col mb-4">
+                                <div class="card" style="width: 18rem;">
+                                    @if (string.IsNullOrWhiteSpace(user.Path_image))
+                                    {
+                                        <img src="~/Image/User/avatar.png" class="card-img-top">
+                                    }
+                                    else
+                                    {
+                                        <img src=@user.Path_image class="card-img-top">
+                                    }
+                                    <div class="card-body pb-0">
+                                        <h5 class="card-title">User: @user.Name</h5>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item pt-0">Age: @user.Age</li>
+                                        <li class="list-group-item">Date Of Birth: @user.DateOfBirth</li>
+                                        <li class="list-group-item">
+                                            Awards:
+                                            @{
+                                                var usersAwards = from awardUser in userAwards.GetAllAwardUser(user.Id)
+                                                                  join award in awardLogic.GetAll() on awardUser.AwardId equals award.Id
+                                                                  select (award.Title);
+                                            }
+                                            @foreach (var titleAwards in usersAwards)
+                                            {
+                                                <div class="form-inline">
+                                                    <img src="~/Image/Award/medal.png" width="32" height="32" />
+                                                    <p class="m-0 p-2">@titleAwards</p>
+                                                </div>
+                                            }
+                                        </li>
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <li class="list-group-item">
+                                                <div class="form-inline justify-content-center">
+                                                    <button class="btn btn-success col-12 m-1" name="AddAward" formaction="~/ModalWindow/AddAward.cshtml" value="@user.Id" onclick="location.href = '/ModalWindow/AddAward.cshtml';">Add Award</button>                                                   
+                                                    <button class="btn btn-warning col-12 m-1" name="EditingUser" formaction="~/ModalWindow/EditingUser.cshtml" value="@user.Id" onclick="location.href = '/ModalWindow/EditingUser.cshtml';">Editing user</button>
+                                                    <button class="btn btn-danger col-12 m-1" name="RemoveUser" formaction="~/ModalWindow/RemoveUser.cshtml" value="@user.Id" onclick="location.href = '/ModalWindow/RemoveUser.cshtml';">Delete user</button>
+                                                    <button class="btn btn-danger col-12 m-1" name="DeleteAward" formaction="~/ModalWindow/DeleteAward.cshtml" onclick="location.href = '/ModalWindow/DeleteAward.cshtml';">Delete award</button>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="row row-cols-1 row-cols-md-3">
+                        @foreach (var user in userLogic.GetAll().ToList())
+                        {
+                            <div class="col mb-4">
+                                <div class="card" style="width: 18rem;">
+                                    @if (string.IsNullOrWhiteSpace(user.Path_image))
+                                    {
+                                        <img src="~/Image/User/avatar.png" class="card-img-top">
+                                    }
+                                    else
+                                    {
+                                        <img src=@user.Path_image class="card-img-top">
+                                    }
+                                    <div class="card-body pb-0">
+                                        <h5 class="card-title">User: @user.Name</h5>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item pt-0">Age: @user.Age</li>
+                                        <li class="list-group-item">Date Of Birth: @user.DateOfBirth</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </form>
+</body>

@@ -11,7 +11,7 @@ namespace Training.Task6.DAL
     public class AwardDAL : IAwardDAL
     {
         private static Dictionary<int, Award> _allAward = new Dictionary<int, Award>();
-
+        private string path;
         public AwardDAL()
         {
             CreateFile();
@@ -21,7 +21,7 @@ namespace Training.Task6.DAL
         {
             var lastid = _allAward.Keys.Count > 0 ? _allAward.Keys.Max() : 0;
             award.Id = lastid + 1;
-            using (var writer = new StreamWriter(@"Award.txt", true))
+            using (var writer = new StreamWriter(path, true))
             {
                 writer.WriteLine(JsonConvert.SerializeObject(award));
                 _allAward.Add(award.Id, award);
@@ -39,11 +39,20 @@ namespace Training.Task6.DAL
         }
         private void CreateFile()
         {
-            using (var wreater = new StreamWriter(@"Award.txt", true)) { }
+            try
+            {
+                path = Path.GetFullPath("../../../Training.Task6.BD/Award.txt");
+                using (var wreater = new StreamWriter(path, true)) { }
+            }
+            catch (Exception)
+            {
+                path = Path.Combine(new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName, "Training.Task6.BD\\Award.txt");
+                using (var wreater = new StreamWriter(path, true)) { }
+            }
         }
         private void WriterFileAward()
         {
-            using (var writer = new StreamWriter(@"Award.txt"))
+            using (var writer = new StreamWriter(path))
             {
                 foreach (var item in _allAward.Values)
                 {
@@ -54,7 +63,7 @@ namespace Training.Task6.DAL
         }
         private void ReadFileAward()
         {
-            using (var reader = new StreamReader(@"Award.txt"))
+            using (var reader = new StreamReader(path))
             {
                 while (reader.Peek() >= 0)
                 {

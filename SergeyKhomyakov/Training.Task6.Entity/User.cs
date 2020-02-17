@@ -9,6 +9,6 @@ namespace Training.Task6.Entity
         public string Name { get; set; }
         public DateTime DateOfBirth { get; set; }
         public int Age { get; set; }
-
+        public string Path_image { get; set;  }
     }
 }
