@@ -1,0 +1,101 @@
+﻿@using Training.Task6.Common;
+@{
+    Layout = "~/Layout/_Layout.cshtml";
+    Page.Title = "Editing Award";
+
+    var awardLogic = DependencyResolver.AwardLogic;
+    string errorMessage = null;
+    var id = Request["id"];
+    string title = Request["title"];
+
+    if (IsPost)
+    {
+        int award_id = int.Parse(id);
+        if (awardLogic.GetAll().Where(item => item.Id == award_id).Count() == 0)
+        {
+            errorMessage = "No reward found with this id";
+        }
+        else
+        {
+            var Award = awardLogic.GetById(award_id);
+            var filePath = Request.Files[0].FileName;
+            if (filePath != "")
+            {
+                var fileSavePath = "";
+                var uploadedFile = Request.Files[0];
+                filePath = "/Image/Award/" + uploadedFile.FileName;
+                fileSavePath = Server.MapPath(filePath);
+                uploadedFile.SaveAs(fileSavePath);
+            }
+            else
+            {
+                filePath = Award.Path_image;
+            }
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                title = Award.Title;
+            }
+
+            awardLogic.EditingAward(award_id, title, filePath);
+
+            Response.Redirect("~");
+        }
+
+    }
+}
+@if (errorMessage != null)
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+
+<div class="container">
+    <form class="nav justify-content-center" action="~/ModalWindow/EditingAward.cshtml" enctype="multipart/form-data" method="post">
+        <div class="col-5">
+            <div class="form-group row m-3">
+                <label class="col-2 col-form-label">ID</label>
+                <div class="col-12">
+                    <input type="text" class="form-control" name="id" id="id" value=@id required>
+                </div>
+            </div>
+            <div class="form-group row m-3">
+                <label class="col-2 col-form-label">Title</label>
+                <div class="col-12">
+                    <input type="text" class="form-control" name="title" id="title" value=@title>
+                </div>
+            </div>
+            <div class="form-group row m-3">
+                <label class="col col-form-label">Image</label>
+                <div class="col-12">
+                    <input type="file" class="form-control-file" id="image" name="image" multiple accept="image/png">
+                </div>
+            </div>
+            <div class="form-group row m-3">
+                <div class="col-12">
+                    <button class="form-control">Editing Award</button>
+                </div>
+            </div>
+        </div>       
+    </form>
+    <div class="nav justify-content-center">      
+        <div>
+            <p class="font-weight-bold" style="font-size:20px">Awards</p>
+        </div>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var awards in awardLogic.GetAll().ToList())
+                {
+                    <tr>
+                        <th scope="row">@awards.Id</th>
+                        <td>@awards.Title</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

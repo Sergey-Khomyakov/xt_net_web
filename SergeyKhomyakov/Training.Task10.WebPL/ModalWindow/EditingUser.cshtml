@@ -1,5 +1,116 @@
-﻿@{
-    var user_Id = int.Parse(Request["EditingUser"]);
+﻿@using Training.Task6.Common;
+@{
+    Layout = "~/Layout/_Layout.cshtml";
+    Page.Title = "Editing User";
+    var userLogic = DependencyResolver.UserLogic;
+    string errorMessage = null;
 
-    Response.Redirect("~");
+    var id = Request["id"];
+    string Name = Request["Name"];
+    var dateTime = Request["date"];
+    DateTime dateUser = DateTime.Now;
+    if (IsPost)
+    {
+        int user_id = int.Parse(id);
+        if (userLogic.GetAll().Where(item => item.Id == user_id).Count() == 0)
+        {
+            errorMessage = "User with this id not found";
+        }
+        else
+        {
+            var User = userLogic.GetById(user_id);
+            var filePath = Request.Files[0].FileName;
+            if (filePath != "")
+            {
+                var fileSavePath = "";
+                var uploadedFile = Request.Files[0];
+                filePath = "/Image/User/" + uploadedFile.FileName;
+                fileSavePath = Server.MapPath(filePath);
+                uploadedFile.SaveAs(fileSavePath);
+            }
+            else
+            {
+                filePath = User.Path_image;
+            }
+            if (string.IsNullOrWhiteSpace(Name))
+            {
+                Name = User.Name;
+            }
+            if (!string.IsNullOrWhiteSpace(dateTime))
+            {
+                 if (!DateTime.TryParse(dateTime, out dateUser)) { }
+            }
+            else 
+            {
+                dateUser = User.DateOfBirth;
+            }
+
+            userLogic.EditingUser(user_id, Name, dateUser, filePath);
+
+            Response.Redirect("~");
+        }
+    }
 }
+@if (errorMessage != null)
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+<div class="container">
+    <form class="nav justify-content-center" action="~/ModalWindow/EditingUser.cshtml" enctype="multipart/form-data" method="post">
+        <div class="col-5">
+            <div class="form-group row m-3">
+                <label class="col-2 col-form-label">ID</label>
+                <div class="col-12">
+                    <input type="text" class="form-control" name="id" id="id" value=@id required>
+                </div>
+            </div>
+            <div class="form-group row m-3">
+                <label class="col-2 col-form-label">Name</label>
+                <div class="col-12">
+                    <input type="text" class="form-control" name="Name" id="Name" value=@Name>
+                </div>
+            </div>
+            <div class="form-group row m-3">
+                <label class="col col-form-label">Date Of Birth</label>
+                <div class="col-12">
+                    <input type="date" class="form-control" id="date" min="1918-01-01" name="date">
+                </div>
+            </div>
+            <div class="form-group row m-3">
+                <label class="col col-form-label">Image</label>
+                <div class="col-12">
+                    <input type="file" class="form-control-file" id="image" name="image" multiple accept="image/png">
+                </div>
+            </div>
+            <div class="form-group row m-3">
+                <div class="col-12">
+                    <button class="form-control">Editing User</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="nav justify-content-center">
+        <div>
+            <p class="font-weight-bold" style="font-size:20px">Users</p>
+        </div>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Date Of Birth</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var users in userLogic.GetAll().ToList())
+                {
+                    <tr>
+                        <th scope="row">@users.Id</th>
+                        <td>@users.Name</td>
+                        <td>@users.DateOfBirth.ToShortDateString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

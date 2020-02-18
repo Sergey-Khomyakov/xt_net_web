@@ -12,6 +12,7 @@ namespace Training.Task6.DAL.Interfaces
         void AddUserRewards(int userId,int awardId);
         void DeleteUserRewards(int userId,int awardId);
         void DeleteUser(int userId);
+        void DeleteAward(int awardId);
         IEnumerable<UsersAndAward> GetAllAwardUser(int userId);
     }
 }

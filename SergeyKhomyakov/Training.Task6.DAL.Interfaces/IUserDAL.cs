@@ -12,5 +12,6 @@ namespace Training.Task6.DAL.Interfaces
         int Add(User note);
         void DeleteById(int id);
         IEnumerable<User> GetAll();
+        void EditingUser(int userId, string Name, DateTime DateOfBirth, string pathImage);
     }
 }

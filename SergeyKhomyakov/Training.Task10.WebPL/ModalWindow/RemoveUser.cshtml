@@ -1,7 +1,16 @@
 ﻿@using Training.Task6.Common;
 @{
     var userLogic = DependencyResolver.UserLogic;
-    var user_id = int.Parse(Request["RemoveUser"]);
-    userLogic.DeleteById(user_id);
-    Response.Redirect("~");
+    var awarduserLogic = DependencyResolver.UserAwardLogic;
+    var user_id = Request["RemoveUser"];
+    if (!string.IsNullOrWhiteSpace(user_id))
+    {
+        userLogic.DeleteById(int.Parse(user_id));
+        awarduserLogic.DeleteUser(int.Parse(user_id));
+        Response.Redirect("~");
+    }
+    else 
+    {
+        Response.Redirect("~");
+    }
 }

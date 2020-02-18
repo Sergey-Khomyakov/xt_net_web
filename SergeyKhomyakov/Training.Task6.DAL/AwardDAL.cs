@@ -72,5 +72,16 @@ namespace Training.Task6.DAL
                 }
             }
         }
+
+        public void EditingAward(int awardId, string title, string pathImage)
+        {
+            _allAward[awardId] = new Award()
+            {
+                Id = awardId,
+                Title = title,
+                Path_image = pathImage
+            };
+            WriterFileAward();
+        }
     }
 }

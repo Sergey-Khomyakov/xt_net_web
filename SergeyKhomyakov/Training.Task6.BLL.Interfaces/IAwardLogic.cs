@@ -9,5 +9,7 @@ namespace Training.Task6.BLL.Interfaces
         void Add(Award award);
         void DeleteById(int id);
         IEnumerable<Award> GetAll();
+        Award GetById(int id);
+        void EditingAward(int awardId, string title, string pathImage);
     }
 }

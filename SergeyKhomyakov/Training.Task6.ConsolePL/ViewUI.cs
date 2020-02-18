@@ -322,7 +322,7 @@ namespace Training.Task6.ConsolePL
             {
                 Console.WriteLine("Enter id Award");
                 Console.Write(">");
-                var awardId = GetUserInputId();   
+                var awardId = GetUserInputId();
             
                 if (IsCheckUserAwardInBase(awardId,userId)) 
                 {

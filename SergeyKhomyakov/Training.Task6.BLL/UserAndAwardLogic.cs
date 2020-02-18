@@ -19,6 +19,11 @@ namespace Training.Task6.BLL
             _userAwardDAL.AddUserRewards(userId, awardId);
         }
 
+        public void DeleteAward(int awardId)
+        {
+            _userAwardDAL.DeleteAward(awardId);
+        }
+
         public void DeleteUser(int userId)
         {
             _userAwardDAL.DeleteUser(userId);

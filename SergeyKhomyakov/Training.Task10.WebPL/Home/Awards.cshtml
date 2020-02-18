@@ -7,11 +7,19 @@
 
     if (IsPost)
     {
-        var fileSavePath = "";
-        var uploadedFile = Request.Files[0];
-        var filePath = "/Image/Award/" + uploadedFile.FileName;
-        fileSavePath = Server.MapPath(filePath);
-        uploadedFile.SaveAs(fileSavePath);
+        var filePath = Request.Files[0].FileName;
+        if (filePath != "")
+        {
+            var fileSavePath = "";
+            var uploadedFile = Request.Files[0];
+            filePath = "/Image/Award/" + uploadedFile.FileName;
+            fileSavePath = Server.MapPath(filePath);
+            uploadedFile.SaveAs(fileSavePath);
+        }
+        else
+        {
+            filePath = "/Image/Award/medal.png";
+        }
 
         awardLogic.Add(new Training.Task6.Entity.Award()
         {
@@ -23,14 +31,14 @@
     }
 }
 
-<form action="~/Home/Users.cshtml" enctype="multipart/form-data" method="post">
+<form action="~/Home/Awards.cshtml" enctype="multipart/form-data" method="post">
     <div class="container">
         <div class="nav justify-content-center">
             <div class="col-5">
                 <div class="form-group row m-3">
                     <label class="col-2 col-form-label">Title</label>
                     <div class="col-12">
-                        <input type="text" class="form-control" name="Name" id="Name" value=@title required>
+                        <input type="text" class="form-control" name="title" id="title" value=@title required>
                     </div>
                 </div>
                 <div class="form-group row m-3">
@@ -41,7 +49,7 @@
                 </div>
                 <div class="form-group row m-3">
                     <div class="col-12">
-                        <button class="form-control">Добавить</button>
+                        <button class="form-control">Add</button>
                     </div>
                 </div>
             </div>

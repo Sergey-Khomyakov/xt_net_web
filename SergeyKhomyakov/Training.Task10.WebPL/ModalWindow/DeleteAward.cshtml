@@ -1,3 +1,81 @@
-﻿@{
-    Response.Redirect("~");
+﻿@using Training.Task6.Common;
+@{
+    Layout = "~/Layout/_Layout.cshtml";
+    string errorMessage = null;
+    var AwardLogic = DependencyResolver.AwardLogic;
+    var AwardUsers = DependencyResolver.UserAwardLogic;
+
+    var award_id = Request["award_id"];
+    if (IsPost)
+    {
+        int id = int.Parse(award_id);
+        if (AwardLogic.GetAll().Where(item => item.Id == id).Count() == 0)
+        {
+            errorMessage = "No reward found with this id";
+        }
+        else
+        {
+            AwardLogic.DeleteById(id);
+            AwardUsers.DeleteAward(id);
+            Response.Redirect("~");
+        }
+    }
 }
+
+@if (errorMessage != null)
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+
+<div class="container m-3">
+    <form class="form-inline justify-content-center" action="~/ModalWindow/DeleteAward.cshtml" method="post">
+        <div class="form-group mx-sm-3 mb-2">
+            <label class="col-form-label m-1">Id Award</label>
+            <input type="text" class="form-control" name="award_id" value="@award_id" required>
+        </div>
+        <input type="button" class="btn btn-danger mb-2" data-toggle="modal" data-target="#exampleModal" value="Delete Award" />
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Are you sure ?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        You will remove this award from all users. !!
+                    </div>
+                    <div class="modal-footer">                      
+                        <button class="btn btn-danger">Delete</button>
+                        <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Close" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="nav justify-content-center">
+        <div>
+            <p class="font-weight-bold" style="font-size:20px">Awards</p>
+        </div>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var awards in AwardLogic.GetAll().ToList())
+                {
+                    <tr>
+                        <th scope="row">@awards.Id</th>
+                        <td>@awards.Title</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

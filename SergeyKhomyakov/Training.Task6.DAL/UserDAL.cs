@@ -40,6 +40,19 @@ namespace Training.Task6.DAL
             WriterFileDateBase();
         }
 
+        public void EditingUser(int userId, string Name, DateTime DateOfBirth, string pathImage)
+        {
+            _allUser[userId] = new User()
+            {
+                Id = userId,
+                Name = Name,
+                DateOfBirth = DateOfBirth,
+                Age = DateTime.Now.Year - DateOfBirth.Year,
+                Path_image = pathImage
+            };
+            WriterFileDateBase();
+        }
+
         public IEnumerable<User> GetAll()
         {
             return _allUser.Values;

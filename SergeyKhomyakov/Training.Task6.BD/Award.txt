@@ -1,2 +1,1 @@
-{"Id":1,"Title":"Меткий стрелок"}
-{"Id":2,"Title":"Стальная стена"}
+{"Id":1,"Title":"Снайпер","Path_image":"/Image/Award/medal.png"}

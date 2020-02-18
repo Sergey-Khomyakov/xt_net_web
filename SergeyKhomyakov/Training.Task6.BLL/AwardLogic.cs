@@ -25,9 +25,19 @@ namespace Training.Task6.BLL
             _awardDAL.DeleteById(id);
         }
 
+        public void EditingAward(int awardId, string title, string pathImage)
+        {
+            _awardDAL.EditingAward(awardId, title, pathImage);
+        }
+
         public IEnumerable<Award> GetAll()
         {
             return _awardDAL.GetAll();
+        }
+
+        public Award GetById(int id)
+        {
+            return _awardDAL.GetAll().FirstOrDefault(item => item.Id == id);
         }
     }
 }

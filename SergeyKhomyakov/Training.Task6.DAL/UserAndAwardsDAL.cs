@@ -51,6 +51,14 @@ namespace Training.Task6.DAL
             }
             WriterFileUserAward();
         }
+        public void DeleteAward(int awardId)
+        {
+            foreach (var item in _allUserAwards.FindAll(n => n.AwardId == awardId))
+            {
+                _allUserAwards.Remove(item);
+            }
+            WriterFileUserAward();
+        }
         private void CreateFile() 
         {
             try

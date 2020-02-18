@@ -132,6 +132,7 @@
     <Content Include="ModalWindow\EditingUser.cshtml" />
     <Content Include="ModalWindow\RemoveUser.cshtml" />
     <Content Include="ModalWindow\DeleteAward.cshtml" />
+    <Content Include="ModalWindow\EditingAward.cshtml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -225,7 +226,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="_ViewStart.cshtml" />
     <None Include="packages.config" />
     <Content Include="Home\Users.cshtml" />
     <Content Include="Home\Awards.cshtml" />

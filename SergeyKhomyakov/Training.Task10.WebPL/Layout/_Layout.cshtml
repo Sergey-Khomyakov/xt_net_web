@@ -4,6 +4,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
     <meta charset="utf-8" />
     <title>@Page.Title</title>
 </head>
@@ -15,7 +16,10 @@
             {
                 <a class="col-form-label" href="~/Home/Users.cshtml" style="color:#000000"><label> Add Users </label></a>
                 <a class="col-form-label" href="~/Home/Awards.cshtml" style="color:#000000"><label> Add Awards </label></a>
-                <a class="col-form-label" href="~/Home/Awards.cshtml" style="color:#000000"><label> Editing Awards </label></a>
+                <a class="col-form-label" href="~/ModalWindow/EditingUser.cshtml" style="color:#000000"><label> Editing User </label></a>
+                <a class="col-form-label" href="~/ModalWindow/EditingAward.cshtml" style="color:#000000"><label> Editing Award </label></a>
+                <a class="col-form-label" href="~/ModalWindow/AddAward.cshtml" style="color:#000000"><label> Add reward to user </label></a>
+                <a class="col-form-label" href="~/ModalWindow/DeleteAward.cshtml" style="color:#000000"><label> Delete Award </label></a>
                 <a href="~/ModalWindow/SignOut.cshtml" class="btn btn-dark" role="button">SignOut</a>
             }
             else if (User.IsInRole("User"))

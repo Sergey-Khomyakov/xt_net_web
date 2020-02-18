@@ -1,30 +1,91 @@
 ﻿@using Training.Task6.Common;
 @{
-    var userAwardLogic = DependencyResolver.UserAwardLogic;
-    var awardLogic = DependencyResolver.AwardLogic;
-    string user_id = null;
-    string award_id = null;
-    user_id = Request["AddAward"];
-    award_id = Request["awardId"];
+    Layout = "~/Layout/_Layout.cshtml";
+    Page.Title = "Add Award";
+    var userLogic = DependencyResolver.UserLogic;
+    var AwardLogic = DependencyResolver.AwardLogic;
+    var userAwards = DependencyResolver.UserAwardLogic;
+    string errorMessage = null;
+    var user = Request["user_id"];
+    var award = Request["award_id"];
 
     if (IsPost)
     {
-        userAwardLogic.AddUserRewards(int.Parse(user_id), int.Parse(award_id));
-        Response.Redirect("~");
+        int user_id = int.Parse(user);
+        int award_id = int.Parse(award);
+        var checkUserId = userLogic.GetAll().Where(item => item.Id == user_id).Count();
+        var checkAwardId = userAwards.GetAllAwardUser(user_id).Where(item => item.AwardId == award_id).Count();
+        if (checkAwardId == 0 && checkUserId != 0)
+        {
+            userAwards.AddUserRewards(user_id, award_id);
+            Response.Redirect("~");
+        }
+        else
+        {
+            errorMessage = "The user already has such a reward or User with this id not found";
+        }
+
     }
 }
-<form action="~/ModalWindow/AddAward.cshtml" method="post">
-    <div class="container">
-        <div class="nav justify-content-center">
-            <div class="col-5">
-                @foreach (var Award in awardLogic.GetAll().ToList())
-                {
-                    <div class="form-inline">
-                        <h1>@Award.Title</h1>
-                        <button class="btn btn-success" name="awardId" value="@Award.Id">Add</button>
-                    </div>
-                }
-            </div>
+
+@if (errorMessage != null)
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+<div class="container m-3">
+    <form class="form-inline justify-content-center" action="~/ModalWindow/AddAward.cshtml" method="post">
+        <div class="form-group mx-sm-3 mb-2">
+            <label class="col-form-label m-1">Id User</label>
+            <input type="text" class="form-control" name="user_id" value="@user" required>
         </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <label class="col-form-label m-1">Id Award</label>
+            <input type="text" class="form-control" name="award_id" value="@award" required>
+        </div>
+        <button class="btn btn-success mb-2">Add</button>
+    </form>
+    <div class="nav justify-content-center">
+        <div>
+            <p class="font-weight-bold" style="font-size:20px">Users</p>
+        </div>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var users in userLogic.GetAll().ToList())
+                {
+                    <tr>
+                        <th scope="row">@users.Id</th>
+                        <td>@users.Name</td>
+                        <td>@users.Age</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div>
+            <p class="font-weight-bold" style="font-size:20px">Awards</p>
+        </div>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var awards in AwardLogic.GetAll().ToList())
+                {
+                    <tr>
+                        <th scope="row">@awards.Id</th>
+                        <td>@awards.Title</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
-</form>
+</div>
