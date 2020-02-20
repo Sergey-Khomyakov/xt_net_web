@@ -1,0 +1,16 @@
+﻿@using Training.Task6.Common;
+@{
+    var registUser = DependencyResolver.RegistUserLogic;
+
+    var user_id = Request["user_id"];
+
+    if (!string.IsNullOrWhiteSpace(user_id))
+    {
+        registUser.AddUserRoleAdmin(int.Parse(user_id));
+        Response.Redirect("~/ModalWindow/EditUserRole.cshtml");
+    }
+    else
+    {
+        Response.Redirect("~/ModalWindow/EditUserRole.cshtml");
+    }
+}

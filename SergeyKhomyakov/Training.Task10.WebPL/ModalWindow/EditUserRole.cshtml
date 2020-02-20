@@ -1,0 +1,47 @@
+﻿@using Training.Task6.Common;
+@{
+    Layout = "~/Layout/_Layout.cshtml";
+    var registUsers = DependencyResolver.RegistUserLogic;
+    var user_id = Request["user_id"];
+    string userRole = Request["userRole"];
+
+}
+<form action="~/ModalWindow/EditUserRole.cshtml" method="post">
+    <div class="container m-3">
+        <div>
+            <p class="font-weight-bold" style="font-size:20px">
+                Registered Users
+            </p>
+        </div>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Login</th>                  
+                    <th scope="col">Password</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Edit Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in registUsers.GetAll().ToList())
+                {
+                    <tr>
+                        <th scope="row">@user.Id</th>
+                        <td>@user.Login</td>
+                        <td>@user.Password</td>
+                        <td>@user.Role[0]</td>
+                        @if (user.Role[0] == "User")
+                        {
+                            <td><button class="btn btn-success" name="user_id" formaction="AddUserRoleAdmin.cshtml" value="@user.Id" onclick="location.href = 'AddUserRoleAdmin.cshtml';">Admin</button></td>
+                        }
+                        else
+                        {
+                            <td><button class="btn btn-success" name="user_id" formaction="AddUserRoleUser.cshtml" value="@user.Id" onclick="location.href = 'AddUserRoleUser.cshtml';">User</button></td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</form>

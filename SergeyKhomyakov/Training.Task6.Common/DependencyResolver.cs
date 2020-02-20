@@ -8,28 +8,24 @@ namespace Training.Task6.Common
 {
     public static class DependencyResolver
     {
-        private static readonly IUserLogic _userLogic;
-        private static readonly IUserDAL _userDAL;
-        private static readonly IAwardLogic _awardLogic;
-        private static readonly IAwardDAL _awardDAL;
-        private static readonly IUserAndAwardLogic _userAwardLogic;
-        private static readonly IUserAndAwardsDAL _userAwardsDAL;
-
-        public static IUserLogic UserLogic => _userLogic;
-        public static IUserDAL UserDal => _userDAL;
-        public static IAwardLogic AwardLogic => _awardLogic;
-        public static IAwardDAL AwardDAL => _awardDAL;
-        public static IUserAndAwardLogic UserAwardLogic => _userAwardLogic;
-
-        public static IUserAndAwardsDAL UserAwardsDAL => _userAwardsDAL;
+        public static IUserLogic UserLogic { get; private set; }
+        public static IUserDAL UserDal { get; private set; }
+        public static IAwardLogic AwardLogic { get; private set; }
+        public static IAwardDAL AwardDAL { get; private set; }
+        public static IUserAndAwardLogic UserAwardLogic { get; private set; }
+        public static IRegistUserLogic RegistUserLogic { get; private set; }
+        public static IRegistUserDAL RegistUserDAL { get; private set; }
+        public static IUserAndAwardsDAL UserAwardsDAL { get; private set; }
         static DependencyResolver()
         {
-            _userDAL = new UserDAL();
-            _userLogic = new UserLogic(_userDAL);
-            _awardDAL = new AwardDAL();
-            _awardLogic = new AwardLogic(_awardDAL);
-            _userAwardsDAL = new UserAndAwardsDAL();
-            _userAwardLogic = new UserAndAwardLogic(_userAwardsDAL);
+            UserDal = new UserDAL();
+            UserLogic = new UserLogic(UserDal);
+            AwardDAL = new AwardDAL();
+            AwardLogic = new AwardLogic(AwardDAL);
+            UserAwardsDAL = new UserAndAwardsDAL();
+            UserAwardLogic = new UserAndAwardLogic(UserAwardsDAL);
+            RegistUserDAL = new RegistUserDAL();
+            RegistUserLogic = new RegistUserLogic(RegistUserDAL);            
         }
     }
 }

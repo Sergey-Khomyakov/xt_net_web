@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="AwardDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistUserDAL.cs" />
     <Compile Include="UserAndAwardsDAL.cs" />
     <Compile Include="UserDAL.cs" />
   </ItemGroup>

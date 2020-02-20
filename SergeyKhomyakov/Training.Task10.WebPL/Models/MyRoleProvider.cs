@@ -1,33 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Security;
-
+using Training.Task6.Common;
 namespace Training.Task10.WebPL.Models
 {
     public class MyRoleProvider : RoleProvider
     {
         public override bool IsUserInRole(string username, string roleName)
         {
-            return (username == "Admin" && roleName == "Admin") ||
-                (username == "Admin" && roleName == "User");
+            return DependencyResolver.RegistUserLogic.IsUserInRole(username,roleName);
         }
 
         public override string[] GetRolesForUser(string username)
         {
-            if (username == "Admin")
-            {
-                return new string[] { "Admin", "User" };
-            }
-            else if (!string.IsNullOrWhiteSpace(username))
-            {
-                return new string[] { "User" };
-            }
-            else 
-            {
-                return new string[] { };
-            } 
+            return DependencyResolver.RegistUserLogic.GetRolesForUser(username);
         }
 
         #region NOT_IMPLEMENTED

@@ -17,7 +17,7 @@
                         @foreach (var user in userLogic.GetAll().ToList())
                         {
                             <div class="col mb-4">
-                                <div class="card" style="width: 18rem;">
+                                <div class="card shadow p-3 mb-5 bg-white" style="width: 18rem;">
                                     @if (string.IsNullOrWhiteSpace(user.Path_image))
                                     {
                                         <img src="~/Image/User/avatar.png" class="card-img-top">
@@ -63,11 +63,11 @@
                 }
                 else
                 {
-                    <div class="row row-cols-1 row-cols-md-3">
+                    <div class="card-deck">
                         @foreach (var user in userLogic.GetAll().ToList())
                         {
                             <div class="col mb-4">
-                                <div class="card" style="width: 18rem;">
+                                <div class="card shadow p-3 mb-5 bg-white" style="width: 18rem;">
                                     @if (string.IsNullOrWhiteSpace(user.Path_image))
                                     {
                                         <img src="~/Image/User/avatar.png" class="card-img-top">

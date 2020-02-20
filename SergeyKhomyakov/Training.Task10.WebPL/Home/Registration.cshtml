@@ -1,0 +1,66 @@
+﻿@using Training.Task6.Common;
+@using Training.Task10.WebPL.Models;
+@{
+    string Login = null;
+    string Password = null;
+    Layout = "~/Layout/_Layout.cshtml";
+    var registUser = DependencyResolver.RegistUserLogic;
+    string errorMassage = null;
+    Login = Request["Login"];
+    Password = Request["Password"];
+
+    if (IsPost) 
+    {
+        if(!string.IsNullOrWhiteSpace(Login) && !string.IsNullOrWhiteSpace(Password))
+        {
+            registUser.AddNewUser(new  Training.Task6.Entity.RegistUser
+            {
+                Login = Login,
+                Password = Password,
+                Role = "User"
+            });
+
+            FormsAuthentication.SetAuthCookie(Login, createPersistentCookie: true);
+            Response.Redirect("~");
+        }
+        else
+        {
+            errorMassage = "Enter Login and Password";
+        }
+    } 
+}
+@if (errorMassage != null)
+{
+    <div class="alert alert-danger">@errorMassage</div>
+}
+<body>
+    <form action="~/Home/Registration" method="post">
+        <div class="container">
+            <div class="nav justify-content-center">
+                <div class="col-5 m-3 rounded" style="background-color:#0094ff">
+                    <div class="m-3">
+                        <p class="font-weight-bold">Registration</p>
+                    </div>
+                    <hr />
+                    <div class="form-group row m-3">
+                        <label class="col-2 col-form-label">Login</label>
+                        <div class="col-12">
+                            <input type="text" class="form-control" name="Login" id="Login" value=@Login required>
+                        </div>
+                    </div>
+                    <div class="form-group row m-3">
+                        <label class="col-2 col-form-label">Password</label>
+                        <div class="col-12">
+                            <input type="password" class="form-control" name="Password" id="Password" value=@Password>
+                        </div>
+                    </div>
+                    <div class="form-group row m-3">
+                        <div class="col-12">
+                            <button class="form-control">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>

@@ -1,44 +1,66 @@
 ﻿@using Training.Task10.WebPL.Models;
+@using Training.Task6.Common;
 @{
     Layout = "~/Layout/_Layout.cshtml";
     Page.Title = "Login";
 
     string Login = null;
     string Password = null;
+    string errorMessage = null;
     Login = Request["Login"];
     Password = Request["Password"];
 
     if (IsPost)
     {
-        FormsAuthentication.SetAuthCookie(Login, createPersistentCookie: true);
+        if (DependencyResolver.RegistUserLogic.CheckUser(Login, Password))
+        {
+            FormsAuthentication.SetAuthCookie(Login, createPersistentCookie: true);
 
-        Response.Redirect("~");
+            Response.Redirect("~");
+        }
+        else
+        {
+            errorMessage = "Wrong login or password";
+        }
     }
 }
-<body>
-    <form action="~/Home/Login" method="post">
-        <div class="container">
-            <div class="nav justify-content-center">
-                <div class="col-5">
-                    <div class="form-group row m-3">
-                        <label class="col-2 col-form-label">Login</label>
-                        <div class="col-12">
-                            <input type="text" class="form-control" name="Login" id="Login" value=@Login>
-                        </div>
+
+@if (errorMessage != null)
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+
+<form action="~/Home/Login" method="post">
+    <div class="container">
+        <div class="nav justify-content-center">
+            <div class="col-5 m-3 rounded" style="background-color:#0094ff">
+                <div class="m-3">
+                    <p class="font-weight-bold">LogIn</p>
+                </div>
+                <hr />
+                <div class="form-group row m-3">
+                    <label class="col-2 col-form-label">Login</label>
+                    <div class="col-12">
+                        <input type="text" class="form-control" name="Login" id="Login" value=@Login required>
                     </div>
-                    <div class="form-group row m-3">
-                        <label class="col-2 col-form-label">Password</label>
-                        <div class="col-12">
-                            <input type="password" class="form-control" name="Password" id="Password" value=@Password>
-                        </div>
+                </div>
+                <div class="form-group row m-3">
+                    <label class="col-2 col-form-label">Password</label>
+                    <div class="col-12">
+                        <input type="password" class="form-control" name="Password" id="Password" value=@Password required>
                     </div>
-                    <div class="form-group row m-3">
-                        <div class="col-12">
-                            <button class="form-control">Войти</button>
-                        </div>
+                </div>
+                <div class="form-group row m-3">
+                    <div class="col-12">
+                        <button class="form-control">Log In</button>
+                    </div>
+                </div>
+                <div class="form-group row m-3">
+                    <div class="col-12">
+                        <input type="button" class="form-control btn btn-success" value="Registr" onclick="location.href='Registration.cshtml';">
                     </div>
                 </div>
             </div>
         </div>
-    </form>
-</body>
+    </div>
+</form>
