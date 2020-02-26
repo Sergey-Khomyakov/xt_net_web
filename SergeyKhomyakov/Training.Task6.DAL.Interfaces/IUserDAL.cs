@@ -9,9 +9,9 @@ namespace Training.Task6.DAL.Interfaces
 {
     public interface IUserDAL
     {
-        int Add(User note);
+        int Add(User user);
         void DeleteById(int id);
         IEnumerable<User> GetAll();
-        void EditingUser(int userId, string Name, DateTime DateOfBirth, string pathImage);
+        void EditingUser(int userId, string Name, DateTime DateOfBirth, byte[] Image);
     }
 }

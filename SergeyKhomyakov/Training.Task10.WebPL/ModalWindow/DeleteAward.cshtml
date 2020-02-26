@@ -15,8 +15,8 @@
         }
         else
         {
-            AwardLogic.DeleteById(id);
             AwardUsers.DeleteAward(id);
+            AwardLogic.DeleteById(id);            
             Response.Redirect("~");
         }
     }

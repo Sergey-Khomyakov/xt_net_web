@@ -18,13 +18,13 @@
                         {
                             <div class="col mb-4">
                                 <div class="card shadow p-3 mb-5 bg-white" style="width: 18rem;">
-                                    @if (string.IsNullOrWhiteSpace(user.Path_image))
+                                    @if (user.image.Length == 0)
                                     {
                                         <img src="~/Image/User/avatar.png" class="card-img-top">
                                     }
                                     else
                                     {
-                                        <img src=@user.Path_image class="card-img-top">
+                                        <img src="data:image;base64,@System.Convert.ToBase64String(user.image)" class="card-img-top">
                                     }
                                     <div class="card-body pb-0">
                                         <h5 class="card-title">User: @user.Name</h5>
@@ -37,13 +37,20 @@
                                             @{
                                                 var usersAwards = from awardUser in userAwards.GetAllAwardUser(user.Id)
                                                                   join award in awardLogic.GetAll() on awardUser.AwardId equals award.Id
-                                                                  select (award.Title);
+                                                                  select (award);
                                             }
-                                            @foreach (var titleAwards in usersAwards)
+                                            @foreach (var Award in usersAwards)
                                             {
                                                 <div class="form-inline">
-                                                    <img src="~/Image/Award/medal.png" width="32" height="32" />
-                                                    <p class="m-0 p-2">@titleAwards</p>
+                                                    @if (Award.image.Length == 0)
+                                                    {
+                                                        <img src="~/Image/Award/medal.png" width="32" height="32">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="data:image;base64,@System.Convert.ToBase64String(Award.image)" width="32" height="32">
+                                                    }
+                                                    <p class="m-0 p-2">@Award.Title</p>
                                                 </div>
                                             }
                                         </li>
@@ -68,13 +75,13 @@
                         {
                             <div class="col mb-4">
                                 <div class="card shadow p-3 mb-5 bg-white" style="width: 18rem;">
-                                    @if (string.IsNullOrWhiteSpace(user.Path_image))
+                                    @if (user.image.Length == 0)
                                     {
                                         <img src="~/Image/User/avatar.png" class="card-img-top">
                                     }
                                     else
                                     {
-                                        <img src=@user.Path_image class="card-img-top">
+                                        <img src="data:image;base64,@System.Convert.ToBase64String(user.image)" class="card-img-top">
                                     }
                                     <div class="card-body pb-0">
                                         <h5 class="card-title">User: @user.Name</h5>

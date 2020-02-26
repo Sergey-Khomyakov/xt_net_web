@@ -10,6 +10,5 @@ namespace Training.Task6.DAL.Interfaces
         void AddUserRoleUser(int id);
         void AddUserRoleAdmin(int id);
         IEnumerable<RegistUser> GetAll();
-        void ChangeUserRole(int id, string login, string password, string[] role);
     }
 }

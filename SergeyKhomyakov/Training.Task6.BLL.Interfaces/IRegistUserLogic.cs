@@ -12,7 +12,6 @@ namespace Training.Task6.BLL.Interfaces
         bool IsUserInRole(string username,string role);
         string[] GetRolesForUser(string username);
         IEnumerable<RegistUser> GetAll();
-        void ChangeUserRole(int id, string login, string password, string[] role);
         bool CheckUser(string Login, string Password);
         RegistUser GetByLodin(string Login);
     }

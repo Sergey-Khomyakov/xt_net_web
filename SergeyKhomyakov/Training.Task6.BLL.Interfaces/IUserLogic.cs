@@ -10,6 +10,6 @@ namespace Training.Task6.BLL.Interfaces
         void DeleteById(int id);
         IEnumerable<User> GetAll();
         User GetById(int id);
-        void EditingUser(int userId, string Name, DateTime DateOfBirth, string pathImage);
+        void EditingUser(int userId, string Name, DateTime DateOfBirth, byte[] Image);
     }
 }

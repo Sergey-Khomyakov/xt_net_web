@@ -9,7 +9,7 @@
     Login = Request["Login"];
     Password = Request["Password"];
 
-    if (IsPost) 
+    if (IsPost)
     {
         if(!string.IsNullOrWhiteSpace(Login) && !string.IsNullOrWhiteSpace(Password))
         {
@@ -17,7 +17,7 @@
             {
                 Login = Login,
                 Password = Password,
-                Role = "User"
+                Role = new string[] { "User" }
             });
 
             FormsAuthentication.SetAuthCookie(Login, createPersistentCookie: true);
@@ -27,7 +27,7 @@
         {
             errorMassage = "Enter Login and Password";
         }
-    } 
+    }
 }
 @if (errorMassage != null)
 {

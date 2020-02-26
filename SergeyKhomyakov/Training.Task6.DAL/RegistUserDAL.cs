@@ -55,18 +55,6 @@ namespace Training.Task6.DAL
             WriterFileDateBase();
         }
 
-        public void ChangeUserRole(int id, string login, string password, string[] role)
-        {
-            _allRegistUser[id] = new RegistUser()
-            {
-                Id = id,
-                Login = login,
-                Password = password,
-                Role = role
-            };
-            WriterFileDateBase();
-        }
-
         public IEnumerable<RegistUser> GetAll()
         {
             return _allRegistUser.Values;

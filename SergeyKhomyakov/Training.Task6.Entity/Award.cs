@@ -7,6 +7,6 @@ namespace Training.Task6.Entity
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Path_image { get; set; }
+        public byte[] image { get; set; }
     }
 }

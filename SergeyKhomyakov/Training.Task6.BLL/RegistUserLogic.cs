@@ -30,11 +30,6 @@ namespace Training.Task6.BLL
             _registUserDAL.AddUserRoleUser(id);
         }
 
-        public void ChangeUserRole(int id, string login, string password, string[] role)
-        {
-            _registUserDAL.ChangeUserRole(id, login, password, role);
-        }
-
         public bool CheckUser(string Login, string Password)
         {
             var user = GetByLodin(Login);

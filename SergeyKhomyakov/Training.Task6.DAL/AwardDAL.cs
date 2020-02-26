@@ -68,18 +68,21 @@ namespace Training.Task6.DAL
                 while (reader.Peek() >= 0)
                 {
                     var award = JsonConvert.DeserializeObject<Award>(reader.ReadLine());
-                    _allAward.Add(award.Id, award);
+                    if (award != null) 
+                    {
+                         _allAward.Add(award.Id, award);
+                    }                 
                 }
             }
         }
 
-        public void EditingAward(int awardId, string title, string pathImage)
+        public void EditingAward(int awardId, string title, byte[] Image)
         {
             _allAward[awardId] = new Award()
             {
                 Id = awardId,
                 Title = title,
-                Path_image = pathImage
+                image = Image
             };
             WriterFileAward();
         }

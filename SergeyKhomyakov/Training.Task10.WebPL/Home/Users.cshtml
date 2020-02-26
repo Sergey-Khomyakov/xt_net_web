@@ -8,25 +8,23 @@
     if (!DateTime.TryParse(Request["date"], out dateTime)) { }
     if (IsPost)
     {
-        var filePath = Request.Files[0].FileName;
-        if (filePath != "")
+        var CheckFile = Request.Files[0].FileName;
+        byte[] imagBytes = { };
+        if (CheckFile != "")
         {
-            var fileSavePath = "";
-            var uploadedFile = Request.Files[0];
-            filePath = "/Image/User/" + uploadedFile.FileName;
-            fileSavePath = Server.MapPath(filePath);
-            uploadedFile.SaveAs(fileSavePath);
-        }
-        else
-        {
-            filePath = "/Image/User/avatar.png";
+            var file = Request.Files[0];
+
+            using (BinaryReader br = new BinaryReader(file.InputStream))
+            {
+                imagBytes = br.ReadBytes(file.ContentLength);
+            }
         }
 
         userLogic.Add(new Training.Task6.Entity.User()
         {
             Name = Name,
             DateOfBirth = dateTime,
-            Path_image = filePath
+            image = imagBytes
         });
 
         Response.Redirect("~");

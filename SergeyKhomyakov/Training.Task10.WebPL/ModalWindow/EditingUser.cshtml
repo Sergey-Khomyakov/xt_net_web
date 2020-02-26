@@ -18,19 +18,21 @@
         }
         else
         {
+            var CheckFile = Request.Files[0].FileName;
             var User = userLogic.GetById(user_id);
-            var filePath = Request.Files[0].FileName;
-            if (filePath != "")
+            byte[] imagBytes = { };
+            if (CheckFile != "")
             {
-                var fileSavePath = "";
-                var uploadedFile = Request.Files[0];
-                filePath = "/Image/User/" + uploadedFile.FileName;
-                fileSavePath = Server.MapPath(filePath);
-                uploadedFile.SaveAs(fileSavePath);
+                var file = Request.Files[0];
+
+                using (BinaryReader br = new BinaryReader(file.InputStream))
+                {
+                    imagBytes = br.ReadBytes(file.ContentLength);
+                }
             }
             else
             {
-                filePath = User.Path_image;
+                imagBytes = User.image;
             }
             if (string.IsNullOrWhiteSpace(Name))
             {
@@ -45,7 +47,7 @@
                 dateUser = User.DateOfBirth;
             }
 
-            userLogic.EditingUser(user_id, Name, dateUser, filePath);
+            userLogic.EditingUser(user_id, Name, dateUser, imagBytes);
 
             Response.Redirect("~");
         }

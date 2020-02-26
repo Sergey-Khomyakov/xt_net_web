@@ -3,6 +3,7 @@ using Training.Task6.BLL;
 using Training.Task6.BLL.Interfaces;
 using Training.Task6.DAL;
 using Training.Task6.DAL.Interfaces;
+using Training.Task11.DAL;
 
 namespace Training.Task6.Common
 {
@@ -18,13 +19,13 @@ namespace Training.Task6.Common
         public static IUserAndAwardsDAL UserAwardsDAL { get; private set; }
         static DependencyResolver()
         {
-            UserDal = new UserDAL();
+            UserDal = new Task11.DAL.UserDAL();
             UserLogic = new UserLogic(UserDal);
-            AwardDAL = new AwardDAL();
+            AwardDAL = new Task11.DAL.AwardDAL();
             AwardLogic = new AwardLogic(AwardDAL);
-            UserAwardsDAL = new UserAndAwardsDAL();
+            UserAwardsDAL = new Task11.DAL.UserAndAwardsDAL();
             UserAwardLogic = new UserAndAwardLogic(UserAwardsDAL);
-            RegistUserDAL = new RegistUserDAL();
+            RegistUserDAL = new Task11.DAL.RegistUserDAL();
             RegistUserLogic = new RegistUserLogic(RegistUserDAL);            
         }
     }

@@ -5,8 +5,9 @@
     var user_id = Request["RemoveUser"];
     if (!string.IsNullOrWhiteSpace(user_id))
     {
-        userLogic.DeleteById(int.Parse(user_id));
         awarduserLogic.DeleteUser(int.Parse(user_id));
+        userLogic.DeleteById(int.Parse(user_id));
+        
         Response.Redirect("~");
     }
     else 

@@ -40,7 +40,7 @@ namespace Training.Task6.DAL
             WriterFileDateBase();
         }
 
-        public void EditingUser(int userId, string Name, DateTime DateOfBirth, string pathImage)
+        public void EditingUser(int userId, string Name, DateTime DateOfBirth, byte[] Image)
         {
             _allUser[userId] = new User()
             {
@@ -48,7 +48,7 @@ namespace Training.Task6.DAL
                 Name = Name,
                 DateOfBirth = DateOfBirth,
                 Age = DateTime.Now.Year - DateOfBirth.Year,
-                Path_image = pathImage
+                image = Image
             };
             WriterFileDateBase();
         }
@@ -82,7 +82,10 @@ namespace Training.Task6.DAL
                 while (reader.Peek() >= 0)
                 {
                     var user = JsonConvert.DeserializeObject<User>(reader.ReadLine());
-                    _allUser.Add(user.Id,user);
+                    if (user != null) 
+                    {
+                        _allUser.Add(user.Id,user);
+                    }                  
                 }
             }
         }

@@ -24,9 +24,9 @@ namespace Training.Task6.BLL
             _userDAL.DeleteById(id);
         }
 
-        public void EditingUser(int userId, string Name, DateTime DateOfBirth, string pathImage)
+        public void EditingUser(int userId, string Name, DateTime DateOfBirth, byte[] Image)
         {
-            _userDAL.EditingUser(userId, Name, DateOfBirth, pathImage);
+            _userDAL.EditingUser(userId, Name, DateOfBirth, Image);
         }
 
         public IEnumerable<User> GetAll()

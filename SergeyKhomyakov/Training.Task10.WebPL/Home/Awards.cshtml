@@ -7,24 +7,22 @@
 
     if (IsPost)
     {
-        var filePath = Request.Files[0].FileName;
-        if (filePath != "")
+        var CheckFile = Request.Files[0].FileName;
+        byte[] imagBytes = { };
+        if (CheckFile != "")
         {
-            var fileSavePath = "";
-            var uploadedFile = Request.Files[0];
-            filePath = "/Image/Award/" + uploadedFile.FileName;
-            fileSavePath = Server.MapPath(filePath);
-            uploadedFile.SaveAs(fileSavePath);
-        }
-        else
-        {
-            filePath = "/Image/Award/medal.png";
+            var file = Request.Files[0];
+
+            using (BinaryReader br = new BinaryReader(file.InputStream))
+            {
+                imagBytes = br.ReadBytes(file.ContentLength);
+            }
         }
 
         awardLogic.Add(new Training.Task6.Entity.Award()
         {
             Title = title,
-            Path_image = filePath
+            image = imagBytes
         });
 
         Response.Redirect("~");

@@ -12,6 +12,6 @@ namespace Training.Task6.DAL.Interfaces
         void Add(Award award);
         void DeleteById(int id);
         IEnumerable<Award> GetAll();
-        void EditingAward(int awardId, string title, string pathImage);
+        void EditingAward(int awardId, string title, byte[] Image);
     }
 }
